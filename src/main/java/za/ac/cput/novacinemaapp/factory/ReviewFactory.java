@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * */
 
 public class ReviewFactory {
-        public static Review buildReivew(int reviewId, Cinema cinema, User user, double rating, String comment, LocalDateTime timestamp) {
+        public static Review buildReview(int reviewId, Cinema cinema, User user, double rating, String comment, LocalDateTime timestamp) {
             if (Helper.isNullOrEmpty(reviewId) || Helper.isNullOrEmpty(cinema) || Helper.isNullOrEmpty(user) || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment) ||Helper.isNullOrEmpty(timestamp))
                 return null;
 

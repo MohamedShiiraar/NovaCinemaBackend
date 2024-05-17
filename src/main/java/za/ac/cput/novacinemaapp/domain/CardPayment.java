@@ -1,7 +1,11 @@
 package za.ac.cput.novacinemaapp.domain;
-import java.util.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+import java.util.*;
+@Entity
 public class CardPayment {
+    @Id
     private String paymentID;
     private String cardHolder;
     private long cardNumber;

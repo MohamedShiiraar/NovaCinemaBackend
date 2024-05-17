@@ -1,5 +1,9 @@
 package za.ac.cput.novacinemaapp.factory;
-
+    /*SeatFactory.java
+Entity for Seat factory
+Author: Daanyaal Isaacs (220094934)
+Date: 17 May
+ */
 import za.ac.cput.novacinemaapp.domain.Seat;
 import za.ac.cput.novacinemaapp.util.Helper;
 

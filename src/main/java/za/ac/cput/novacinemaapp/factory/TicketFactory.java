@@ -1,7 +1,10 @@
 package za.ac.cput.novacinemaapp.factory;
 
-import za.ac.cput.Domain.Ticket;
-import za.ac.cput.util.Helper;
+import za.ac.cput.novacinemaapp.domain.Ticket;
+import za.ac.cput.novacinemaapp.util.Helper;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TicketFactory {
     public static Ticket buildTicket(String ticketID, String movie, String theatre, String cinema, double ticketPrice, LocalDate date, LocalTime time) {

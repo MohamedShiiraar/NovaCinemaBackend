@@ -1,5 +1,11 @@
 package za.ac.cput.novacinemaapp.repository;
 
+/*
+Entity for User
+Author : Mohamed Shiiraar (220354804)
+Date : 17 May
+ */
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import za.ac.cput.novacinemaapp.domain.Movie;

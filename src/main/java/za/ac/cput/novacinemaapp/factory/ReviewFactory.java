@@ -8,7 +8,7 @@ import za.ac.cput.novacinemaapp.util.Helper;
 import java.time.LocalDateTime;
 
 /*  Showtime.java
- *   Domain class for Showtimes
+ *   Factory class for Review
  *   Author: Musaddiq McWhite (219369151)
  *   17 May 2024
  * */

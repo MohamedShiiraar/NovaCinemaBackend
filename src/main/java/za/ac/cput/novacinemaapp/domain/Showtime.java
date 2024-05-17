@@ -1,7 +1,7 @@
 package za.ac.cput.novacinemaapp.domain;
 
 /*  Showtime.java
- *   Domain class for Showtimes
+ *   Domain class for Showtime
  *   Author: Musaddiq McWhite (219369151)
  *   17 May 2024
  * */

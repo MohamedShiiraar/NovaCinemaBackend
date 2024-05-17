@@ -1,6 +1,6 @@
 package za.ac.cput.novacinemaapp.factory;
 
-import za.ac.cput.Domain.Ticket;
+import za.ac.cput.novacinemaapp.domain.Ticket;
 import za.ac.cput.util.Helper;
 
 public class TicketFactory {

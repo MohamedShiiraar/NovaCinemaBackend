@@ -1,5 +1,11 @@
 package za.ac.cput.novacinemaapp.domain;
 
+/*
+Entity for User
+Author : Mohamed Shiiraar (220354804)
+Date : 17 May
+ */
+
 import java.util.Objects;
 
 public class Movie {
@@ -8,6 +14,7 @@ public class Movie {
     private String movieDescription;
     private String genre;
     private String duration;
+    private String ageRestriction;
 
     public Movie() {
     }
@@ -18,6 +25,7 @@ public class Movie {
         this.movieDescription = builder.movieDescription;
         this.genre = builder.genre;
         this.duration = builder.duration;
+        this.ageRestriction = builder.ageRestriction;
     }
 
     public String getMovieID() {
@@ -38,6 +46,10 @@ public class Movie {
 
     public String getDuration() {
         return duration;
+    }
+
+    public String getAgeRestriction() {
+        return ageRestriction;
     }
 
     @Override
@@ -69,25 +81,36 @@ public class Movie {
         private String movieDescription;
         private String genre;
         private String duration;
+        private String ageRestriction;
 
-        public void setMovieID(String movieID) {
+        public Builder setMovieID(String movieID) {
             this.movieID = movieID;
+            return this;
         }
 
-        public void setName(String name) {
+        public Builder setName(String name) {
             this.name = name;
+            return this;
         }
 
-        public void setMovieDescription(String movieDescription) {
+        public Builder setMovieDescription(String movieDescription) {
             this.movieDescription = movieDescription;
+            return this;
         }
 
-        public void setGenre(String genre) {
+        public Builder setGenre(String genre) {
             this.genre = genre;
+            return this;
         }
 
-        public void setDuration(String duration) {
+        public Builder setDuration(String duration) {
             this.duration = duration;
+            return this;
+        }
+
+        public Builder setAgeRestriction(String ageRestriction) {
+            this.ageRestriction = ageRestriction;
+            return this;
         }
 
         public Builder copy(Movie movie){
@@ -96,6 +119,7 @@ public class Movie {
             this.movieDescription = movie.movieDescription;
             this.genre = movie.genre;
             this.duration = movie.duration;
+            this.ageRestriction = movie.ageRestriction;
             return this;
         }
         public Movie build() {

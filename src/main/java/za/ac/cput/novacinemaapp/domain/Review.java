@@ -1,5 +1,11 @@
 package za.ac.cput.novacinemaapp.domain;
 
+/*  Showtime.java
+ *   Domain class for Review
+ *   Author: Musaddiq McWhite (219369151)
+ *   17 May 2024
+ * */
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;

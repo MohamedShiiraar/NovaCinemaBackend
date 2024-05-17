@@ -1,5 +1,9 @@
 package za.ac.cput.novacinemaapp.domain;
 
+// Entity for Ticket
+// Author Amaan Allie
+// 17 May 2024
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 

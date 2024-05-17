@@ -1,9 +1,14 @@
 package za.ac.cput.novacinemaapp.domain;
 //GammaadMohamed_220208344
-import java.util.Objects;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+import java.util.Objects;
+@Entity
 public class LoyaltyProgram {
 
+
+    @Id
     private String id;
 
     private String description;

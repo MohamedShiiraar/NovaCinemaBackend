@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface LoyaltyProgramRepository extends JpaRepository<LoyaltyProgram, String> {
 
-    List<LoyaltyProgram> findLoyaltyProgramBy(String id);
+    List<LoyaltyProgram> findLoyaltyProgramById(String id);
 
 
 }

@@ -12,5 +12,5 @@ import java.util.List;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, String>{
-    List<Seat> findSeatBy(String seatId);
+    List<Seat> findSeatBySeatID(String seatID);
 }

@@ -1,5 +1,9 @@
 package za.ac.cput.novacinemaapp.domain;
-
+    /*Theatre.java
+Entity for Theatres
+Author: Daanyaal Isaacs (220094934)
+Date: 17 May
+ */
 import jakarta.persistence.*;
 
 import java.util.Objects;

@@ -1,5 +1,9 @@
 package za.ac.cput.novacinemaapp.factory;
-
+    /*SeatFactoryTest.java
+Entity for Seat factory test
+Author: Daanyaal Isaacs (220094934)
+Date: 17 May
+ */
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

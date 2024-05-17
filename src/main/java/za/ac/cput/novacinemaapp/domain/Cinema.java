@@ -1,8 +1,13 @@
 package za.ac.cput.novacinemaapp.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.*;
+@Entity
 
 public class Cinema {
+    @Id
     private String locationID;
     private String name;
 

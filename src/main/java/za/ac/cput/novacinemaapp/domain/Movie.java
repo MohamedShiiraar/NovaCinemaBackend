@@ -6,9 +6,14 @@ Author : Mohamed Shiiraar (220354804)
 Date : 17 May
  */
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
+@Entity
 
 public class Movie {
+    @Id
     private String movieID;
     private String name;
     private String movieDescription;

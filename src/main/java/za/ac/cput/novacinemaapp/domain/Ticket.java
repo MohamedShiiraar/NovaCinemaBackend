@@ -143,6 +143,5 @@ public class Ticket {
             return new Ticket(this);
         }
     }
-
 }
 

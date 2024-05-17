@@ -1,8 +1,10 @@
 package za.ac.cput.novacinemaapp.factory;
 
+
 // Entity for Ticket
 // Author Amaan Allie
 // 17 May 2024
+
 
 import za.ac.cput.novacinemaapp.domain.Ticket;
 import za.ac.cput.novacinemaapp.util.Helper;

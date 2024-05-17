@@ -72,19 +72,19 @@ public class Seat {
         }
 
         public Builder setSeatNumber(String seatNumber){
-            this.seatID = seatNumber;
+            this.seatNumber = seatNumber;
             return this;
         }
 
         public Builder setSeatType(String seatType){
-            this.seatID = seatType;
+            this.seatType = seatType;
             return this;
         }
 
         public Builder copy(Seat seat){
-            this.seatID = seat.getSeatID();
-            this.seatNumber = seat.getSeatNumber();
-            this.seatType = seat.getSeatType();
+            this.seatID = seat.seatID;
+            this.seatNumber = seat.seatNumber;
+            this.seatType = seat.seatType;
             return this;
         }
 

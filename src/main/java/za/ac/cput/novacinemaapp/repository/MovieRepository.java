@@ -1,4 +1,22 @@
 package za.ac.cput.novacinemaapp.repository;
 
-public interface MovieRepository {
+/*
+Entity for User
+Author : Mohamed Shiiraar (220354804)
+Date : 17 May
+ */
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import za.ac.cput.novacinemaapp.domain.Movie;
+
+import java.util.List;
+
+@Repository
+public interface MovieRepository extends JpaRepository<Movie,String> {
+    List<Movie> findMovieBy(String name);
+    List<Movie> findMoviesByGenre(String genre);
+    List<Movie> findMoviesByAgeRestriction(String ageRestriction);
+    void deleteMovieByName(String name);
+
 }

@@ -6,7 +6,7 @@ package za.ac.cput.novacinemaapp.domain;
  *   17 May 2024
  * */
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -19,16 +19,13 @@ import java.util.Objects;
 @Entity
 public class Showtime {
     @Id
-    private int showtimeId;
-    private LocalDateTime showtime;
-    private LocalDateTime endTime;
+    private String showtimeId;
+    private LocalTime showtime;
+    private LocalTime endTime;
 
     @OneToOne
     @JoinColumn(name = "movie_Showtime")
     private Movie movie;
-    @OneToOne
-    @JoinColumn(name = "showtime_Showtime")
-    private Showtime nextShow;
 
     public Showtime() {
     }
@@ -38,18 +35,18 @@ public class Showtime {
         this.showtime = builder.showtime;
         this.endTime = builder.endTime;
         this.movie = builder.movie;
-        this.nextShow = builder.nextShow;
+
     }
 
-    public int getShowtimeId() {
+    public String getShowtimeId() {
         return showtimeId;
     }
 
-    public LocalDateTime getShowtime() {
+    public LocalTime getShowtime() {
         return showtime;
     }
 
-    public LocalDateTime getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
@@ -57,21 +54,17 @@ public class Showtime {
         return movie;
     }
 
-    public Showtime getNextShow() {
-        return nextShow;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Showtime showtime1 = (Showtime) o;
-        return getShowtimeId() == showtime1.getShowtimeId() && Objects.equals(getShowtime(), showtime1.getShowtime()) && Objects.equals(getEndTime(), showtime1.getEndTime()) && Objects.equals(getMovie(), showtime1.getMovie()) && Objects.equals(getNextShow(), showtime1.getNextShow());
+        return Objects.equals(getShowtimeId(), showtime1.getShowtimeId()) && Objects.equals(getShowtime(), showtime1.getShowtime()) && Objects.equals(getEndTime(), showtime1.getEndTime()) && Objects.equals(getMovie(), showtime1.getMovie());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getShowtimeId(), getShowtime(), getEndTime(), getMovie(), getNextShow());
+        return Objects.hash(getShowtimeId(), getShowtime(), getEndTime(), getMovie());
     }
 
     @Override
@@ -81,29 +74,27 @@ public class Showtime {
                 ", showtime=" + showtime +
                 ", endTime=" + endTime +
                 ", movie=" + movie +
-                ", nextShow=" + nextShow +
                 '}';
     }
 
     public static class Builder {
 
-        private int showtimeId;
-        private LocalDateTime showtime;
-        private LocalDateTime endTime;
+        private String showtimeId;
+        private LocalTime showtime;
+        private LocalTime endTime;
         private Movie movie;
-        private Showtime nextShow;
 
-        public Builder setShowtimeId(int showtimeId) {
+        public Builder setShowtimeId(String showtimeId) {
             this.showtimeId = showtimeId;
             return this;
         }
 
-        public Builder setShowtime(LocalDateTime showtime) {
+        public Builder setShowtime(LocalTime showtime) {
             this.showtime = showtime;
             return this;
         }
 
-        public Builder setEndTime(LocalDateTime endTime) {
+        public Builder setEndTime(LocalTime endTime) {
             this.endTime = endTime;
             return this;
         }
@@ -113,17 +104,12 @@ public class Showtime {
             return this;
         }
 
-        public Builder setNextShow(Showtime nextShow) {
-            this.nextShow = nextShow;
-            return this;
-        }
 
         public Builder copy(Showtime showtime) {
             this.showtimeId = showtime.showtimeId;
             this.showtime = showtime.showtime;
             this.endTime = showtime.endTime;
             this.movie = showtime.movie;
-            this.nextShow = showtime.nextShow;
             return this;
         }
 

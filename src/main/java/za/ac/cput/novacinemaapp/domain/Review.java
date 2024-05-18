@@ -11,13 +11,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 public class Review {
         @Id
-        private int reviewId;
+        private String reviewId;
     @OneToOne
     @JoinColumn(name = "cinema_Review")
         private Cinema cinema;
@@ -28,7 +28,7 @@ public class Review {
         private double rating;
         private String comment;
 
-        private LocalDateTime timestamp;
+        private LocalDate timestamp;
 
 
     public Review() {
@@ -43,7 +43,7 @@ public class Review {
         this.timestamp = builder.timestamp;
     }
 
-    public int getReviewId() {
+    public String getReviewId() {
         return reviewId;
     }
 
@@ -63,7 +63,7 @@ public class Review {
         return comment;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
@@ -72,7 +72,7 @@ public class Review {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Review review = (Review) o;
-        return getReviewId() == review.getReviewId() && Double.compare(getRating(), review.getRating()) == 0 && Objects.equals(getCinema(), review.getCinema()) && Objects.equals(getUser(), review.getUser()) && Objects.equals(getComment(), review.getComment()) && Objects.equals(getTimestamp(), review.getTimestamp());
+        return Double.compare(getRating(), review.getRating()) == 0 && Objects.equals(getReviewId(), review.getReviewId()) && Objects.equals(getCinema(), review.getCinema()) && Objects.equals(getUser(), review.getUser()) && Objects.equals(getComment(), review.getComment()) && Objects.equals(getTimestamp(), review.getTimestamp());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Review {
                 '}';
     }
 
-    public void setReviewId(int reviewId) {
+    public void setReviewId(String reviewId) {
         this.reviewId = reviewId;
     }
 
@@ -112,21 +112,21 @@ public class Review {
         this.comment = comment;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 
     public static class Builder {
 
-        private int reviewId;
+        private String reviewId;
         private Cinema cinema;
         private User user;
         private double rating;
         private String comment;
 
-        private LocalDateTime timestamp;
+        private LocalDate timestamp;
 
-        public Builder setReviewId(int reviewId) {
+        public Builder setReviewId(String reviewId) {
             this.reviewId = reviewId;
             return this;
         }
@@ -151,7 +151,7 @@ public class Review {
             return this;
         }
 
-        public Builder setTimestamp(LocalDateTime timestamp) {
+        public Builder setTimestamp(LocalDate timestamp) {
             this.timestamp = timestamp;
             return this;
         }

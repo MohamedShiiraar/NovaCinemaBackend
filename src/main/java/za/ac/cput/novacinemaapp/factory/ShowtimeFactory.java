@@ -3,7 +3,7 @@ package za.ac.cput.novacinemaapp.factory;
 import za.ac.cput.novacinemaapp.domain.*;
 import za.ac.cput.novacinemaapp.util.Helper;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /*  Showtime.java
  *   Factory class for Showtime
@@ -12,27 +12,25 @@ import java.time.LocalDateTime;
  * */
 public class ShowtimeFactory {
 
-    public static Showtime buildShowtime(int showtimeId, LocalDateTime showtime, LocalDateTime endTime, Movie movie, Showtime nextShow) {
-        if (Helper.isNullOrEmpty(showtimeId) || Helper.isNullOrEmpty(showtime) || Helper.isNullOrEmpty(endTime) || Helper.isNullOrEmpty(movie) || Helper.isNullOrEmpty(nextShow))
+    public static Showtime buildShowtime(String showtimeId, LocalTime showtime, LocalTime endTime, Movie movie) {
+        if (Helper.isNullOrEmpty(showtimeId) || Helper.isNullOrEmpty(showtime) || Helper.isNullOrEmpty(endTime) || Helper.isNullOrEmpty(movie))
             return null;
 
         return new Showtime.Builder().setShowtimeId(showtimeId).setShowtime(showtime)
                 .setEndTime(endTime)
                 .setMovie(movie)
-                .setNextShow(nextShow)
                 .build();
     }
 
-    public static Showtime buildShowtime(LocalDateTime showtime, LocalDateTime endTime, Movie movie, Showtime nextShow) {
-        if (Helper.isNullOrEmpty(showtime) || Helper.isNullOrEmpty(endTime) || Helper.isNullOrEmpty(movie) || Helper.isNullOrEmpty(nextShow))
+    public static Showtime buildShowtime(LocalTime showtime, LocalTime endTime, Movie movie) {
+        if (Helper.isNullOrEmpty(showtime) || Helper.isNullOrEmpty(endTime) || Helper.isNullOrEmpty(movie))
             return null;
 
-        int showtimeId = Integer.parseInt(Helper.generateId());
+        String showtimeId = Helper.generateId();
 
         return new Showtime.Builder().setShowtimeId(showtimeId).setShowtime(showtime)
                 .setEndTime(endTime)
                 .setMovie(movie)
-                .setNextShow(nextShow)
                 .build();
     }
 }

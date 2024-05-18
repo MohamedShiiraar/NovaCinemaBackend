@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.domain.Showtime;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 @Repository
 public interface ShowtimeRepository extends JpaRepository<Showtime,String> {
-    List<Showtime> findShowtimeByShowtime(LocalDateTime showtime);
-    List<Showtime> findShowtimeByEndTime(LocalDateTime endTime);
+    List<Showtime> findShowtimeByShowtime(LocalTime showtime);
+    List<Showtime> findShowtimeByEndTime(LocalTime endTime);
     List<Showtime> findShowtimeByMovie(Movie movie);
 
-    void deleteShowtimeByShowtimeId(int showtimeId);
+    void deleteShowtimeByShowtimeId(String showtimeId);
 }

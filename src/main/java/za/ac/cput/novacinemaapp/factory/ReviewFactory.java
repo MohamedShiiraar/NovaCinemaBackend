@@ -5,7 +5,7 @@ import za.ac.cput.novacinemaapp.domain.Review;
 import za.ac.cput.novacinemaapp.domain.User;
 import za.ac.cput.novacinemaapp.util.Helper;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /*  Showtime.java
  *   Factory class for Review
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * */
 
 public class ReviewFactory {
-        public static Review buildReview(int reviewId, Cinema cinema, User user, double rating, String comment, LocalDateTime timestamp) {
+        public static Review buildReview(String reviewId, Cinema cinema, User user, double rating, String comment, LocalDate timestamp) {
             if (Helper.isNullOrEmpty(reviewId) || Helper.isNullOrEmpty(cinema) || Helper.isNullOrEmpty(user) || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment) ||Helper.isNullOrEmpty(timestamp))
                 return null;
 
@@ -25,11 +25,11 @@ public class ReviewFactory {
                     .build();
         }
 
-        public static Review buildReview(Cinema cinema, User user, double rating, String comment, LocalDateTime timestamp) {
+        public static Review buildReview(Cinema cinema, User user, double rating, String comment, LocalDate timestamp) {
             if (Helper.isNullOrEmpty(cinema) || Helper.isNullOrEmpty(user) || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment) ||Helper.isNullOrEmpty(timestamp))
                 return null;
 
-            int reviewId = Integer.parseInt(Helper.generateId());
+            String reviewId = Helper.generateId();
 
             return new Review.Builder().setReviewId(reviewId).setCinema(cinema)
                     .setUser(user)

@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface CardPaymentRepository extends JpaRepository<CardPayment,String> {
-    List<CardPayment> findCardPaymentByCardNumber(String cardNumber);
+    List<CardPayment> findCardPaymentByCardNumber(long cardNumber);
 
     List<CardPayment> findCardPaymentByCardHolder(String cardHolder);
 
-    void deleteCardPaymentByCardNumber(String cardNumber);
+    void deleteCardPaymentByCardNumber(long cardNumber);
 }

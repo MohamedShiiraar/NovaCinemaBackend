@@ -16,7 +16,7 @@ public class LoyaltyProgramService implements ILoyaltyProgramService {
     private final LoyaltyProgramRepository repository;
 
     @Autowired
-    public LoyaltyProgramService(LoyaltyProgramRepository repository) {
+    LoyaltyProgramService(LoyaltyProgramRepository repository) {
         this.repository = repository;
     }
 
@@ -26,7 +26,7 @@ public class LoyaltyProgramService implements ILoyaltyProgramService {
     }
 
     @Override
-    public LoyaltyProgram update(LoyaltyProgram loyaltyProgram) {
+    public  LoyaltyProgram update(LoyaltyProgram loyaltyProgram) {
         return repository.save(loyaltyProgram);
     }
 

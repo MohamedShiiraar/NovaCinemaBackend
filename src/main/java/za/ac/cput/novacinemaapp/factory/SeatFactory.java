@@ -5,15 +5,16 @@ Author: Daanyaal Isaacs (220094934)
 Date: 17 May
  */
 import za.ac.cput.novacinemaapp.domain.Seat;
+import za.ac.cput.novacinemaapp.domain.Theatre;
 import za.ac.cput.novacinemaapp.util.Helper;
 
 public class SeatFactory {
-    public static Seat buildSeat(String seatNumber, String seatType){
+    public static Seat buildSeat(String seatNumber, String seatType, Theatre theatre){
         if(Helper.isNullOrEmpty(seatNumber)||
-        Helper.isNullOrEmpty(seatType)){
+        Helper.isNullOrEmpty(seatType) || Helper.isNullOrEmpty(theatre)){
             return null;
         }
         String seatID = Helper.generateId();
-        return new Seat.Builder().setSeatID(seatID).setSeatNumber(seatNumber).setSeatType(seatType).build();
+        return new Seat.Builder().setSeatID(seatID).setSeatNumber(seatNumber).setSeatType(seatType).setTheatre(theatre).build();
     }
 }

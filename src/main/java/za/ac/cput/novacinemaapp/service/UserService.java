@@ -1,4 +1,9 @@
 package za.ac.cput.novacinemaapp.service;
+/*
+Service for User
+Author : Mohamed Shiiraar (220354804)
+Date : 19 May
+ */
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +36,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Set<User> getall() {
+    public Set<User> getAll() {
         return repository.findAll().stream().collect(Collectors.toSet());
     }
 }

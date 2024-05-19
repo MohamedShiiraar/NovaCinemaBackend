@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MovieServiceTest {
 
     @Autowired
-    MovieService movieService;
+    private MovieService movieService;
 
     private static Movie movie1,movie2;
 

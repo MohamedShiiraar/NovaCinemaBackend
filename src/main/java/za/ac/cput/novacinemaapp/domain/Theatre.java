@@ -14,7 +14,7 @@ public class Theatre {
     @Id
     private String theatreID;
     private String theatreType;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "theatre_Cinema")
     private Cinema cinema;
 
@@ -44,12 +44,12 @@ public class Theatre {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Theatre theatre = (Theatre) o;
-        return Objects.equals(theatreID, theatre.theatreID) && Objects.equals(cinema, theatre.cinema) && Objects.equals(theatreType, theatre.theatreType);
+        return Objects.equals(theatreID, theatre.theatreID) && Objects.equals(theatreType, theatre.theatreType) && Objects.equals(cinema, theatre.cinema);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(theatreID, cinema, theatreType);
+        return Objects.hash(theatreID, theatreType, cinema);
     }
 
     @Override

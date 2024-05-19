@@ -1,6 +1,6 @@
 package za.ac.cput.novacinemaapp.service;
 import za.ac.cput.novacinemaapp.domain.Showtime;
-import java.util.List;
+import java.util.Set;
 
 /*  IShowtimeService.java
  *   Service Interface for Showtime
@@ -9,6 +9,6 @@ import java.util.List;
  * */
 
 public interface IShowtimeService extends IService<Showtime, String> {
-    List<Showtime> getall();
+    Set<Showtime> getAll();
 
 }

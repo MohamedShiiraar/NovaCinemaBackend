@@ -1,6 +1,6 @@
 package za.ac.cput.novacinemaapp.service;
 import  za.ac.cput.novacinemaapp.domain.Review;
-import java.util.List;
+import java.util.Set;
 
 /*  IReviewService.java
  *   Service Interface for Review
@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface IReviewService extends IService<Review, String> {
 
-    List<Review> getall();
+    Set<Review> getall();
 }

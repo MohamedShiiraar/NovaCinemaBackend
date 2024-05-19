@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.domain.Showtime;
+import za.ac.cput.novacinemaapp.factory.MovieFactory;
 import za.ac.cput.novacinemaapp.factory.ShowtimeFactory;
 
 import java.time.LocalTime;
@@ -26,16 +28,16 @@ class ShowtimeServiceTest {
 
     @Autowired
     private ShowtimeService showtimeService;
-
     @Autowired
     private MovieService movieService;
-
     private static Showtime showtime1, showtime2;
     private static Movie movie;
 
     @Test
     @Order(1)
     void setup() {
+        movie = MovieFactory.buildMovie("2", "Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
+        movieService.create(movie);
         showtime1 = ShowtimeFactory.buildShowtime("1", LocalTime.of(7, 0), LocalTime.of(9, 0), movie);
         assertNotNull(showtime1);
         System.out.println(showtime1);

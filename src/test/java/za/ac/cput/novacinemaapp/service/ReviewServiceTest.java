@@ -10,7 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.novacinemaapp.domain.User;
 import za.ac.cput.novacinemaapp.domain.Cinema;
 import za.ac.cput.novacinemaapp.domain.Review;
+import za.ac.cput.novacinemaapp.factory.CinemaFactory;
 import za.ac.cput.novacinemaapp.factory.ReviewFactory;
+import za.ac.cput.novacinemaapp.factory.UserFactory;
 
 import java.time.LocalDate;
 
@@ -27,11 +29,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReviewServiceTest {
 
     @Autowired
-    ReviewService reviewService;
+    private ReviewService reviewService;
     @Autowired
-    CinemaService cinemaService;
+    private CinemaService cinemaService;
     @Autowired
-    UserService userService;
+    private UserService userService;
     private static Review review1, review2;
     private static Cinema cinema;
     private static User user;
@@ -39,6 +41,10 @@ class ReviewServiceTest {
     @Test
     @Order(1)
     void setup() {
+        cinema = CinemaFactory.buildCinema("B123", "Grand Cinema");
+        cinemaService.create(cinema);
+        user = UserFactory.buildUser("3","John","Doe","johndoe123@gmail.com","johndoe123!");
+        userService.create(user);
         review1 = ReviewFactory.buildReview("1", cinema, user, 4.5, "Great experience!", LocalDate.now());
         assertNotNull(review1);
         System.out.println(review1);

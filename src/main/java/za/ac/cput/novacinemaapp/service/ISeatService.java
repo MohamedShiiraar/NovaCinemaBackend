@@ -1,4 +1,10 @@
 package za.ac.cput.novacinemaapp.service;
 
-public interface ISeatService {
+import za.ac.cput.novacinemaapp.domain.Seat;
+
+import java.util.Set;
+
+
+public interface ISeatService extends IService<Seat, String>{
+    Set<Seat> getAll();
 }

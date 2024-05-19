@@ -8,6 +8,8 @@ Date: 17 May
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 import java.util.Objects;
 
@@ -18,6 +20,10 @@ public class Seat {
     private String seatNumber;
     private String seatType;
 
+    @OneToOne
+    @JoinColumn(name = "Seat_Theatre")
+    private Theatre theatre;
+
     protected Seat() {
     }
 
@@ -25,6 +31,7 @@ public class Seat {
         this.seatID = builder.seatID;
         this.seatNumber = builder.seatNumber;
         this.seatType = builder.seatType;
+        this.theatre = builder.theatre;
     }
 
     public String getSeatID() {
@@ -38,6 +45,8 @@ public class Seat {
     public String getSeatType() {
         return seatType;
     }
+
+    public Theatre getTheatre() { return theatre; }
 
     @Override
     public boolean equals(Object o) {
@@ -65,6 +74,7 @@ public class Seat {
         private String seatID;
         private String seatNumber;
         private String seatType;
+        private Theatre theatre;
 
         public Builder setSeatID(String id){
             this.seatID = id;
@@ -81,10 +91,16 @@ public class Seat {
             return this;
         }
 
+        public Builder setTheatre(Theatre theatre){
+            this.theatre = theatre;
+            return this;
+        }
+
         public Builder copy(Seat seat){
             this.seatID = seat.seatID;
             this.seatNumber = seat.seatNumber;
             this.seatType = seat.seatType;
+            this.theatre = seat.theatre;
             return this;
         }
 

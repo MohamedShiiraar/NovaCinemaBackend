@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.novacinemaapp.domain.Seat;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, String>{
-    List<Seat> findSeatBySeatID(String seatID);
+    Seat findSeatBySeatID(String seatID);
 }

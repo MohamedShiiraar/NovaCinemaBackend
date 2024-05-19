@@ -26,8 +26,8 @@ public class CinemaService implements ICinemaService {
     }
 
     @Override
-    public Cinema read(String locationID) {
-        return (Cinema) repository.findCinemaByLocationID(locationID);
+    public Cinema read(String s) {
+        return repository.findById(s).orElse(null);
     }
 
     @Override

@@ -1,4 +1,14 @@
 package za.ac.cput.novacinemaapp.service;
 
-public interface ICardPaymentService {
+import za.ac.cput.novacinemaapp.domain.CardPayment;
+
+import java.util.Set;
+
+/*
+ * Jared Barros 219116962
+ * 18/05/2024
+ * */
+
+public interface ICardPaymentService extends IService<CardPayment, String>{
+    Set<CardPayment> getAll();
 }

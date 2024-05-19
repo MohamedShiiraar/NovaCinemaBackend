@@ -1,5 +1,11 @@
 package za.ac.cput.novacinemaapp.service;
 
+/*
+Service Test for User
+Author : Mohamed Shiiraar (220354804)
+Date : 19 May
+ */
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -65,7 +71,7 @@ class UserServiceTest {
     @Test
     @Order(5)
     void getall () {
-        System.out.println(userService.getall());
+        System.out.println(userService.getAll());
     }
 
 }

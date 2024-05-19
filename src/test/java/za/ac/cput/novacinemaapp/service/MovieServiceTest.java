@@ -1,5 +1,11 @@
 package za.ac.cput.novacinemaapp.service;
 
+/*
+Service Test for Movie
+Author : Mohamed Shiiraar (220354804)
+Date : 19 May
+ */
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

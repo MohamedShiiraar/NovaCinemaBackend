@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 /*
 * Jared Barros 219116962
+* 18/05/2024
 * */
 @Service
 public class CinemaService implements ICinemaService {

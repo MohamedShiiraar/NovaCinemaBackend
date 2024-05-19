@@ -4,6 +4,10 @@ import za.ac.cput.novacinemaapp.domain.Cinema;
 
 import java.util.Set;
 
+/*
+ * Jared Barros 219116962
+ * */
+
 public interface ICinemaService extends IService<Cinema, String>{
     Set<Cinema> getAll();
 }

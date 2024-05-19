@@ -11,6 +11,9 @@ import za.ac.cput.novacinemaapp.factory.CinemaFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
+ * Jared Barros 219116962
+ * */
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CinemaServiceTest {

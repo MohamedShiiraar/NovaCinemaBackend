@@ -12,5 +12,5 @@ import java.util.List;
 
 @Repository
 public interface TheatreRepository extends JpaRepository<Theatre, String> {
-    List<Theatre> findTheatreByTheatreID(String theatreID);
+    Theatre findTheatreByTheatreID(String theatreID);
 }

@@ -6,10 +6,7 @@ Author: Daanyaal Isaacs (220094934)
 Date: 17 May
  */
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -20,7 +17,7 @@ public class Seat {
     private String seatNumber;
     private String seatType;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Seat_Theatre")
     private Theatre theatre;
 
@@ -53,12 +50,12 @@ public class Seat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Seat seat = (Seat) o;
-        return Objects.equals(seatID, seat.seatID) && Objects.equals(seatNumber, seat.seatNumber) && Objects.equals(seatType, seat.seatType);
+        return Objects.equals(seatID, seat.seatID) && Objects.equals(seatNumber, seat.seatNumber) && Objects.equals(seatType, seat.seatType) && Objects.equals(theatre, seat.theatre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(seatID, seatNumber, seatType);
+        return Objects.hash(seatID, seatNumber, seatType, theatre);
     }
 
     @Override
@@ -67,6 +64,7 @@ public class Seat {
                 "seatID='" + seatID + '\'' +
                 ", seatNumber='" + seatNumber + '\'' +
                 ", seatType='" + seatType + '\'' +
+                ", theatre=" + theatre +
                 '}';
     }
 

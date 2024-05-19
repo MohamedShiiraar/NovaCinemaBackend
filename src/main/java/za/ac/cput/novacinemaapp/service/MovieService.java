@@ -1,5 +1,11 @@
 package za.ac.cput.novacinemaapp.service;
 
+/*
+Service for Movie
+Author : Mohamed Shiiraar (220354804)
+Date : 19 May
+ */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.novacinemaapp.domain.Movie;

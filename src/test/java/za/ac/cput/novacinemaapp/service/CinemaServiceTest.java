@@ -46,7 +46,7 @@ class CinemaServiceTest {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     void read() {
         Cinema read = cinemaService.read(cinema1.getLocationID());
         assertNotNull(read);
@@ -54,7 +54,7 @@ class CinemaServiceTest {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     void update() {
         Cinema newCinema = new Cinema.Builder().copy(cinema2).setName("Grand Luxury Cinema").build();
         Cinema updated = cinemaService.update(newCinema);

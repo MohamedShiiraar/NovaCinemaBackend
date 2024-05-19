@@ -1,5 +1,9 @@
 package za.ac.cput.novacinemaapp.service;
-
+/*SeatServiceTest.java
+Entity for Seat service test
+Author: Daanyaal Isaacs (220094934)
+Date: 19 May
+ */
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -20,6 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class SeatServiceTest {
     @Autowired
     private SeatService seatService;
+    @Autowired
+    private CinemaService cinemaService;
+    @Autowired
+    private TheatreService theatreService;
 
     private static Seat seat1,seat2;
     private static Theatre theatre;
@@ -28,10 +36,10 @@ class SeatServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        cinema = CinemaFactory.buildCinema("L123", "Grand Cinema");
-        assertNotNull(cinema);
-        theatre = TheatreFactory.buildTheatre("IMAX", cinema);
-        assertNotNull(theatre);
+        cinema = CinemaFactory.buildCinema("LT321", "Grand Cinema");
+        cinemaService.create(cinema);
+        theatre = TheatreFactory.buildTheatre("TT123","IMAX", cinema);
+        theatreService.create(theatre);
         seat1 = SeatFactory.buildSeat("D1","Regular", theatre);
         assertNotNull(seat1);
         System.out.println(seat1);

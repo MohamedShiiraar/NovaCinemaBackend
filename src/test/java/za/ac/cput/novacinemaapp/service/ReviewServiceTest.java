@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import za.ac.cput.novacinemaapp.domain.User;
 import za.ac.cput.novacinemaapp.domain.Cinema;
 import za.ac.cput.novacinemaapp.domain.Review;
@@ -41,15 +40,16 @@ class ReviewServiceTest {
     @Test
     @Order(1)
     void setup() {
-        cinema = CinemaFactory.buildCinema("B123", "Grand Cinema");
+        cinema = CinemaFactory.buildCinema("LT123", "Luxury Cinema");
         cinemaService.create(cinema);
-        user = UserFactory.buildUser("3","John","Doe","johndoe123@gmail.com","johndoe123!");
+        user = UserFactory.buildUser("1","Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
         userService.create(user);
-        review1 = ReviewFactory.buildReview("1", cinema, user, 4.5, "Great experience!", LocalDate.now());
+
+        review1 = ReviewFactory.buildReview("10",cinema, user, 3.0, "Great experience!", LocalDate.now());
         assertNotNull(review1);
         System.out.println(review1);
 
-        review2 = ReviewFactory.buildReview("3", cinema, user, 5.0, "Great experience!", LocalDate.now());
+        review2 = ReviewFactory.buildReview("11",cinema, user, 5.0, "Great experience!", LocalDate.now());
         assertNotNull(review2);
         System.out.println(review2);
     }
@@ -57,13 +57,13 @@ class ReviewServiceTest {
     @Test
     @Order(2)
     void create() {
-        Review create1 = reviewService.create(review1);
-        assertNotNull(create1);
-        System.out.println(create1);
+        Review created1 = reviewService.create(review1);
+        assertNotNull(created1);
+        System.out.println(created1);
 
-        Review create2 = reviewService.create(review2);
-        assertNotNull(create2);
-        System.out.println(create2);
+        Review created2 = reviewService.create(review2);
+        assertNotNull(created2);
+        System.out.println(created2);
     }
 
     @Test
@@ -77,14 +77,14 @@ class ReviewServiceTest {
     @Test
     @Order(4)
     void update() {
-        Review newUpdate = new Review.Builder().copy(review2).setRating(5.0).build();
-        Review updated = reviewService.update((newUpdate));
+        Review newReview = new Review.Builder().copy(review2).setRating(5.0).build();
+        Review updated = reviewService.update(newReview);
         assertNotNull(updated);
         System.out.println(updated);
     }
 
     @Test
     @Order(5)
-    void getall() {System.out.println(reviewService.getall());}
+    void getAll() {System.out.println(reviewService.getAll());}
 
 }

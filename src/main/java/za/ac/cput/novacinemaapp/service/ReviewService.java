@@ -1,5 +1,11 @@
 package za.ac.cput.novacinemaapp.service;
 
+/*  ReviewService.java
+ *   Service for Review
+ *   Author: Musaddiq McWhite (219369151)
+ *   19 May 2024
+ * */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.novacinemaapp.domain.Review;
@@ -17,14 +23,11 @@ public class ReviewService implements IReviewService {
 
     @Override
     public Review create(Review review) {return repository.save(review);}
-
     @Override
-    public Review read(String id) {return repository.findById(id).orElse(null);}
-
+    public Review read(String reviewId) {return repository.findReviewByReviewId(reviewId);}
     @Override
     public Review update(Review review) {return repository.save(review);}
-
     @Override
-    public Set<Review> getall() {return repository.findAll().stream().collect(Collectors.toSet());}
+    public Set<Review> getAll() {return repository.findAll().stream().collect(Collectors.toSet());}
 
 }

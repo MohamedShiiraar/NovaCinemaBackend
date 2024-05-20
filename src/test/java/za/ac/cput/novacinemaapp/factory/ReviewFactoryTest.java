@@ -21,21 +21,25 @@ class ReviewFactoryTest {
     @Test
     @Order(1)
     void testBuildReview(){
-        User user = UserFactory.buildUser("john", "doe", "johndoe@gmail.com","johndoe123");
-        Cinema cinema = CinemaFactory.buildCinema("C246","CinemaX");
-        Review review = ReviewFactory.buildReview("1", cinema, user, 4.5, "Great experience!", LocalDate.now());
+        User user = UserFactory.buildUser("1","john", "doe", "johndoe@gmail.com","johndoe123");
+        assertNotNull(user);
+        Cinema cinema = CinemaFactory.buildCinema("L123","CinemaX");
+        assertNotNull(cinema);
+        Review review = ReviewFactory.buildReview("9",cinema, user, 4.5, "Great experience!", LocalDate.now());
         assertNotNull(review);
-        System.out.println(review.toString());
+        System.out.println(review);
     }
 
     @Test
     @Order(2)
     void testFail(){
-        User user = UserFactory.buildUser("john", "doe", "johndoe@gmail.com","johndoe123");
-        Cinema cinema = CinemaFactory.buildCinema("C246","CinemaX");
-        Review review = ReviewFactory.buildReview( "",cinema, user, 4.5, "Great experience!", LocalDate.now());
+        User user = UserFactory.buildUser("","john", "doe", "johndoe@gmail.com","johndoe123");
+        assertNotNull(user);
+        Cinema cinema = CinemaFactory.buildCinema("L123","CinemaX");
+        assertNotNull(cinema);
+        Review review = ReviewFactory.buildReview("", cinema, user, 4.5, "Great experience!", LocalDate.now());
         assertNotNull(review);
-        System.out.println(review.toString());
+        System.out.println(review);
     }
 
 }

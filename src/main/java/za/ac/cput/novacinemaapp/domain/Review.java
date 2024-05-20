@@ -6,41 +6,35 @@ package za.ac.cput.novacinemaapp.domain;
  *   17 May 2024
  * */
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 public class Review {
-        @Id
-        private String reviewId;
+    @Id
+    private String reviewId;
+    private double rating;
+    private String comment;
+    private LocalDate timestamp;
     @OneToOne
-    @JoinColumn(name = "cinema_Review")
-        private Cinema cinema;
+    @JoinColumn(name = "Review_Cinema")
+    private Cinema cinema;
     @OneToOne
-    @JoinColumn(name = "user_Review")
-        private User user;
-
-        private double rating;
-        private String comment;
-
-        private LocalDate timestamp;
-
+    @JoinColumn(name = "Review_User_")
+    private User user;
 
     public Review() {
     }
 
     public Review(Builder builder) {
         this.reviewId = builder.reviewId;
-        this.cinema = builder.cinema;
-        this.user = builder.user;
         this.rating = builder.rating;
         this.comment = builder.comment;
         this.timestamp = builder.timestamp;
+        this.cinema = builder.cinema;
+        this.user = builder.user;
     }
 
     public String getReviewId() {

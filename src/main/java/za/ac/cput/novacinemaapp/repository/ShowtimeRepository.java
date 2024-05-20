@@ -1,6 +1,6 @@
 package za.ac.cput.novacinemaapp.repository;
-/*  Showtime.java
- *   Domain class for Showtime
+/*  ShowtimeRepository.java
+ *   Interface for Showtime
  *   Author: Musaddiq McWhite (219369151)
  *   17 May 2024
  * */
@@ -14,9 +14,10 @@ import java.time.LocalTime;
 import java.util.List;
 @Repository
 public interface ShowtimeRepository extends JpaRepository<Showtime,String> {
-    List<Showtime> findShowtimeByShowtime(LocalTime showtime);
-    List<Showtime> findShowtimeByEndTime(LocalTime endTime);
+
     List<Showtime> findShowtimeByMovie(Movie movie);
+
+    Showtime findShowtimeByShowtimeId(String showtimeId);
 
     void deleteShowtimeByShowtimeId(String showtimeId);
 }

@@ -14,30 +14,39 @@ import java.time.LocalDate;
  * */
 
 public class ReviewFactory {
-        public static Review buildReview(String reviewId, Cinema cinema, User user, double rating, String comment, LocalDate timestamp) {
-            if (Helper.isNullOrEmpty(reviewId) || Helper.isNullOrEmpty(cinema) || Helper.isNullOrEmpty(user) || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment) ||Helper.isNullOrEmpty(timestamp))
-                return null;
 
-            return new Review.Builder().setReviewId(reviewId).setCinema(cinema)
-                    .setUser(user)
-                    .setRating(rating)
-                    .setComment(comment).setTimestamp(timestamp)
-                    .build();
-        }
+    public static Review buildReview(Cinema cinema, User user, double rating, String comment, LocalDate timestamp) {
+        if (Helper.isNullOrEmpty(cinema) || Helper.isNullOrEmpty(user)
+                || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment)
+                || Helper.isNullOrEmpty(timestamp))
+            return null;
 
-        public static Review buildReview(Cinema cinema, User user, double rating, String comment, LocalDate timestamp) {
-            if (Helper.isNullOrEmpty(cinema) || Helper.isNullOrEmpty(user) || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment) ||Helper.isNullOrEmpty(timestamp))
-                return null;
+        String reviewId = Helper.generateId();
 
-            String reviewId = Helper.generateId();
+        return new Review.Builder().setReviewId(reviewId).setCinema(cinema)
+                .setUser(user)
+                .setRating(rating)
+                .setComment(comment).setTimestamp(timestamp)
+                .build();
+    }
 
-            return new Review.Builder().setReviewId(reviewId).setCinema(cinema)
-                    .setUser(user)
-                    .setRating(rating)
-                    .setComment(comment).setTimestamp(timestamp)
-                    .build();
-        }
+    public static Review buildReview(String reviewId, Cinema cinema, User user, double rating, String comment, LocalDate timestamp) {
+        if (Helper.isNullOrEmpty(reviewId) || Helper.isNullOrEmpty(cinema) || Helper.isNullOrEmpty(user)
+                || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment)
+                || Helper.isNullOrEmpty(timestamp))
+            return null;
+
+        return new Review.Builder().setReviewId(reviewId).setCinema(cinema)
+                .setUser(user)
+                .setRating(rating)
+                .setComment(comment).setTimestamp(timestamp)
+                .build();
+    }
 
     }
+
+
+
+
 
 

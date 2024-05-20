@@ -9,6 +9,5 @@ import java.util.Set;
  * */
 
 public interface IReviewService extends IService<Review, String> {
-
-    Set<Review> getall();
+    Set<Review> getAll();
 }

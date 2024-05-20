@@ -6,14 +6,9 @@ package za.ac.cput.novacinemaapp.domain;
  *   17 May 2024
  * */
 
+import jakarta.persistence.*;
+
 import java.time.LocalTime;
-import java.util.Objects;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-
 import java.util.Objects;
 
 @Entity
@@ -24,7 +19,7 @@ public class Showtime {
     private LocalTime endTime;
 
     @OneToOne
-    @JoinColumn(name = "movie_Showtime")
+    @JoinColumn(name = "Showtime_Movie")
     private Movie movie;
 
     public Showtime() {

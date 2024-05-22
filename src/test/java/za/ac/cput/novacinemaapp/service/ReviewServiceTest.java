@@ -34,22 +34,27 @@ class ReviewServiceTest {
     @Autowired
     private UserService userService;
     private static Review review1, review2;
-    private static Cinema cinema;
-    private static User user;
+    private static Cinema cinema1, cinema2;
+    private static User user1, user2;
 
     @Test
     @Order(1)
     void setup() {
-        cinema = CinemaFactory.buildCinema("LT123", "Luxury Cinema");
-        cinemaService.create(cinema);
-        user = UserFactory.buildUser("1","Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
-        userService.create(user);
+        cinema1 = CinemaFactory.buildCinema("CW24", "CinemaX");
+        cinemaService.create(cinema1);
+        cinema2 = CinemaFactory.buildCinema("CW25", "CinemaX");
+        cinemaService.create(cinema2);
 
-        review1 = ReviewFactory.buildReview("10",cinema, user, 3.0, "Great experience!", LocalDate.now());
+        user1 = UserFactory.buildUser("1","John","Doe","johndoe@gmail.com","johndoe123");
+        userService.create(user1);
+        user2 = UserFactory.buildUser("2","John","Doe","johndoe@gmail.com","johndoe123!");
+        userService.create(user2);
+
+        review1 = ReviewFactory.buildReview("10", 3.0, "Good experience!", LocalDate.of(2024, 5, 17),cinema1, user1);
         assertNotNull(review1);
         System.out.println(review1);
 
-        review2 = ReviewFactory.buildReview("11",cinema, user, 5.0, "Great experience!", LocalDate.now());
+        review2 = ReviewFactory.buildReview("5", 4.5, "Great experience!", LocalDate.of(2024, 5, 17),cinema2, user2);
         assertNotNull(review2);
         System.out.println(review2);
     }

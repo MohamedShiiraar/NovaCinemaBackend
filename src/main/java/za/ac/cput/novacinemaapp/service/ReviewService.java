@@ -20,7 +20,6 @@ public class ReviewService implements IReviewService {
 
     @Autowired
     ReviewService(ReviewRepository repository) {this.repository = repository;}
-
     @Override
     public Review create(Review review) {return repository.save(review);}
     @Override

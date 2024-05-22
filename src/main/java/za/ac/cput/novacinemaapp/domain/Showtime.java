@@ -1,13 +1,12 @@
 package za.ac.cput.novacinemaapp.domain;
 
 /*  Showtime.java
- *   Domain class for Showtime
+ *   Entity for Showtime
  *   Author: Musaddiq McWhite (219369151)
  *   17 May 2024
  * */
 
 import jakarta.persistence.*;
-
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -19,7 +18,7 @@ public class Showtime {
     private LocalTime endTime;
 
     @OneToOne
-    @JoinColumn(name = "Showtime_Movie")
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
     public Showtime() {
@@ -54,12 +53,12 @@ public class Showtime {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Showtime showtime1 = (Showtime) o;
-        return Objects.equals(getShowtimeId(), showtime1.getShowtimeId()) && Objects.equals(getShowtime(), showtime1.getShowtime()) && Objects.equals(getEndTime(), showtime1.getEndTime()) && Objects.equals(getMovie(), showtime1.getMovie());
+        return Objects.equals(showtimeId, showtime1.showtimeId) && Objects.equals(showtime, showtime1.showtime) && Objects.equals(endTime, showtime1.endTime) && Objects.equals(movie, showtime1.movie);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getShowtimeId(), getShowtime(), getEndTime(), getMovie());
+        return Objects.hash(showtimeId, showtime, endTime, movie);
     }
 
     @Override

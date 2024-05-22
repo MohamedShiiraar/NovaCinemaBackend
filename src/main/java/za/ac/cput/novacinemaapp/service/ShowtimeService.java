@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.novacinemaapp.domain.Showtime;
 import za.ac.cput.novacinemaapp.repository.ShowtimeRepository;
 
-
 import java.util.Set;
 import java.util.stream.Collectors;
 

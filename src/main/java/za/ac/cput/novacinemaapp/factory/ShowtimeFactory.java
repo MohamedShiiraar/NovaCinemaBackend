@@ -2,10 +2,9 @@ package za.ac.cput.novacinemaapp.factory;
 
 import za.ac.cput.novacinemaapp.domain.*;
 import za.ac.cput.novacinemaapp.util.Helper;
-
 import java.time.LocalTime;
 
-/*  Showtime.java
+/*  ShowtimeFactory.java
  *   Factory class for Showtime
  *   Author: Musaddiq McWhite (219369151)
  *   17 May 2024

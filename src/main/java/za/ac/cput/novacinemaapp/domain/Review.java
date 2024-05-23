@@ -1,13 +1,12 @@
 package za.ac.cput.novacinemaapp.domain;
 
-/*  Showtime.java
- *   Domain class for Review
+/*  Review.java
+ *   Entity for Review
  *   Author: Musaddiq McWhite (219369151)
  *   17 May 2024
  * */
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -19,10 +18,10 @@ public class Review {
     private String comment;
     private LocalDate timestamp;
     @OneToOne
-    @JoinColumn(name = "Review_Cinema")
+    @JoinColumn(name = "cinema_id")
     private Cinema cinema;
     @OneToOne
-    @JoinColumn(name = "Review_User_")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Review() {
@@ -41,14 +40,6 @@ public class Review {
         return reviewId;
     }
 
-    public Cinema getCinema() {
-        return cinema;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
     public double getRating() {
         return rating;
     }
@@ -61,77 +52,50 @@ public class Review {
         return timestamp;
     }
 
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Review review = (Review) o;
-        return Double.compare(getRating(), review.getRating()) == 0 && Objects.equals(getReviewId(), review.getReviewId()) && Objects.equals(getCinema(), review.getCinema()) && Objects.equals(getUser(), review.getUser()) && Objects.equals(getComment(), review.getComment()) && Objects.equals(getTimestamp(), review.getTimestamp());
+        return Objects.equals(reviewId, review.reviewId) && Double.compare(rating, review.rating) == 0 && Objects.equals(comment, review.comment) && Objects.equals(timestamp, review.timestamp) && Objects.equals(cinema, review.cinema) && Objects.equals(user, review.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReviewId(), getCinema(), getUser(), getRating(), getComment(), getTimestamp());
+        return Objects.hash(reviewId, rating, comment, timestamp, cinema, user);
     }
 
     @Override
     public String toString() {
         return "Review{" +
-                "reviewId=" + reviewId +
-                ", cinema=" + cinema +
-                ", user=" + user +
+                "reviewId='" + reviewId + '\'' +
                 ", rating=" + rating +
                 ", comment='" + comment + '\'' +
                 ", timestamp=" + timestamp +
+                ", cinema=" + cinema +
+                ", user=" + user +
                 '}';
-    }
-
-    public void setReviewId(String reviewId) {
-        this.reviewId = reviewId;
-    }
-
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public void setTimestamp(LocalDate timestamp) {
-        this.timestamp = timestamp;
     }
 
     public static class Builder {
 
         private String reviewId;
-        private Cinema cinema;
-        private User user;
         private double rating;
         private String comment;
-
         private LocalDate timestamp;
+        private Cinema cinema;
+        private User user;
 
         public Builder setReviewId(String reviewId) {
             this.reviewId = reviewId;
-            return this;
-        }
-
-        public Builder setCinema(Cinema cinema) {
-            this.cinema = cinema;
-            return this;
-        }
-
-        public Builder setUser(User user) {
-            this.user = user;
             return this;
         }
 
@@ -150,13 +114,23 @@ public class Review {
             return this;
         }
 
+        public Builder setCinema(Cinema cinema) {
+            this.cinema = cinema;
+            return this;
+        }
+
+        public Builder setUser(User user) {
+            this.user = user;
+            return this;
+        }
+
         public Builder copy(Review review) {
             this.reviewId = review.reviewId;
-            this.cinema = review.cinema;
-            this.user = review.user;
             this.rating = review.rating;
             this.comment = review.comment;
             this.timestamp = review.timestamp;
+            this.cinema = review.cinema;
+            this.user = review.user;
             return this;
         }
 

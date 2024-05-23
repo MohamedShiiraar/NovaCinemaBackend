@@ -23,9 +23,9 @@ class ReviewFactoryTest {
     void testBuildReview(){
         User user = UserFactory.buildUser("1","john", "doe", "johndoe@gmail.com","johndoe123");
         assertNotNull(user);
-        Cinema cinema = CinemaFactory.buildCinema("L123","CinemaX");
+        Cinema cinema = CinemaFactory.buildCinema("CW24","CinemaX");
         assertNotNull(cinema);
-        Review review = ReviewFactory.buildReview("9",cinema, user, 4.5, "Great experience!", LocalDate.now());
+        Review review = ReviewFactory.buildReview("9", 4.5, "Great experience!", LocalDate.now(),cinema, user);
         assertNotNull(review);
         System.out.println(review);
     }
@@ -33,11 +33,11 @@ class ReviewFactoryTest {
     @Test
     @Order(2)
     void testFail(){
-        User user = UserFactory.buildUser("","john", "doe", "johndoe@gmail.com","johndoe123");
+        User user = UserFactory.buildUser("1","john", "doe", "johndoe@gmail.com","johndoe123");
         assertNotNull(user);
-        Cinema cinema = CinemaFactory.buildCinema("L123","CinemaX");
+        Cinema cinema = CinemaFactory.buildCinema("CW24","CinemaX");
         assertNotNull(cinema);
-        Review review = ReviewFactory.buildReview("", cinema, user, 4.5, "Great experience!", LocalDate.now());
+        Review review = ReviewFactory.buildReview("", 5.0, "Great experience!", LocalDate.now(), cinema, user);
         assertNotNull(review);
         System.out.println(review);
     }

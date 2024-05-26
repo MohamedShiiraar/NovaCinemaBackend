@@ -21,7 +21,7 @@ public class TheatreController {
         if (created==null){
             return ResponseEntity.badRequest().body("Error Creating Theatre");
         }
-        return new ResponseEntity<>(created, HttpStatus.CREATED)
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @PostMapping("/read{theatreID}")

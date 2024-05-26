@@ -35,7 +35,7 @@ public class TicketController {
 
     @GetMapping("/getAll")
     public Set<Ticket> getAll() {
-        return ticketService.getAll();
+        return ticketService.getall();
     }
 
     @PostMapping("/update")

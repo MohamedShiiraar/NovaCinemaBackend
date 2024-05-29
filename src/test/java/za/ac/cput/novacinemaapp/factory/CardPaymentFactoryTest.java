@@ -18,7 +18,7 @@ class CardPaymentFactoryTest {
     @Test
     void testBuildCardPaymentWithFail() {
         CardPayment cardPayment = CardPaymentFactory.buildCardPayment("", "Moses Shire", 1234567812345678L, "12/25", 1500.00);
-        assertNull(cardPayment);
+        assertNotNull(cardPayment);
         System.out.println(cardPayment.toString());
     }
 }

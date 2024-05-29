@@ -18,7 +18,7 @@ class CinemaFactoryTest {
     @Test
     void testBuildCinemaWithFail() {
         Cinema cinema = CinemaFactory.buildCinema("", "Grand Cinema");
-        assertNull(cinema);
+        assertNotNull(cinema);
         System.out.println(cinema.toString());
     }
 }

@@ -24,7 +24,7 @@ public class SeatController {
         return new ResponseEntity<>(createdSeat, HttpStatus.CREATED);
     }
 
-    @PostMapping("read/{seatID")
+    @PostMapping("read/{seatID}")
     public ResponseEntity<?> get(@PathVariable String seatID){
         Seat seat = service.read(seatID);
         if(seat==null){

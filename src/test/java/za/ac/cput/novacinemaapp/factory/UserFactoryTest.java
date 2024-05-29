@@ -11,7 +11,7 @@ class UserFactoryTest {
     void testBuildUser() {
         User b = UserFactory.buildUser("1","Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
         assertNotNull(b);
-        System.out.println(b.toString());
+        System.out.println(b);
     }
     @Test
     void testBuildUserWithFail() {

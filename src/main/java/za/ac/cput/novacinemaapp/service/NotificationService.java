@@ -32,8 +32,13 @@ public class NotificationService implements INotificationService {
     }
 
     @Override
+    public Notification read(String id) {
+        return null;
+    }
+
+    @Override
     public Notification read(Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(String.valueOf(id)).orElse(null);
     }
 
     @Override

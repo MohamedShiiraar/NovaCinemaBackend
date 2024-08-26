@@ -1,7 +1,10 @@
 package za.ac.cput.novacinemaapp.controller;
 
 /*
-GammaadMohamed-220208344
+NotificationControllerTest.java
+Tests for NotificationController
+Author: Gammaad Mohamed (220208344)
+
  */
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -24,13 +27,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class NotificationControllerTest {
 
-    private static User user = new User(); // Assuming User object is instantiated correctly
+    private static User user = new User(); // Make sure to set user attributes as needed
     private static Notification notification = NotificationFactory.buildNotification("Your movie starts in 30 minutes", user);
-    private final String BASE_URL = "http://localhost:8080/notification";
+    private final String BASE_URL = "http://localhost:8080/notifications"; // Ensure this matches your controller's URL
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static Long notificationID;
+    private String notificationID;
 
     private HttpEntity<?> performPostRequest(Object object) {
         return new HttpEntity<>(object);
@@ -43,63 +46,61 @@ public class NotificationControllerTest {
         String url = BASE_URL + "/create";
         ResponseEntity<Notification> postResponse = restTemplate.postForEntity(url, notificationEntity, Notification.class);
         assertNotNull(postResponse);
-        System.out.println(postResponse);
+        assertEquals(HttpStatus.CREATED, postResponse.getStatusCode());
         assertNotNull(postResponse.getBody());
 
         Notification savedNotification = postResponse.getBody();
-        System.out.println("Saved data : " + savedNotification);
         assertNotNull(savedNotification);
         notificationID = savedNotification.getNotificationID();
+        assertNotNull(notificationID);
     }
 
     @Test
     @Order(2)
     void read() throws URISyntaxException {
         String url = BASE_URL + "/read/" + notificationID;
-        System.out.println("URL: " + url);
-        ResponseEntity<Notification> getResponse = restTemplate.exchange(RequestEntity.get(new URI(url)).build(), Notification.class);
+        ResponseEntity<Notification> getResponse = restTemplate.exchange(
+                RequestEntity.get(new URI(url)).build(), Notification.class);
 
+        assertEquals(HttpStatus.OK, getResponse.getStatusCode());
         Notification readNotification = getResponse.getBody();
+        assertNotNull(readNotification);
         assertEquals(notificationID, readNotification.getNotificationID());
-        System.out.println("Read: " + readNotification);
     }
 
     @Test
     @Order(3)
     void update() {
         String url = BASE_URL + "/update";
-        Notification updatedNotification = new Notification.Builder().copy(notification).setDescription("Your seat has been upgraded to VIP").build();
+        Notification updatedNotification = new Notification.Builder()
+                .copy(notification)
+                .setDescription("Your seat has been upgraded to VIP")
+                .build();
 
         HttpEntity<?> entity = performPostRequest(updatedNotification);
 
-        System.out.println("URL: " + url);
-        System.out.println("POST data: " + updatedNotification);
-        ResponseEntity<Notification> response = restTemplate.postForEntity(url, entity, Notification.class);
-        assertNotNull(response.getBody());
+        ResponseEntity<Notification> response = restTemplate.exchange(url, HttpMethod.PUT, entity, Notification.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        Notification responseBody = response.getBody();
+        assertNotNull(responseBody);
+        assertEquals("Your seat has been upgraded to VIP", responseBody.getDescription());
     }
 
     @Test
     @Order(4)
     void getAll() {
         String url = BASE_URL + "/getAll";
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<String> entity = new HttpEntity<>(null, headers);
-
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-        System.out.println("Show all");
-        System.out.println(response);
-        System.out.println(response.getBody());
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        String responseBody = response.getBody();
+        assertNotNull(responseBody);
     }
 
     @Test
     @Order(5)
     void delete() {
         String url = BASE_URL + "/delete/" + notificationID;
-        System.out.println("URL: " + url);
-
-        HttpEntity<?> entity = performPostRequest(notification);
-
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, entity, String.class);
+        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 }

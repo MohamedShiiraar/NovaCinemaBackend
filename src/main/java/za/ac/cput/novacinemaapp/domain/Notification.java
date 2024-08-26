@@ -1,34 +1,41 @@
 package za.ac.cput.novacinemaapp.domain;
 
 /*
-GammaadMohamed- 220208344
+gammaadMohamed-220208344
  */
 
 import jakarta.persistence.*;
+import za.ac.cput.novacinemaapp.factory.LoyaltyProgramFactory;
+
 import java.util.Objects;
 
 @Entity
 public class Notification {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long notificationID;
-
+    private String notificationID;
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "user_ID")
+    @JoinColumn(name = "userID")
     private User user;
 
-    public Notification() {}
+    // Default constructor
+    public Notification(LoyaltyProgramFactory.NotificationFactory.Builder builder) {
+    }
 
+    // Constructor using builder
     public Notification(Builder builder) {
         this.notificationID = builder.notificationID;
         this.description = builder.description;
         this.user = builder.user;
     }
 
-    public Long getNotificationID() {
+    public Notification() {
+
+    }
+
+    public String getNotificationID() {
         return notificationID;
     }
 
@@ -58,18 +65,18 @@ public class Notification {
     @Override
     public String toString() {
         return "Notification{" +
-                "notificationID=" + notificationID +
+                "notificationID='" + notificationID + '\'' +
                 ", description='" + description + '\'' +
                 ", user=" + user +
                 '}';
     }
 
     public static class Builder {
-        private Long notificationID;
+        private String notificationID;
         private String description;
         private User user;
 
-        public Builder setNotificationID(Long notificationID) {
+        public Builder setNotificationID(String notificationID) {
             this.notificationID = notificationID;
             return this;
         }

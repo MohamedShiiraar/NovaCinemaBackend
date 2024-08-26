@@ -9,7 +9,7 @@ public class CardFactory {
         if (Helper.isNullOrEmpty(cardHolder)||Helper.isNullOrEmpty(cardNumber) ||Helper.isNullOrEmpty(expiryDate))
             return null;
 
-        String cardID = Helper.generateId();
+        String cardID = String.valueOf(Helper.generateId());
 
         return new Card.Builder().setCardID(cardID).setCardHolder(cardHolder).setCardNumber(cardNumber).setExpiryDate(expiryDate).build();
     }

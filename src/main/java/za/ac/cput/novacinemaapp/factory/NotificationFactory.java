@@ -1,7 +1,10 @@
 package za.ac.cput.novacinemaapp.factory;
 
 /*
-GammaadMohamed-220208344
+NotificationFactory.java
+Entity for Notification factory
+Author: [Your Name] ([Your Student ID])
+Date: [Current Date]
  */
 
 import za.ac.cput.novacinemaapp.domain.Notification;
@@ -9,12 +12,25 @@ import za.ac.cput.novacinemaapp.domain.User;
 import za.ac.cput.novacinemaapp.util.Helper;
 
 public class NotificationFactory {
+
     public static Notification buildNotification(String description, User user) {
         if (Helper.isNullOrEmpty(description) || user == null)
             return null;
 
+        String notificationID = Helper.generateId();
         return new Notification.Builder()
-                .setNotificationID(Helper.generateId())
+                .setNotificationID(notificationID)
+                .setDescription(description)
+                .setUser(user)
+                .build();
+    }
+
+    public static Notification buildNotification(String notificationID, String description, User user) {
+        if (Helper.isNullOrEmpty(notificationID) || Helper.isNullOrEmpty(description) || user == null)
+            return null;
+
+        return new Notification.Builder()
+                .setNotificationID(notificationID)
                 .setDescription(description)
                 .setUser(user)
                 .build();

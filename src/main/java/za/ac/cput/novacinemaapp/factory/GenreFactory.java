@@ -23,7 +23,7 @@ public class GenreFactory {
         if (Helper.isNullOrEmpty(name) || Helper.isNullOrEmpty(description))
             return null;
 
-        String genreID = Helper.generateId();
+        String genreID = String.valueOf(Helper.generateId());
 
         return new Genre.Builder()
                 .setGenreID(genreID)

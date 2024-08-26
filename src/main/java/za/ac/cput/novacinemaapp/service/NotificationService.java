@@ -1,8 +1,7 @@
 package za.ac.cput.novacinemaapp.service;
 
 /*
-GammaadMohamed
-220208344
+GammaadMohamed-220208344
  */
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,21 +33,16 @@ public class NotificationService implements INotificationService {
 
     @Override
     public Notification read(String id) {
-        return repository.findById(id).orElse(null);
+        return null;
+    }
+
+    @Override
+    public Notification read(Long id) {
+        return repository.findById(String.valueOf(id)).orElse(null);
     }
 
     @Override
     public Set<Notification> getAll() {
         return repository.findAll().stream().collect(Collectors.toSet());
-    }
-
-    @Override
-    public void deleteByRecipient(String recipient) {
-        repository.deleteNotificationByRecipient(recipient);
-    }
-
-    @Override
-    public Set<Notification> findByRecipient(String recipient) {
-        return repository.findNotificationsByRecipient(recipient).stream().collect(Collectors.toSet());
     }
 }

@@ -1,10 +1,10 @@
 package za.ac.cput.novacinemaapp.service;
 
 /*
-GammaadMohamed
-220208344
+GammaadMohamed-220208344
  */
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -12,9 +12,9 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.novacinemaapp.domain.Notification;
+import za.ac.cput.novacinemaapp.domain.User;
 import za.ac.cput.novacinemaapp.factory.NotificationFactory;
-
-import java.util.Set;
+import za.ac.cput.novacinemaapp.factory.UserFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,68 +25,57 @@ class NotificationServiceTest {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private UserService userService;
+
     private static Notification notification1, notification2;
+    private static User user;
 
-    @Test
-    @Order(1)
-    void setup() {
-        notification1 = NotificationFactory.buildNotification("1", "Reminder: Your movie starts in 30 minutes!", "user@example.com");
+    @BeforeEach
+    void setUp() {
+        user = UserFactory.buildUser("1", "Mohamed", "Shiiraar", "mso2shiiraar@gmail.com", "Test123!");
+        userService.create(user);
+        assertNotNull(user);
+
+        notification1 = NotificationFactory.buildNotification("Your movie starts in 30 minutes", user);
+        notification2 = NotificationFactory.buildNotification("Your seat has been upgraded", user);
         assertNotNull(notification1);
-        System.out.println(notification1);
-
-        notification2 = NotificationFactory.buildNotification("2", "Your reservation has been confirmed.", "user@example.com");
         assertNotNull(notification2);
-        System.out.println(notification2);
     }
 
     @Test
-    @Order(2)
+    @Order(1)
     void create() {
-        Notification create1 = notificationService.create(notification1);
-        assertNotNull(create1);
-        System.out.println(create1);
-
-        Notification create2 = notificationService.create(notification2);
-        assertNotNull(create2);
-        System.out.println(create2);
+        Notification created1 = notificationService.create(notification1);
+        Notification created2 = notificationService.create(notification2);
+        assertNotNull(created1);
+        assertNotNull(created2);
+    }
+    @Test
+    @Order(2)
+    void read() {
+        // First, save the notifications to ensure they exist
+        notificationService.create(notification1);
+        Notification readNotification = notificationService.read(notification1.getNotificationID());
+        assertNotNull(readNotification);
+        assertEquals(notification1.getNotificationID(), readNotification.getNotificationID());
     }
 
     @Test
     @Order(3)
     void update() {
-        Notification updated1 = new Notification.Builder().copy(notification2).setMessage("Your reservation has been updated.").build();
-        Notification updated = notificationService.update(updated1);
+        Notification updatedNotification = new Notification.Builder()
+                .copy(notification1)
+                .setDescription("Updated description")
+                .build();
+        Notification updated = notificationService.update(updatedNotification);
         assertNotNull(updated);
-        System.out.println(updated);
+        assertEquals("Updated description", updated.getDescription());
     }
 
     @Test
     @Order(4)
-    void read() {
-        Notification read = notificationService.read(notification1.getNotificationID());
-        assertNotNull(read);
-        System.out.println(read);
-    }
-
-    @Test
-    @Order(5)
     void getAll() {
         System.out.println(notificationService.getAll());
-    }
-
-    @Test
-    @Order(6)
-    void deleteByRecipient() {
-        notificationService.deleteByRecipient(notification1.getRecipient());
-        Notification deleted = notificationService.read(notification1.getNotificationID());
-        assertNull(deleted);
-    }
-
-    @Test
-    @Order(7)
-    void findByRecipient() {
-        Set<Notification> found = notificationService.findByRecipient(notification2.getRecipient());
-        assertFalse(found.isEmpty());
-        System.out.println(found);
     }
 }

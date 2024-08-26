@@ -7,7 +7,6 @@ package za.ac.cput.novacinemaapp.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -16,11 +15,10 @@ public class Ticket {
     @Id
     private String ticketID;
     private String movie;
-    private String theatre;
+    private LocalTime showtime;
+    private String seat;
     private String cinema;
     private double ticketPrice;
-    private LocalDate date;
-    private LocalTime time;
 
     public Ticket() {
     }
@@ -28,11 +26,10 @@ public class Ticket {
     public Ticket(Builder builder) {
         this.ticketID = builder.ticketID;
         this.movie = builder.movie;
-        this.theatre = builder.theatre;
+        this.showtime = builder.showtime;
+        this.seat = builder.seat;
         this.cinema = builder.cinema;
         this.ticketPrice = builder.ticketPrice;
-        this.date = builder.date;
-        this.time = builder.time;
     }
 
     public String getTicketID() {
@@ -43,8 +40,12 @@ public class Ticket {
         return movie;
     }
 
-    public String getTheatre() {
-        return theatre;
+    public LocalTime getShowtime() {
+        return showtime;
+    }
+
+    public String getSeat() {
+        return seat;
     }
 
     public String getCinema() {
@@ -55,24 +56,21 @@ public class Ticket {
         return ticketPrice;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Ticket ticket)) return false;
-        return Double.compare(ticket.ticketPrice, ticketPrice) == 0 && Objects.equals(ticketID, ticket.ticketID) && Objects.equals(movie, ticket.movie) && Objects.equals(theatre, ticket.theatre) && Objects.equals(cinema, ticket.cinema) && Objects.equals(date, ticket.date) && Objects.equals(time, ticket.time);
+        return Double.compare(ticket.ticketPrice, ticketPrice) == 0 &&
+                Objects.equals(ticketID, ticket.ticketID) &&
+                Objects.equals(movie, ticket.movie) &&
+                Objects.equals(showtime, ticket.showtime) &&
+                Objects.equals(seat, ticket.seat) &&
+                Objects.equals(cinema, ticket.cinema);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ticketID, movie, theatre, cinema, ticketPrice, date, time);
+        return Objects.hash(ticketID, movie, showtime, seat, cinema, ticketPrice);
     }
 
     @Override
@@ -80,22 +78,20 @@ public class Ticket {
         return "Ticket{" +
                 "ticketID='" + ticketID + '\'' +
                 ", movie='" + movie + '\'' +
-                ", theatre='" + theatre + '\'' +
+                ", showtime=" + showtime +
+                ", seat='" + seat + '\'' +
                 ", cinema='" + cinema + '\'' +
                 ", ticketPrice=" + ticketPrice +
-                ", date=" + date +
-                ", time=" + time +
                 '}';
     }
 
     public static class Builder {
         private String ticketID;
         private String movie;
-        private String theatre;
+        private LocalTime showtime;
+        private String seat;
         private String cinema;
         private double ticketPrice;
-        private LocalDate date;
-        private LocalTime time;
 
         public Builder setTicketID(String ticketID) {
             this.ticketID = ticketID;
@@ -107,8 +103,13 @@ public class Ticket {
             return this;
         }
 
-        public Builder setTheatre(String theatre) {
-            this.theatre = theatre;
+        public Builder setShowtime(LocalTime showtime) {
+            this.showtime = showtime;
+            return this;
+        }
+
+        public Builder setSeat(String seat) {
+            this.seat = seat;
             return this;
         }
 
@@ -122,24 +123,13 @@ public class Ticket {
             return this;
         }
 
-        public Builder setDate(LocalDate date) {
-            this.date = date;
-            return this;
-        }
-
-        public Builder setTime(LocalTime time) {
-            this.time = time;
-            return this;
-        }
-
         public Builder copy(Ticket ticket) {
             this.ticketID = ticket.ticketID;
             this.movie = ticket.movie;
-            this.theatre = ticket.theatre;
+            this.showtime = ticket.showtime;
+            this.seat = ticket.seat;
             this.cinema = ticket.cinema;
             this.ticketPrice = ticket.ticketPrice;
-            this.date = ticket.date;
-            this.time = ticket.time;
             return this;
         }
 

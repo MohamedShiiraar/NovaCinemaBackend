@@ -15,6 +15,8 @@ import za.ac.cput.novacinemaapp.domain.Theatre;
 import za.ac.cput.novacinemaapp.factory.CinemaFactory;
 import za.ac.cput.novacinemaapp.factory.TheatreFactory;
 
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest

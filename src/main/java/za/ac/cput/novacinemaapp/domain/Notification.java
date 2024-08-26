@@ -1,90 +1,93 @@
 package za.ac.cput.novacinemaapp.domain;
 
 /*
-gammaad mohamed
-220208344
+GammaadMohamed- 220208344
  */
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class Notification {
-    @Id
-    private String notificationID;
-    private String message;
-    private String recipient;
 
-    public Notification() {
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long notificationID;
+
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_ID")
+    private User user;
+
+    public Notification() {}
 
     public Notification(Builder builder) {
         this.notificationID = builder.notificationID;
-        this.message = builder.message;
-        this.recipient = builder.recipient;
+        this.description = builder.description;
+        this.user = builder.user;
     }
 
-    public String getNotificationID() {
+    public Long getNotificationID() {
         return notificationID;
     }
 
-    public String getMessage() {
-        return message;
+    public String getDescription() {
+        return description;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public User getUser() {
+        return user;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Notification notification)) return false;
-        return Objects.equals(notificationID, notification.notificationID) &&
-                Objects.equals(message, notification.message) &&
-                Objects.equals(recipient, notification.recipient);
+        if (o == null || getClass() != o.getClass()) return false;
+        Notification that = (Notification) o;
+        return Objects.equals(notificationID, that.notificationID) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(notificationID, message, recipient);
+        return Objects.hash(notificationID, description, user);
     }
 
     @Override
     public String toString() {
         return "Notification{" +
-                "notificationID='" + notificationID + '\'' +
-                ", message='" + message + '\'' +
-                ", recipient='" + recipient + '\'' +
+                "notificationID=" + notificationID +
+                ", description='" + description + '\'' +
+                ", user=" + user +
                 '}';
     }
 
     public static class Builder {
-        private String notificationID;
-        private String message;
-        private String recipient;
+        private Long notificationID;
+        private String description;
+        private User user;
 
-        public Builder setNotificationID(String notificationID) {
+        public Builder setNotificationID(Long notificationID) {
             this.notificationID = notificationID;
             return this;
         }
 
-        public Builder setMessage(String message) {
-            this.message = message;
+        public Builder setDescription(String description) {
+            this.description = description;
             return this;
         }
 
-        public Builder setRecipient(String recipient) {
-            this.recipient = recipient;
+        public Builder setUser(User user) {
+            this.user = user;
             return this;
         }
 
         public Builder copy(Notification notification) {
             this.notificationID = notification.notificationID;
-            this.message = notification.message;
-            this.recipient = notification.recipient;
+            this.description = notification.description;
+            this.user = notification.user;
             return this;
         }
 

@@ -1,8 +1,7 @@
 package za.ac.cput.novacinemaapp.repository;
 
 /*
-Gammaad Mohamed
-220208344
+GammaadMohamed-220208344
  */
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +11,6 @@ import za.ac.cput.novacinemaapp.domain.Notification;
 import java.util.List;
 
 @Repository
-public interface NotificationRepository extends JpaRepository<Notification, String> {
-    List<Notification> findNotificationsByRecipient(String recipient);
-    void deleteNotificationByRecipient(String recipient);
+public interface NotificationRepository extends JpaRepository<Notification, Long> {
+    List<Notification> findNotificationByDescription(String description);
 }

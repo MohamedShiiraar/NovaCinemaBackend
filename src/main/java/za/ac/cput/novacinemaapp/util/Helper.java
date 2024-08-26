@@ -7,7 +7,7 @@ public class Helper {
         return obj == null || obj.toString().isEmpty() || obj == "";
     }
 
-    public static String generateId() {
+    public static Long generateId() {
         return UUID.randomUUID().toString();
     }
 }

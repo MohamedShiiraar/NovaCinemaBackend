@@ -10,7 +10,7 @@ import za.ac.cput.novacinemaapp.util.Helper;
 import java.util.Objects;
 
 public class LoyaltyProgramFactory {
-    public static LoyaltyProgram buildLoyaltyProgram(String id, String description, String rewards , String expirationPolicy, String signupBonus, String rules) {
+    /*public static LoyaltyProgram buildLoyaltyProgram(String id, String description, String rewards , String expirationPolicy, String signupBonus, String rules) {
         if (Helper.isNullOrEmpty(id) || Helper.isNullOrEmpty(description) || Helper.isNullOrEmpty(rewards) || Helper.isNullOrEmpty(expirationPolicy) ||Helper.isNullOrEmpty(signupBonus) || Helper.isNullOrEmpty(rules))
             return null;
 
@@ -126,5 +126,5 @@ public class LoyaltyProgramFactory {
                 return new Notification(this);
             }
         }
-    }
+    }*/
 }

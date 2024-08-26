@@ -14,7 +14,7 @@ import za.ac.cput.novacinemaapp.util.Helper;
 public class NotificationFactory {
 
     public static Notification buildNotification(String description, User user) {
-        if (Helper.isNullOrEmpty(description) || user == null)
+        if (Helper.isNullOrEmpty(description) || Helper.isNullOrEmpty(user))
             return null;
 
         String notificationID = Helper.generateId();
@@ -26,7 +26,7 @@ public class NotificationFactory {
     }
 
     public static Notification buildNotification(String notificationID, String description, User user) {
-        if (Helper.isNullOrEmpty(notificationID) || Helper.isNullOrEmpty(description) || user == null)
+        if (Helper.isNullOrEmpty(notificationID) || Helper.isNullOrEmpty(description) || Helper.isNullOrEmpty(user))
             return null;
 
         return new Notification.Builder()

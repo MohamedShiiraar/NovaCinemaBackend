@@ -16,8 +16,9 @@ import java.util.Set;
 @RestController
 @RequestMapping("/notification")
 public class NotificationController {
+
     @Autowired
-    private NotificationService notificationService;
+    NotificationService notificationService;
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Notification notification) {
@@ -28,8 +29,8 @@ public class NotificationController {
         return new ResponseEntity<>(createdNotification, HttpStatus.CREATED);
     }
 
-    @GetMapping("/read/{id}")
-    public ResponseEntity<?> get(@PathVariable Long id)  {
+    @GetMapping("read/{id}")
+    public ResponseEntity<?> get(@PathVariable String id)  {
         Notification notification = notificationService.read(id);
         if (notification == null) {
             return ResponseEntity.badRequest().body("Notification with id " + id + " not found.");

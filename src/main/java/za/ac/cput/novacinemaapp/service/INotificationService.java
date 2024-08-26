@@ -8,12 +8,6 @@ import za.ac.cput.novacinemaapp.domain.Notification;
 
 import java.util.Set;
 
-public interface INotificationService {
-    Notification create(Notification notification);
-    Notification update(Notification notification);
-    Notification read(String id);
-
-    Notification read(Long id);
-
+public interface INotificationService extends IService<Notification,String>{
     Set<Notification> getAll();
 }

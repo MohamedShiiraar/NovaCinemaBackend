@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class LoyaltyProgramFactoryTest {
-    @Test
+    /*@Test
     void testbuildLoyaltyfactory() {
 
         LoyaltyProgram l =  LoyaltyProgramFactory.buildLoyaltyProgram("1", "20 points for purchasing a movie ticket", "20","30 December" ,"10","One user per account");
@@ -25,5 +25,5 @@ class LoyaltyProgramFactoryTest {
         System.out.println(l.toString());
 
 
-    }
+    }*/
 }

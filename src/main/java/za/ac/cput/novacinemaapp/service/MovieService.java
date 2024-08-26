@@ -36,8 +36,6 @@ public class MovieService implements IMovieService {
         return repository.findById(s).orElse(null);
     }
 
-
-
     @Override
     public Set<Movie> getall() {
         return repository.findAll().stream().collect(Collectors.toSet());

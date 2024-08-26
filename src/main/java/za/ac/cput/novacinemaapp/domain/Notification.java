@@ -21,7 +21,7 @@ public class Notification {
     private User user;
 
     // Default constructor
-    public Notification(LoyaltyProgramFactory.NotificationFactory.Builder builder) {
+    public Notification() {
     }
 
     // Constructor using builder
@@ -29,10 +29,6 @@ public class Notification {
         this.notificationID = builder.notificationID;
         this.description = builder.description;
         this.user = builder.user;
-    }
-
-    public Notification() {
-
     }
 
     public String getNotificationID() {

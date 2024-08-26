@@ -30,7 +30,7 @@ public class CardPaymentControllerTest {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static String cardHolder;
+    private static String paymentID;
 
     private HttpEntity<?> performPostRequest(Object object) {
         return new HttpEntity<>(object);
@@ -49,18 +49,18 @@ public class CardPaymentControllerTest {
         CardPayment savedCardPayment = postResponse.getBody();
         System.out.println("Saved data : " + savedCardPayment);
         assertNotNull(savedCardPayment);
-        cardHolder = savedCardPayment.getCardHolder();
+        paymentID = savedCardPayment.getPaymentID();
     }
 
     @Test
     @Order(2)
     void read() throws URISyntaxException {
-        String url = BASE_URL + "/read/" + cardHolder;
+        String url = BASE_URL + "/read/" + paymentID;
         System.out.println("URL: " + url);
         ResponseEntity<CardPayment> getResponse = restTemplate.exchange(RequestEntity.get(new URI(url)).build(), CardPayment.class);
 
         CardPayment readCardPayment = getResponse.getBody();
-        assertEquals(cardHolder, readCardPayment.getCardHolder());
+        assertEquals(paymentID, readCardPayment.getPaymentID());
         System.out.println("Read: " + readCardPayment);
     }
 
@@ -94,7 +94,7 @@ public class CardPaymentControllerTest {
     @Test
     @Order(5)
     void delete() {
-        String url = BASE_URL + "/delete/" + cardHolder;
+        String url = BASE_URL + "/delete/" + paymentID;
         System.out.println("URL: " + url);
 
         HttpEntity<?> entity = performPostRequest(cardPayment);

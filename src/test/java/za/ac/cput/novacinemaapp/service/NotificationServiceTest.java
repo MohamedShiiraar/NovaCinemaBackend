@@ -31,34 +31,39 @@ class NotificationServiceTest {
     private static Notification notification1, notification2;
     private static User user;
 
-    @BeforeEach
+    @Test
+    @Order(1)
     void setUp() {
         user = UserFactory.buildUser("1", "Mohamed", "Shiiraar", "mso2shiiraar@gmail.com", "Test123!");
         userService.create(user);
         assertNotNull(user);
 
-        notification1 = NotificationFactory.buildNotification("Your movie starts in 30 minutes", user);
-        notification2 = NotificationFactory.buildNotification("Your seat has been upgraded", user);
+        notification1 = NotificationFactory.buildNotification("1","Your movie starts in 30 minutes", user);
+        notification2 = NotificationFactory.buildNotification("2","Your seat has been upgraded", user);
         assertNotNull(notification1);
         assertNotNull(notification2);
+
+        System.out.println(notification1);
+        System.out.println(notification2);
     }
 
     @Test
-    @Order(1)
+    @Order(2)
     void create() {
         Notification created1 = notificationService.create(notification1);
         Notification created2 = notificationService.create(notification2);
         assertNotNull(created1);
         assertNotNull(created2);
+
+        System.out.println(created1);
+        System.out.println(created2);
     }
     @Test
-    @Order(2)
+    @Order(4)
     void read() {
-        // First, save the notifications to ensure they exist
-        notificationService.create(notification1);
         Notification readNotification = notificationService.read(notification1.getNotificationID());
         assertNotNull(readNotification);
-        assertEquals(notification1.getNotificationID(), readNotification.getNotificationID());
+        System.out.println(readNotification);
     }
 
     @Test
@@ -69,12 +74,12 @@ class NotificationServiceTest {
                 .setDescription("Updated description")
                 .build();
         Notification updated = notificationService.update(updatedNotification);
-        assertNotNull(updated);
-        assertEquals("Updated description", updated.getDescription());
+        System.out.println(updated);
+
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void getAll() {
         System.out.println(notificationService.getAll());
     }

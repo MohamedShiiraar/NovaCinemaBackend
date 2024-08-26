@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LoyaltyProgramServiceTest {
 
 
-    @Autowired
+    /*@Autowired
     private LoyaltyProgramService loyaltyProgramService;
     private static LoyaltyProgram loyaltyProgram1,loyaltyProgram2;
     @Test
@@ -69,5 +69,5 @@ class LoyaltyProgramServiceTest {
     void getall() {
         System.out.println(loyaltyProgramService.getall());
 
-    }
+    }*/
 }

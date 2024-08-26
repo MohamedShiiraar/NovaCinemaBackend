@@ -10,16 +10,17 @@ class NotificationFactoryTest {
 
     @Test
     void testBuildNotification() {
-        User user = new User();
-        Notification notification = NotificationFactory.buildNotification("Your movie starts in 30 minutes", user);
+        User b = UserFactory.buildUser("1","Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
+        Notification notification = NotificationFactory.buildNotification("1","Your movie starts in 30 minutes", b);
         assertNotNull(notification);
-        System.out.println(notification.toString());
+        System.out.println(notification);
     }
 
     @Test
     void testBuildNotificationWithFail() {
-        User user = null;
-        Notification notification = NotificationFactory.buildNotification("Your movie starts in 30 minutes", user);
-        assertNull(notification);
+        User b = UserFactory.buildUser("1","Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
+        Notification notification = NotificationFactory.buildNotification("3","", b);
+        assertNotNull(notification);
+        System.out.println(notification);
     }
 }

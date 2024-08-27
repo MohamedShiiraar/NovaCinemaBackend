@@ -1,11 +1,8 @@
 package za.ac.cput.novacinemaapp.domain;
 
-// Entity for Cart
-// Author Amaan Allie
-// 27 August 2024
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 import java.util.Objects;
 
@@ -13,8 +10,13 @@ import java.util.Objects;
 public class Cart {
     @Id
     private String cartID;
-    private String userID;
-    private String ticketID;
+
+    @ManyToOne
+    private User userID;
+
+    @ManyToOne
+    private Ticket ticketID;
+
     private String quantity;
 
     public Cart() {
@@ -31,11 +33,11 @@ public class Cart {
         return cartID;
     }
 
-    public String getUserID() {
+    public User getUserID() {
         return userID;
     }
 
-    public String getTicketID() {
+    public Ticket getTicketID() {
         return ticketID;
     }
 
@@ -62,16 +64,16 @@ public class Cart {
     public String toString() {
         return "Cart{" +
                 "cartID='" + cartID + '\'' +
-                ", userID='" + userID + '\'' +
-                ", ticketID='" + ticketID + '\'' +
+                ", userID=" + userID +
+                ", ticketID=" + ticketID +
                 ", quantity='" + quantity + '\'' +
                 '}';
     }
 
     public static class Builder {
         private String cartID;
-        private String userID;
-        private String ticketID;
+        private User userID;
+        private Ticket ticketID;
         private String quantity;
 
         public Builder setCartID(String cartID) {
@@ -79,12 +81,12 @@ public class Cart {
             return this;
         }
 
-        public Builder setUserID(String userID) {
+        public Builder setUserID(User userID) {
             this.userID = userID;
             return this;
         }
 
-        public Builder setTicketID(String ticketID) {
+        public Builder setTicketID(Ticket ticketID) {
             this.ticketID = ticketID;
             return this;
         }
@@ -107,4 +109,3 @@ public class Cart {
         }
     }
 }
-

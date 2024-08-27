@@ -1,16 +1,14 @@
 package za.ac.cput.novacinemaapp.factory;
 
-// Factory for Cart
-// Author Amaan Allie
-// 27 August 2024
-
 import za.ac.cput.novacinemaapp.domain.Cart;
+import za.ac.cput.novacinemaapp.domain.User;
+import za.ac.cput.novacinemaapp.domain.Ticket;
 import za.ac.cput.novacinemaapp.util.Helper;
 
 public class CartFactory {
 
-    public static Cart buildCart(String cartID, String userID, String ticketID, String quantity) {
-        if (Helper.isNullOrEmpty(cartID) || Helper.isNullOrEmpty(userID) || Helper.isNullOrEmpty(ticketID) || Helper.isNullOrEmpty(quantity))
+    public static Cart buildCart(String cartID, User userID, Ticket ticketID, String quantity) {
+        if (Helper.isNullOrEmpty(cartID) || userID == null || ticketID == null || Helper.isNullOrEmpty(quantity))
             return null;
 
         return new Cart.Builder()
@@ -21,8 +19,8 @@ public class CartFactory {
                 .build();
     }
 
-    public static Cart buildCart(String userID, String ticketID, String quantity) {
-        if (Helper.isNullOrEmpty(userID) || Helper.isNullOrEmpty(ticketID) || Helper.isNullOrEmpty(quantity))
+    public static Cart buildCart(User userID, Ticket ticketID, String quantity) {
+        if (userID == null || ticketID == null || Helper.isNullOrEmpty(quantity))
             return null;
 
         String cartID = Helper.generateId();
@@ -35,4 +33,5 @@ public class CartFactory {
                 .build();
     }
 }
+
 

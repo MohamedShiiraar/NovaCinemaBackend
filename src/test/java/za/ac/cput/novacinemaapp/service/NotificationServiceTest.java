@@ -34,7 +34,7 @@ class NotificationServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        user = UserFactory.buildUser("1", "Mohamed", "Shiiraar", "mso2shiiraar@gmail.com", "Test123!");
+        user = UserFactory.buildUser( "Mohamed", "Shiiraar", "mso2shiiraar@gmail.com", "Test123!");
         userService.create(user);
         assertNotNull(user);
 

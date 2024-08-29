@@ -32,11 +32,11 @@ class CartServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        user1 = UserFactory.buildUser("1", "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
+        user1 = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
         assertNotNull(user1);
         System.out.println(user1);
 
-        user2 = UserFactory.buildUser("2", "Adam", "Mohamed", "adam.mohamed@example.com", "password456");
+        user2 = UserFactory.buildUser( "Adam", "Mohamed", "adam.mohamed@example.com", "password456");
         assertNotNull(user2);
         System.out.println(user2);
 

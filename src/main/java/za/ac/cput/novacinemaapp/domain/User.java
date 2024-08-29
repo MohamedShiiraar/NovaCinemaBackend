@@ -1,6 +1,8 @@
 package za.ac.cput.novacinemaapp.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
@@ -13,7 +15,8 @@ Date : 17 May
 @Entity
 public class User {
     @Id
-    private String userID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long userID;
     private String name;
     private String surname;
     private String emailAddress;
@@ -30,7 +33,7 @@ public class User {
         this.password = builder.password;
     }
 
-    public String getUserID() {
+    public long getUserID() {
         return userID;
     }
 
@@ -74,13 +77,13 @@ public class User {
     }
 
     public static class Builder{
-        private String userID;
+        private long userID;
         private String name;
         private String surname;
         private String emailAddress;
         private String password;
 
-        public Builder setUserID(String userID) {
+        public Builder setUserID(long userID) {
             this.userID = userID;
             return this;
         }

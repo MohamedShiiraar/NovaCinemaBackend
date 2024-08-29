@@ -8,9 +8,15 @@ Date : 17 May
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.awt.*;
+import java.sql.Blob;
 import java.util.Objects;
 @Entity
+@Getter
+@Setter
 
 public class Movie {
     @Id
@@ -20,6 +26,8 @@ public class Movie {
     private String genre;
     private String duration;
     private String ageRestriction;
+
+    private Byte movieIMG;
 
     public Movie() {
     }
@@ -31,6 +39,7 @@ public class Movie {
         this.genre = builder.genre;
         this.duration = builder.duration;
         this.ageRestriction = builder.ageRestriction;
+        this.movieIMG = builder.movieIMG;
     }
 
     public String getMovieID() {
@@ -57,16 +66,20 @@ public class Movie {
         return ageRestriction;
     }
 
+    public byte getMovieIMG() {
+        return movieIMG;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Movie movie)) return false;
-        return Objects.equals(movieID, movie.movieID) && Objects.equals(name, movie.name) && Objects.equals(movieDescription, movie.movieDescription) && Objects.equals(genre, movie.genre) && Objects.equals(duration, movie.duration);
+        return Objects.equals(movieID, movie.movieID) && Objects.equals(name, movie.name) && Objects.equals(movieDescription, movie.movieDescription) && Objects.equals(genre, movie.genre) && Objects.equals(duration, movie.duration) && Objects.equals(movieIMG,movie.movieIMG);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movieID, name, movieDescription, genre, duration);
+        return Objects.hash(movieID, name, movieDescription, genre, duration,movieIMG);
     }
 
     @Override
@@ -87,6 +100,8 @@ public class Movie {
         private String genre;
         private String duration;
         private String ageRestriction;
+
+        private byte movieIMG;
 
         public Builder setMovieID(String movieID) {
             this.movieID = movieID;
@@ -117,6 +132,10 @@ public class Movie {
             this.ageRestriction = ageRestriction;
             return this;
         }
+        public Builder setMovieIMG (byte movieIMG) {
+            this.movieIMG = movieIMG;
+            return this;
+        }
 
         public Builder copy(Movie movie){
             this.movieID = movie.movieID;
@@ -125,6 +144,7 @@ public class Movie {
             this.genre = movie.genre;
             this.duration = movie.duration;
             this.ageRestriction = movie.ageRestriction;
+            this.movieIMG = movie.movieIMG;
             return this;
         }
         public Movie build() {

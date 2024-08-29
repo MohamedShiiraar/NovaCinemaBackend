@@ -21,7 +21,7 @@ class ReviewFactoryTest {
     @Test
     @Order(1)
     void testBuildReview(){
-        User user = UserFactory.buildUser("1","john", "doe", "johndoe@gmail.com","johndoe123");
+        User user = UserFactory.buildUser("john", "doe", "johndoe@gmail.com","johndoe123");
         assertNotNull(user);
         Cinema cinema = CinemaFactory.buildCinema("CW24","CinemaX");
         assertNotNull(cinema);
@@ -33,7 +33,7 @@ class ReviewFactoryTest {
     @Test
     @Order(2)
     void testFail(){
-        User user = UserFactory.buildUser("1","john", "doe", "johndoe@gmail.com","johndoe123");
+        User user = UserFactory.buildUser("john", "doe", "johndoe@gmail.com","johndoe123");
         assertNotNull(user);
         Cinema cinema = CinemaFactory.buildCinema("CW24","CinemaX");
         assertNotNull(cinema);

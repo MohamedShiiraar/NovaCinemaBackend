@@ -14,6 +14,7 @@ import za.ac.cput.novacinemaapp.service.UserService;
 
 import java.util.Set;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -24,15 +25,15 @@ public class UserController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody User user) {
         User createdUser = userService.create(user);
+        System.out.println("Received user: " + user);
         if (createdUser == null) {
             return ResponseEntity.badRequest().body("Error creating a user.Please try again later.");
-
         }
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id) {
+    public ResponseEntity<?> get(@PathVariable long id) {
         User user = userService.read(id);
         if (user == null) {
             return ResponseEntity.badRequest().body("User with id " + id + " not found.");

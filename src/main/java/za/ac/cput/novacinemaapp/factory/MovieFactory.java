@@ -9,9 +9,11 @@ Date : 17 May
 import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.util.Helper;
 
+import java.sql.Blob;
+
 public class MovieFactory {
-    public static Movie buildMovie(String movieID, String name, String movieDescription, String genre, String duration,String ageRestriction) {
-        if (Helper.isNullOrEmpty(movieID) || Helper.isNullOrEmpty(name) || Helper.isNullOrEmpty(movieDescription) || Helper.isNullOrEmpty(genre) || Helper.isNullOrEmpty(duration) ||Helper.isNullOrEmpty(ageRestriction))
+    public static Movie buildMovie(String movieID, String name, String movieDescription, String genre, String duration, String ageRestriction) {
+        if (Helper.isNullOrEmpty(movieID) || Helper.isNullOrEmpty(name) || Helper.isNullOrEmpty(movieDescription) || Helper.isNullOrEmpty(genre) || Helper.isNullOrEmpty(duration) ||Helper.isNullOrEmpty(ageRestriction) )
             return null;
 
         return new Movie.Builder().setMovieID(movieID).setName(name)

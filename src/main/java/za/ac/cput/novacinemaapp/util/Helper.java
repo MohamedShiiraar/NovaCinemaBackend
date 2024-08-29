@@ -8,6 +8,6 @@ public class Helper {
     }
 
     public static String generateId() {
-        return UUID.randomUUID().toString();
+        return String.valueOf(UUID.randomUUID());
     }
 }

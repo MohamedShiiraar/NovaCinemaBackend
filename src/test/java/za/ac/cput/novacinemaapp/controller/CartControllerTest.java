@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CartControllerTest {
 
-    private static User user = UserFactory.buildUser("1", "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
+    private static User user = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
     private static Ticket ticket = TicketFactory.buildTicket("1", "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
     private static Cart cart = CartFactory.buildCart(user, ticket, "2");
 

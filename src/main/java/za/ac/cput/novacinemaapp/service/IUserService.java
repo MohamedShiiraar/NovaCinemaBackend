@@ -10,6 +10,7 @@ import za.ac.cput.novacinemaapp.domain.User;
 
 import java.util.Set;
 
-public interface IUserService extends IService<User,String> {
+public interface IUserService extends IService<User, Long> {
+
     Set<User> getAll ();
 }

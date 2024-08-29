@@ -31,7 +31,7 @@ public class UserService implements IUserService{
         return repository.save(user);
     }
     @Override
-    public User read(String s) {
+    public User read(Long s) {
         return repository.findById(s).orElse(null);
     }
 

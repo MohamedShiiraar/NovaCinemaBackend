@@ -33,7 +33,7 @@ public class NotificationControllerTest {
 
 
 
-    private static User user = UserFactory.buildUser("1", "Mohamed", "Shiiraar", "mso2shiiraar@gmail.com", "Test123!");
+    private static User user = UserFactory.buildUser( "Mohamed", "Shiiraar", "mso2shiiraar@gmail.com", "Test123!");
     private static Notification notification = NotificationFactory.buildNotification("1","Your movie starts in 30 minutes", user);
     private final String BASE_URL = "http://localhost:8080/notification";
 

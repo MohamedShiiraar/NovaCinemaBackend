@@ -2,7 +2,6 @@ package za.ac.cput.novacinemaapp.factory;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.novacinemaapp.domain.Card;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 

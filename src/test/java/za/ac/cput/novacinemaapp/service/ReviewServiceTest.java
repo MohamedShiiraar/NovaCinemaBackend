@@ -45,9 +45,9 @@ class ReviewServiceTest {
         cinema2 = CinemaFactory.buildCinema("CW25", "CinemaX");
         cinemaService.create(cinema2);
 
-        user1 = UserFactory.buildUser("1","John","Doe","johndoe@gmail.com","johndoe123");
+        user1 = UserFactory.buildUser("John","Doe","johndoe@gmail.com","johndoe123");
         userService.create(user1);
-        user2 = UserFactory.buildUser("2","John","Doe","johndoe@gmail.com","johndoe123!");
+        user2 = UserFactory.buildUser("John","Doe","johndoe@gmail.com","johndoe123!");
         userService.create(user2);
 
         review1 = ReviewFactory.buildReview("10", 3.0, "Good experience!", LocalDate.of(2024, 5, 17),cinema1, user1);

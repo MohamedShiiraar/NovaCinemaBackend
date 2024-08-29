@@ -21,13 +21,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserControllerTest {
 
-    private static User user = UserFactory.buildUser("1","Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
+    private static User user = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
 
     private final String BASE_URL= "http://localhost:8080/user";
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static String userId;
+    private static long userId;
 
     private HttpEntity<?>performPostRequest(Object object){
         return new HttpEntity<>(object);

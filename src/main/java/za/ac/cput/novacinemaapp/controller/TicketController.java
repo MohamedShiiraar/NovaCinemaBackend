@@ -25,8 +25,8 @@ public class TicketController {
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id)  {
-        Ticket ticket = ticketService.read(id);
+    public ResponseEntity<?> get(@PathVariable long id)  {
+        Ticket ticket = ticketService.read(String.valueOf(id));
         if (ticket == null) {
             return ResponseEntity.badRequest().body("Ticket with id " + id + " not found.");
         }

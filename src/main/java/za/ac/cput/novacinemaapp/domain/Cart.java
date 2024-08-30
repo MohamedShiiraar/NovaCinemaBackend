@@ -1,15 +1,18 @@
 package za.ac.cput.novacinemaapp.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
 public class Cart {
     @Id
-    private String cartID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long cartID;
 
     @ManyToOne
     private User userID;
@@ -29,7 +32,7 @@ public class Cart {
         this.quantity = builder.quantity;
     }
 
-    public String getCartID() {
+    public long getCartID() {
         return cartID;
     }
 
@@ -49,7 +52,7 @@ public class Cart {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Cart cart)) return false;
-        return Objects.equals(cartID, cart.cartID) &&
+        return cartID == cart.cartID &&
                 Objects.equals(userID, cart.userID) &&
                 Objects.equals(ticketID, cart.ticketID) &&
                 Objects.equals(quantity, cart.quantity);
@@ -63,7 +66,7 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
-                "cartID='" + cartID + '\'' +
+                "cartID=" + cartID +
                 ", userID=" + userID +
                 ", ticketID=" + ticketID +
                 ", quantity='" + quantity + '\'' +
@@ -71,12 +74,12 @@ public class Cart {
     }
 
     public static class Builder {
-        private String cartID;
+        private long cartID;
         private User userID;
         private Ticket ticketID;
         private String quantity;
 
-        public Builder setCartID(String cartID) {
+        public Builder setCartID(long cartID) {
             this.cartID = cartID;
             return this;
         }
@@ -109,3 +112,4 @@ public class Cart {
         }
     }
 }
+

@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CartFactoryTest {
 
     private static final User user = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
-    private static final Ticket ticket = TicketFactory.buildTicket("1", "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
+    private static final Ticket ticket = TicketFactory.buildTicket(Long.parseLong("1"), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
 
     @Test
     void testBuildCart() {

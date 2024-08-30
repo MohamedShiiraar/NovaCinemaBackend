@@ -25,8 +25,8 @@ public class CartController {
     }
 
     @GetMapping("/read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id) {
-        Cart cart = cartService.read(id);
+    public ResponseEntity<?> get(@PathVariable long id) {
+        Cart cart = cartService.read(String.valueOf(id));
         if (cart == null) {
             return ResponseEntity.badRequest().body("Cart with id " + id + " not found.");
         }

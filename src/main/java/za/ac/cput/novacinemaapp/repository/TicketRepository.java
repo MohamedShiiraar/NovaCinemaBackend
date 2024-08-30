@@ -11,7 +11,7 @@ import za.ac.cput.novacinemaapp.domain.Ticket;
 import java.util.List;
 
 @Repository
-public interface TicketRepository extends JpaRepository<Ticket, String>{
+public interface TicketRepository extends JpaRepository<Ticket, Long>{
     List<Ticket> findTicketByTicketID(String ticketId);
 }
 

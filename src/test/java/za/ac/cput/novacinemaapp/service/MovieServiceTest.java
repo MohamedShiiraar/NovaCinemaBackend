@@ -28,11 +28,11 @@ class MovieServiceTest {
     @Test
     @Order(1)
     void setup() {
-        movie1 = MovieFactory.buildMovie("1", "Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", "animation", "117 mins", "PG-13");
+        movie1 = MovieFactory.buildMovie( "Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", "animation", "117 mins", "PG-13");
         assertNotNull(movie1);
         System.out.println(movie1);
 
-        movie2 = MovieFactory.buildMovie("2", "Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
+        movie2 = MovieFactory.buildMovie( "Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
         assertNotNull(movie2);
         System.out.println(movie2);
     }

@@ -32,7 +32,7 @@ public class MovieService implements IMovieService {
         return repository.save(movie);
     }
     @Override
-    public Movie read(String s) {
+    public Movie read(Long s) {
         return repository.findById(s).orElse(null);
     }
 

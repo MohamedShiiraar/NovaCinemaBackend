@@ -35,8 +35,8 @@ class ShowtimeServiceTest {
     @Test
     @Order(1)
     void setup() {
-    movie1 = MovieFactory.buildMovie("1","Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
-    movie2 = MovieFactory.buildMovie("2","Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
+    movie1 = MovieFactory.buildMovie("Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
+    movie2 = MovieFactory.buildMovie("Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
     movieService.create(movie1);
     movieService.create(movie2);
     showtime1 = ShowtimeFactory.buildShowtime("10", LocalTime.of(7, 0), LocalTime.of(9, 0), movie1);

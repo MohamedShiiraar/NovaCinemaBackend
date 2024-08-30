@@ -30,7 +30,7 @@ public class MovieController {
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id)  {
+    public ResponseEntity<?> get(@PathVariable long id)  {
         Movie movie = movieService.read(id);
         if (movie == null) {
             return ResponseEntity.badRequest().body("Movie with id "+ id + " not found.");

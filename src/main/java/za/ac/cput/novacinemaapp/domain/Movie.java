@@ -7,6 +7,8 @@ Date : 17 May
  */
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,14 +22,13 @@ import java.util.Objects;
 
 public class Movie {
     @Id
-    private String movieID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long movieID;
     private String name;
     private String movieDescription;
     private String genre;
     private String duration;
     private String ageRestriction;
-
-    private Byte movieIMG;
 
     public Movie() {
     }
@@ -39,10 +40,9 @@ public class Movie {
         this.genre = builder.genre;
         this.duration = builder.duration;
         this.ageRestriction = builder.ageRestriction;
-        this.movieIMG = builder.movieIMG;
     }
 
-    public String getMovieID() {
+    public long getMovieID() {
         return movieID;
     }
 
@@ -66,20 +66,16 @@ public class Movie {
         return ageRestriction;
     }
 
-    public byte getMovieIMG() {
-        return movieIMG;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Movie movie)) return false;
-        return Objects.equals(movieID, movie.movieID) && Objects.equals(name, movie.name) && Objects.equals(movieDescription, movie.movieDescription) && Objects.equals(genre, movie.genre) && Objects.equals(duration, movie.duration) && Objects.equals(movieIMG,movie.movieIMG);
+        return Objects.equals(movieID, movie.movieID) && Objects.equals(name, movie.name) && Objects.equals(movieDescription, movie.movieDescription) && Objects.equals(genre, movie.genre) && Objects.equals(duration, movie.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movieID, name, movieDescription, genre, duration,movieIMG);
+        return Objects.hash(movieID, name, movieDescription, genre, duration);
     }
 
     @Override
@@ -94,16 +90,15 @@ public class Movie {
     }
 
     public static class Builder {
-        private String movieID;
+        private long movieID;
         private String name;
         private String movieDescription;
         private String genre;
         private String duration;
         private String ageRestriction;
 
-        private byte movieIMG;
 
-        public Builder setMovieID(String movieID) {
+        public Builder setMovieID(long movieID) {
             this.movieID = movieID;
             return this;
         }
@@ -132,10 +127,6 @@ public class Movie {
             this.ageRestriction = ageRestriction;
             return this;
         }
-        public Builder setMovieIMG (byte movieIMG) {
-            this.movieIMG = movieIMG;
-            return this;
-        }
 
         public Builder copy(Movie movie){
             this.movieID = movie.movieID;
@@ -144,7 +135,6 @@ public class Movie {
             this.genre = movie.genre;
             this.duration = movie.duration;
             this.ageRestriction = movie.ageRestriction;
-            this.movieIMG = movie.movieIMG;
             return this;
         }
         public Movie build() {

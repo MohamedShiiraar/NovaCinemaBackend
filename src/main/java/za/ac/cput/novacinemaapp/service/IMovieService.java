@@ -9,6 +9,6 @@ import za.ac.cput.novacinemaapp.domain.Movie;
 
 import java.util.Set;
 
-public interface IMovieService extends IService<Movie,String> {
+public interface IMovieService extends IService<Movie,Long> {
     Set<Movie> getall();
 }

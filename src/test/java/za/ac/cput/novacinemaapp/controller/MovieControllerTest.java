@@ -21,12 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MovieControllerTest {
 
-    private static Movie movie = MovieFactory.buildMovie("2","Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.","animation","117 mins","PG-13");
+    private static Movie movie = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.","animation","117 mins","PG-13");
     private final String BASE_URL = "http://localhost:8080/movie";
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static String movieID;
+    private static long movieID;
 
     private HttpEntity<?>performPostRequest(Object object) {
         return new HttpEntity<>(object);

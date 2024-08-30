@@ -21,7 +21,7 @@ class ShowtimeFactoryTest {
     @Test
     @Order(1)
     void testBuildShowtime(){
-        Movie movie = MovieFactory.buildMovie("M001", "Inception",
+        Movie movie = MovieFactory.buildMovie( "Inception",
                 "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
                 "Science Fiction", "2h 28m", "PG-13");
         assertNotNull(movie);
@@ -33,7 +33,7 @@ class ShowtimeFactoryTest {
     @Test
     @Order(2)
     void testFail(){
-        Movie movie = MovieFactory.buildMovie("", "Inception",
+        Movie movie = MovieFactory.buildMovie( "Inception",
                 "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
                 "Science Fiction", "2h 28m", "PG-13");
         assertNotNull(movie);

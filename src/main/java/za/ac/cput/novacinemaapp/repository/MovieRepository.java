@@ -13,7 +13,7 @@ import za.ac.cput.novacinemaapp.domain.Movie;
 import java.util.List;
 
 @Repository
-public interface MovieRepository extends JpaRepository<Movie,String> {
+public interface MovieRepository extends JpaRepository<Movie,Long> {
     List<Movie> findMovieByName(String name);
     List<Movie> findMoviesByGenre(String genre);
     List<Movie> findMoviesByAgeRestriction(String ageRestriction);

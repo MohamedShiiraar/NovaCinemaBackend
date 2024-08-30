@@ -51,7 +51,7 @@ class TicketServiceTest {
     @Order(3)
     void read() {
         long ticketID = ticket1.getTicketID();  // Ensure ticket1.getTicketID() returns a long
-        Ticket read = ticketService.read(String.valueOf(ticketID));  // Pass the long ticketID to the read method
+        Ticket read = ticketService.read(ticketID);  // Pass the long ticketID to the read method
         assertNotNull(read);
         System.out.println(read);
     }

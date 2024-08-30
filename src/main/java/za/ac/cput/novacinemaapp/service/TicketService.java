@@ -31,7 +31,7 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public Ticket read(String id) {
+    public Ticket read(Long id) {
         return repository.findById(id).orElse(null);
     }
 

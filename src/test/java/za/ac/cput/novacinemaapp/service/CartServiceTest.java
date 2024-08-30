@@ -24,6 +24,8 @@ class CartServiceTest {
 
     @Autowired
     private CartService cartService;
+    @Autowired
+    private UserService userService;
 
     private static Cart cart1, cart2;
     private static User user1, user2;
@@ -32,12 +34,14 @@ class CartServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        user1 = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
+        user1 = UserFactory.buildUser("Amaan", "Allie", "Amaan.Allie@example.com", "password123");
         assertNotNull(user1);
+        user1 = userService.create(user1);  // Save user1
         System.out.println(user1);
 
-        user2 = UserFactory.buildUser( "Adam", "Mohamed", "adam.mohamed@example.com", "password456");
+        user2 = UserFactory.buildUser("Adam", "Mohamed", "adam.mohamed@example.com", "password456");
         assertNotNull(user2);
+        user2 = userService.create(user2);  // Save user2
         System.out.println(user2);
 
         ticket1 = TicketFactory.buildTicket(Long.parseLong("1"), "Movie1", LocalTime.of(18, 0), "A1", "Cinema1", 10.00);
@@ -73,7 +77,7 @@ class CartServiceTest {
     @Order(3)
     void read() {
         long cartID = cart1.getCartID();  // Ensure cart1.getCartID() returns a long
-        Cart read = cartService.read(String.valueOf(cartID));  // Pass the long cartID to the read method
+        Cart read = cartService.read(cartID);  // Pass the long cartID to the read method
         assertNotNull(read);
         System.out.println(read);
     }

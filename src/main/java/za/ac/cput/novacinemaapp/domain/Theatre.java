@@ -12,7 +12,8 @@ import java.util.Objects;
 public class Theatre {
 
     @Id
-    private String theatreID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long theatreID;
     private String theatreType;
     @ManyToOne
     @JoinColumn(name = "theatre_Cinema")
@@ -27,7 +28,7 @@ public class Theatre {
         this.cinema = builder.cinema;
     }
 
-    public String getTheatreID() {
+    public Long getTheatreID() {
         return theatreID;
     }
 
@@ -62,11 +63,11 @@ public class Theatre {
     }
 
     public static class Builder{
-        private String theatreID;
+        private Long theatreID;
         private String theatreType;
         private Cinema cinema;
 
-        public Builder setTheatreID(String id){
+        public Builder setTheatreID(Long id){
             this.theatreID = id;
             return this;
         }

@@ -9,6 +9,6 @@ import za.ac.cput.novacinemaapp.domain.Seat;
 import java.util.Set;
 
 
-public interface ISeatService extends IService<Seat, String>{
+public interface ISeatService extends IService<Seat, Long>{
     Set<Seat> getAll();
 }

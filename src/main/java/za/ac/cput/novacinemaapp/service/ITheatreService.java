@@ -8,6 +8,6 @@ import za.ac.cput.novacinemaapp.domain.Theatre;
 
 import java.util.Set;
 
-public interface ITheatreService extends IService<Theatre, String>{
+public interface ITheatreService extends IService<Theatre, Long>{
     Set<Theatre> getAll();
 }

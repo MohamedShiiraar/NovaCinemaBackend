@@ -12,12 +12,6 @@ public class TheatreFactory {
     public static Theatre buildTheatre(String theatreType, Cinema cinema){
         if(Helper.isNullOrEmpty(theatreType) || Helper.isNullOrEmpty(cinema))
             return null;
-        String theatreID = Helper.generateId();
-        return new Theatre.Builder().setTheatreID(theatreID).setTheatreType(theatreType).setCinema(cinema).build();
-    }
-    public static Theatre buildTheatre(String theatreID,String theatreType, Cinema cinema){
-        if(Helper.isNullOrEmpty(theatreID) || Helper.isNullOrEmpty(theatreType) || Helper.isNullOrEmpty(cinema))
-            return null;
-        return new Theatre.Builder().setTheatreID(theatreID).setTheatreType(theatreType).setCinema(cinema).build();
+        return new Theatre.Builder().setTheatreType(theatreType).setCinema(cinema).build();
     }
 }

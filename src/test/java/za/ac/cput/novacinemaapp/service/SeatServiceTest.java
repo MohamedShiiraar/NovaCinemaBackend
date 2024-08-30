@@ -38,7 +38,7 @@ class SeatServiceTest {
     void setUp() {
         cinema = CinemaFactory.buildCinema("LT321", "Grand Cinema");
         cinemaService.create(cinema);
-        theatre = TheatreFactory.buildTheatre("TT123","IMAX", cinema);
+        theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         theatreService.create(theatre);
         seat1 = SeatFactory.buildSeat("D1","Regular", theatre);
         assertNotNull(seat1);

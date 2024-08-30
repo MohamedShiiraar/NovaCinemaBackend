@@ -24,8 +24,8 @@ public class SeatController {
         return new ResponseEntity<>(createdSeat, HttpStatus.CREATED);
     }
 
-    @PostMapping("read/{seatID}")
-    public ResponseEntity<?> get(@PathVariable String seatID){
+    @GetMapping("read/{seatID}")
+    public ResponseEntity<?> get(@PathVariable Long seatID){
         Seat seat = service.read(seatID);
         if(seat==null){
             ResponseEntity.badRequest().body("Seat with SeatID: "+seatID+" does not exist");
@@ -33,7 +33,7 @@ public class SeatController {
         return ResponseEntity.ok(seat);
     }
 
-    @PostMapping("/getAll")
+    @GetMapping("/getAll")
     public Set<Seat> getAll(){
         return service.getAll();
     }

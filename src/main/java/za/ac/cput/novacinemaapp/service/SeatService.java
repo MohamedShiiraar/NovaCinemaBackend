@@ -26,7 +26,7 @@ public class SeatService implements ISeatService{
     }
 
     @Override
-    public Seat read(String seatID) {
+    public Seat read(Long seatID) {
         return repository.findSeatBySeatID(seatID);
     }
 

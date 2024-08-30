@@ -12,6 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public interface SeatRepository extends JpaRepository<Seat, String>{
-    Seat findSeatBySeatID(String seatID);
+public interface SeatRepository extends JpaRepository<Seat, Long>{
+    Seat findSeatBySeatID(Long seatID);
 }

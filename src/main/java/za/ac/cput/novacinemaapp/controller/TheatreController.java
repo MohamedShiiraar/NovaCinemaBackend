@@ -24,8 +24,8 @@ public class TheatreController {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    @PostMapping("/read{theatreID}")
-    public ResponseEntity<?> get(@PathVariable String theatreID){
+    @GetMapping("/read{theatreID}")
+    public ResponseEntity<?> get(@PathVariable Long theatreID){
         Theatre theatre = theatreService.read(theatreID);
         if (theatre==null){
             return ResponseEntity.badRequest().body("Theatre with theatreID: "+theatreID+" does not exist");
@@ -33,7 +33,7 @@ public class TheatreController {
         return ResponseEntity.ok(theatre);
     }
 
-    @PostMapping("/getAll")
+    @GetMapping("/getAll")
     public Set<Theatre> getAll(){
         return theatreService.getAll();
     }

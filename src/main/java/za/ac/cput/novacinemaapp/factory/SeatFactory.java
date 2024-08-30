@@ -14,7 +14,6 @@ public class SeatFactory {
         Helper.isNullOrEmpty(seatType) || Helper.isNullOrEmpty(theatre)){
             return null;
         }
-        String seatID = Helper.generateId();
-        return new Seat.Builder().setSeatID(seatID).setSeatNumber(seatNumber).setSeatType(seatType).setTheatre(theatre).build();
+        return new Seat.Builder().setSeatNumber(seatNumber).setSeatType(seatType).setTheatre(theatre).build();
     }
 }

@@ -11,6 +11,6 @@ import za.ac.cput.novacinemaapp.domain.Theatre;
 import java.util.List;
 
 @Repository
-public interface TheatreRepository extends JpaRepository<Theatre, String> {
-    Theatre findTheatreByTheatreID(String theatreID);
+public interface TheatreRepository extends JpaRepository<Theatre, Long> {
+    Theatre findTheatreByTheatreID(Long theatreID);
 }

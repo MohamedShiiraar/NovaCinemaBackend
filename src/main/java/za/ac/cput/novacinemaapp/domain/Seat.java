@@ -13,7 +13,8 @@ import java.util.Objects;
 @Entity
 public class Seat {
     @Id
-    private String seatID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long seatID;
     private String seatNumber;
     private String seatType;
 
@@ -31,7 +32,7 @@ public class Seat {
         this.theatre = builder.theatre;
     }
 
-    public String getSeatID() {
+    public Long getSeatID() {
         return seatID;
     }
 
@@ -69,12 +70,12 @@ public class Seat {
     }
 
     public static class Builder{
-        private String seatID;
+        private Long seatID;
         private String seatNumber;
         private String seatType;
         private Theatre theatre;
 
-        public Builder setSeatID(String id){
+        public Builder setSeatID(Long id){
             this.seatID = id;
             return this;
         }

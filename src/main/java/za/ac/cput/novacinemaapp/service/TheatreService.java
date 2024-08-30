@@ -27,7 +27,7 @@ public class TheatreService implements ITheatreService{
     }
 
     @Override
-    public Theatre read(String theatreID) {
+    public Theatre read(Long theatreID) {
         return repository.findTheatreByTheatreID(theatreID);
     }
 

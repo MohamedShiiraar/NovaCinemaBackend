@@ -15,14 +15,14 @@ class TicketFactoryTest {
 
     @Test
     void testBuildTicket() {
-        Ticket ticket = TicketFactory.buildTicket("1", "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
+        Ticket ticket = TicketFactory.buildTicket(Long.parseLong("1"), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
         assertNotNull(ticket);
         System.out.println(ticket.toString());
     }
 
     @Test
     void testBuildTicketWithFail() {
-        Ticket ticket = TicketFactory.buildTicket("", "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
+        Ticket ticket = TicketFactory.buildTicket(Long.parseLong(""), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
         assertNull(ticket);  // Changed to assertNull as the factory should return null for invalid input
     }
 }

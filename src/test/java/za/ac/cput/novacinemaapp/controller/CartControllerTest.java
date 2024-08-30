@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class CartControllerTest {
 
     private static User user = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
-    private static Ticket ticket = TicketFactory.buildTicket("1", "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
+    private static Ticket ticket = TicketFactory.buildTicket(Long.parseLong("1"), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
     private static Cart cart = CartFactory.buildCart(user, ticket, "2");
 
     private final String BASE_URL = "http://localhost:8080/cart";
@@ -49,7 +49,7 @@ public class CartControllerTest {
         Cart savedCart = postResponse.getBody();
         System.out.println("Saved data : " + savedCart);
         assertNotNull(savedCart);
-        cartID = savedCart.getCartID();
+        cartID = String.valueOf(savedCart.getCartID());
     }
 
     @Test

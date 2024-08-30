@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TicketControllerTest {
 
-    private static Ticket ticket = TicketFactory.buildTicket("1", "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
+    private static Ticket ticket = TicketFactory.buildTicket(Long.parseLong("1"), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
     private final String BASE_URL = "http://localhost:8080/ticket";
     private RestTemplate restTemplate = new RestTemplate();
     private static String ticketID;
@@ -42,7 +42,7 @@ public class TicketControllerTest {
         Ticket savedTicket = postResponse.getBody();
         System.out.println("Saved data : " + savedTicket);
         assertNotNull(savedTicket);
-        ticketID = savedTicket.getTicketID();
+        ticketID = String.valueOf(savedTicket.getTicketID());
     }
 
     @Test

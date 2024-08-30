@@ -26,11 +26,11 @@ class TicketServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        ticket1 = TicketFactory.buildTicket("1", "Movie1", LocalTime.of(18, 0), "A1", "Cinema1", 10.00);
+        ticket1 = TicketFactory.buildTicket(Long.parseLong("1"), "Movie1", LocalTime.of(18, 0), "A1", "Cinema1", 10.00);
         assertNotNull(ticket1);
         System.out.println(ticket1);
 
-        ticket2 = TicketFactory.buildTicket("2", "Movie2", LocalTime.of(19, 0), "B2", "Cinema2", 12.00);
+        ticket2 = TicketFactory.buildTicket(Long.parseLong("2"), "Movie2", LocalTime.of(19, 0), "B2", "Cinema2", 12.00);
         assertNotNull(ticket2);
         System.out.println(ticket2);
     }
@@ -50,10 +50,12 @@ class TicketServiceTest {
     @Test
     @Order(3)
     void read() {
-        Ticket read = ticketService.read(ticket1.getTicketID());
+        long ticketID = ticket1.getTicketID();  // Ensure ticket1.getTicketID() returns a long
+        Ticket read = ticketService.read(String.valueOf(ticketID));  // Pass the long ticketID to the read method
         assertNotNull(read);
         System.out.println(read);
     }
+
 
     @Test
     @Order(4)

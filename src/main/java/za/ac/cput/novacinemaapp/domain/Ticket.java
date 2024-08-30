@@ -5,15 +5,22 @@ package za.ac.cput.novacinemaapp.domain;
 // 17 May 2024
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
 public class Ticket {
     @Id
-    private String ticketID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long ticketID;
     private String movie;
     private LocalTime showtime;
     private String seat;
@@ -32,7 +39,7 @@ public class Ticket {
         this.ticketPrice = builder.ticketPrice;
     }
 
-    public String getTicketID() {
+    public long getTicketID() {
         return ticketID;
     }
 
@@ -86,14 +93,14 @@ public class Ticket {
     }
 
     public static class Builder {
-        private String ticketID;
+        private long ticketID;
         private String movie;
         private LocalTime showtime;
         private String seat;
         private String cinema;
         private double ticketPrice;
 
-        public Builder setTicketID(String ticketID) {
+        public Builder setTicketID(long ticketID) {
             this.ticketID = ticketID;
             return this;
         }

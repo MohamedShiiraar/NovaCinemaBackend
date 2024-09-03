@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.novacinemaapp.domain.Genre;
 import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.domain.Showtime;
+import za.ac.cput.novacinemaapp.factory.GenreFactory;
 import za.ac.cput.novacinemaapp.factory.MovieFactory;
 import za.ac.cput.novacinemaapp.factory.ShowtimeFactory;
 
@@ -29,20 +31,25 @@ class ShowtimeServiceTest {
     private ShowtimeService showtimeService;
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private GenreService genreService;
     private static Showtime showtime1, showtime2;
+    private static Genre genre;
     private static Movie movie1, movie2;
 
     @Test
     @Order(1)
     void setup() {
-    movie1 = MovieFactory.buildMovie("Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
-    movie2 = MovieFactory.buildMovie("Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", "Action/Sci-fi", "127 mins", "PG-13");
+    genre = GenreFactory.buildGenre( "Action", "Movies that are characterized by intense, exciting sequences.");
+    movie1 = MovieFactory.buildMovie("Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", genre, "127 mins", "PG-13","imageURL");
+    movie2 = MovieFactory.buildMovie("Transformers: Rise of the Beasts", "Optimus Prime and the Autobots team up with a down on his luck young man, an aspiring historian and with a powerful faction of Transformers known as the Maximals to combat a sinister force from outer space that threatens the Earth and all of mankind.", genre, "127 mins", "PG-13","imageURL");
+    genreService.create(genre);
     movieService.create(movie1);
     movieService.create(movie2);
-    showtime1 = ShowtimeFactory.buildShowtime("10", LocalTime.of(7, 0), LocalTime.of(9, 0), movie1);
+    showtime1 = ShowtimeFactory.buildShowtime( LocalTime.of(7, 0), LocalTime.of(9, 0), movie1);
     assertNotNull(showtime1);
         System.out.println(showtime1);
-    showtime2 = ShowtimeFactory.buildShowtime("11", LocalTime.of(8, 0), LocalTime.of(10, 0), movie2);
+    showtime2 = ShowtimeFactory.buildShowtime( LocalTime.of(8, 0), LocalTime.of(10, 0), movie2);
     assertNotNull(showtime2);
         System.out.println(showtime2);
     }

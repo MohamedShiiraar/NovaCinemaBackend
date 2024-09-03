@@ -1,14 +1,19 @@
 package za.ac.cput.novacinemaapp.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 public class Card {
     @Id
-    private String cardID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long cardID;
     private String cardHolder;
     private long cardNumber;
     private String expiryDate;
@@ -21,22 +26,6 @@ public class Card {
         this.cardHolder = builder.cardHolder;
         this.cardNumber = builder.cardNumber;
         this.expiryDate = builder.expiryDate;
-    }
-
-    public String getCardID() {
-        return cardID;
-    }
-
-    public String getCardHolder() {
-        return cardHolder;
-    }
-
-    public long getCardNumber() {
-        return cardNumber;
-    }
-
-    public String getExpiryDate() {
-        return expiryDate;
     }
 
     @Override
@@ -62,12 +51,12 @@ public class Card {
     }
 
     public static class Builder {
-        private String cardID;
+        private Long cardID;
         private String cardHolder;
         private long cardNumber;
         private String expiryDate;
 
-        public Builder setCardID(String cardID) {
+        public Builder setCardID(Long cardID) {
             this.cardID = cardID;
             return this;
         }

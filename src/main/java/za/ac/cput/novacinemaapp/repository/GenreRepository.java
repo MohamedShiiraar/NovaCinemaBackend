@@ -10,7 +10,7 @@ import za.ac.cput.novacinemaapp.domain.Genre;
 import java.util.List;
 
 @Repository
-public interface GenreRepository extends JpaRepository<Genre, String> {
+public interface GenreRepository extends JpaRepository<Genre, Long> {
     List<Genre> findGenreByName(String name);
     void deleteGenreByName(String name);
 }

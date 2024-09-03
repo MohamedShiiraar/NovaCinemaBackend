@@ -1,6 +1,7 @@
 package za.ac.cput.novacinemaapp.factory;
 
 import org.junit.jupiter.api.Test;
+import za.ac.cput.novacinemaapp.domain.Card;
 import za.ac.cput.novacinemaapp.domain.CardPayment;
 
 
@@ -10,14 +11,16 @@ class CardPaymentFactoryTest {
 
     @Test
     void testBuildCardPayment() {
-        CardPayment cardPayment = CardPaymentFactory.buildCardPayment("P123", "Moses Shire", 12345678123456789L, "12/25", 1500.00);
+        Card a = CardFactory.buildCard("Mohamed Shiiraar",903489764,"01/25");
+        assertNotNull(a);
+        CardPayment cardPayment = CardPaymentFactory.buildCardPayment(a, 1500.00);
         assertNotNull(cardPayment);
         System.out.println(cardPayment.toString());
     }
 
     @Test
     void testBuildCardPaymentWithFail() {
-        CardPayment cardPayment = CardPaymentFactory.buildCardPayment("", "Moses Shire", 1234567812345678L, "12/25", 1500.00);
+        CardPayment cardPayment = CardPaymentFactory.buildCardPayment(null, 1500.00);
         assertNotNull(cardPayment);
         System.out.println(cardPayment.toString());
     }

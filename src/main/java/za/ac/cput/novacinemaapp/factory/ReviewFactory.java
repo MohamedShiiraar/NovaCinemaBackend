@@ -1,6 +1,7 @@
 package za.ac.cput.novacinemaapp.factory;
 
 import za.ac.cput.novacinemaapp.domain.Cinema;
+import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.domain.Review;
 import za.ac.cput.novacinemaapp.domain.User;
 import za.ac.cput.novacinemaapp.util.Helper;
@@ -14,30 +15,17 @@ import java.time.LocalDate;
 
 public class ReviewFactory {
 
-    public static Review buildReview(double rating, String comment, LocalDate timestamp, Cinema cinema, User user) {
+    public static Review buildReview(double rating, String comment, LocalDate timestamp, Movie movie, User user) {
         if (Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment)
-                || Helper.isNullOrEmpty(timestamp) || Helper.isNullOrEmpty(cinema)
+                || Helper.isNullOrEmpty(timestamp) || Helper.isNullOrEmpty(movie)
                 || Helper.isNullOrEmpty(user))
             return null;
 
-        String reviewId = Helper.generateId();
-
-        return new Review.Builder().setReviewId(reviewId).setRating(rating).setComment(comment).
-                setTimestamp(timestamp).setCinema(cinema).setUser(user)
+        return new Review.Builder().setRating(rating).setComment(comment).
+                setTimestamp(timestamp).setMovie(movie).setUser(user)
                 .build();
     }
-
-    public static Review buildReview(String reviewId, double rating, String comment, LocalDate timestamp, Cinema cinema, User user) {
-        if (Helper.isNullOrEmpty(reviewId) || Helper.isNullOrEmpty(rating) || Helper.isNullOrEmpty(comment)
-                || Helper.isNullOrEmpty(timestamp) || Helper.isNullOrEmpty(cinema)
-                || Helper.isNullOrEmpty(user))
-            return null;
-
-        return new Review.Builder().setReviewId(reviewId).setRating(rating).setComment(comment).
-                setTimestamp(timestamp).setCinema(cinema).setUser(user)
-                .build();
-    }
-    }
+}
 
 
 

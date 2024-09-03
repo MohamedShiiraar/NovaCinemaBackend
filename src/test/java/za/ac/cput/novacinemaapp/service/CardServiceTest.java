@@ -23,11 +23,11 @@ public class CardServiceTest {
     @Test
     @Order(1)
     void setup() {
-        card1 = CardFactory.buildCard("1","Mohamed Shiiraar",903489764,"01/25");
+        card1 = CardFactory.buildCard("Mohamed Shiiraar",903489764,"01/25");
         assertNotNull(card1);
         System.out.println(card1);
 
-        card2 = CardFactory.buildCard("2","Jared Barros",467984309,"01/26");
+        card2 = CardFactory.buildCard("Jared Barros",467984309,"01/26");
         assertNotNull(card2);
         System.out.println(card2);
     }

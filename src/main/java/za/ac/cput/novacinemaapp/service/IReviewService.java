@@ -8,6 +8,6 @@ import java.util.Set;
  *   19 May 2024
  * */
 
-public interface IReviewService extends IService<Review, String> {
+public interface IReviewService extends IService<Review, Long> {
     Set<Review> getAll();
 }

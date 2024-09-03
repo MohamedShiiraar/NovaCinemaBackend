@@ -28,7 +28,7 @@ public class CardService implements ICardService{
     }
 
     @Override
-    public Card read(String s) {
+    public Card read(Long s) {
         return repository.findById(s).orElse(null);
     }
 

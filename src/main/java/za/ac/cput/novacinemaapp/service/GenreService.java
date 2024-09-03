@@ -34,7 +34,7 @@ public class GenreService implements IGenreService {
     }
 
     @Override
-    public Genre read(String id) {
+    public Genre read(Long id) {
         return repository.findById(id).orElse(null);
     }
 

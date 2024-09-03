@@ -7,12 +7,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
-import za.ac.cput.novacinemaapp.domain.Cart;
-import za.ac.cput.novacinemaapp.domain.User;
-import za.ac.cput.novacinemaapp.domain.Ticket;
-import za.ac.cput.novacinemaapp.factory.CartFactory;
-import za.ac.cput.novacinemaapp.factory.UserFactory;
-import za.ac.cput.novacinemaapp.factory.TicketFactory;
+import za.ac.cput.novacinemaapp.domain.*;
+import za.ac.cput.novacinemaapp.factory.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,8 +21,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CartControllerTest {
 
-    private static User user = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123");
-    private static Ticket ticket = TicketFactory.buildTicket(Long.parseLong("1"), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
+    private static User user = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123",false);
+    private static Genre genre = GenreFactory.buildGenre("Action", "Fast-paced, high-energy films with physical stunts and chases.");
+    private static Movie movie = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",genre,"117 mins","PG-13","imageURL");
+    private static Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(7, 0), LocalTime.of(9, 0), movie);
+    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+    private static Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
+    private static Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
+    private static Ticket ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre,cinema, 69.00);
     private static Cart cart = CartFactory.buildCart(user, ticket, "2");
 
     private final String BASE_URL = "http://localhost:8080/cart";

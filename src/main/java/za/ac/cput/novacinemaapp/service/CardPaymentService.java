@@ -27,9 +27,7 @@ public class CardPaymentService implements ICardPaymentService {
     }
 
     @Override
-    public CardPayment read(String CardHolder) {
-        return repository.findCardPaymentByCardHolder(CardHolder);
-    }
+    public CardPayment read(Long paymentID) { return repository.findCardPaymentByPaymentID(paymentID); }
 
     @Override
     public CardPayment update(CardPayment cardPayment) {

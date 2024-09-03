@@ -6,29 +6,26 @@ Author : Mohamed Shiiraar (220354804)
 Date : 17 May
  */
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.awt.*;
 import java.sql.Blob;
 import java.util.Objects;
-@Entity
 @Getter
-@Setter
-
+@Entity
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long movieID;
     private String name;
     private String movieDescription;
-    private String genre;
+    @ManyToOne
+    private Genre genre;
     private String duration;
     private String ageRestriction;
+    private String imageURL;
 
     public Movie() {
     }
@@ -40,52 +37,32 @@ public class Movie {
         this.genre = builder.genre;
         this.duration = builder.duration;
         this.ageRestriction = builder.ageRestriction;
-    }
-
-    public long getMovieID() {
-        return movieID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getMovieDescription() {
-        return movieDescription;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public String getAgeRestriction() {
-        return ageRestriction;
+        this.imageURL = builder.imageURL;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Movie movie)) return false;
-        return Objects.equals(movieID, movie.movieID) && Objects.equals(name, movie.name) && Objects.equals(movieDescription, movie.movieDescription) && Objects.equals(genre, movie.genre) && Objects.equals(duration, movie.duration);
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return movieID == movie.movieID && Objects.equals(name, movie.name) && Objects.equals(movieDescription, movie.movieDescription) && Objects.equals(genre, movie.genre) && Objects.equals(duration, movie.duration) && Objects.equals(ageRestriction, movie.ageRestriction) && Objects.equals(imageURL, movie.imageURL);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movieID, name, movieDescription, genre, duration);
+        return Objects.hash(movieID, name, movieDescription, genre, duration, ageRestriction, imageURL);
     }
 
     @Override
     public String toString() {
         return "Movie{" +
-                "movieID='" + movieID + '\'' +
+                "movieID=" + movieID +
                 ", name='" + name + '\'' +
                 ", movieDescription='" + movieDescription + '\'' +
-                ", genre='" + genre + '\'' +
+                ", genre=" + genre +
                 ", duration='" + duration + '\'' +
+                ", ageRestriction='" + ageRestriction + '\'' +
+                ", imageURL='" + imageURL + '\'' +
                 '}';
     }
 
@@ -93,9 +70,10 @@ public class Movie {
         private long movieID;
         private String name;
         private String movieDescription;
-        private String genre;
+        private Genre genre;
         private String duration;
         private String ageRestriction;
+        private String imageURL;
 
 
         public Builder setMovieID(long movieID) {
@@ -113,7 +91,7 @@ public class Movie {
             return this;
         }
 
-        public Builder setGenre(String genre) {
+        public Builder setGenre(Genre genre) {
             this.genre = genre;
             return this;
         }
@@ -128,6 +106,11 @@ public class Movie {
             return this;
         }
 
+        public Builder setImageURL(String imageURL) {
+            this.imageURL = imageURL;
+            return this;
+        }
+
         public Builder copy(Movie movie){
             this.movieID = movie.movieID;
             this.name = movie.name;
@@ -135,6 +118,7 @@ public class Movie {
             this.genre = movie.genre;
             this.duration = movie.duration;
             this.ageRestriction = movie.ageRestriction;
+            this.imageURL = movie.imageURL;
             return this;
         }
         public Movie build() {

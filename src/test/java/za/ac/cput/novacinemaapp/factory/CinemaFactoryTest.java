@@ -10,14 +10,14 @@ class CinemaFactoryTest {
 
     @Test
     void testBuildCinema() {
-        Cinema cinema = CinemaFactory.buildCinema("L123", "Grand Cinema");
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
         assertNotNull(cinema);
         System.out.println(cinema.toString());
     }
 
     @Test
     void testBuildCinemaWithFail() {
-        Cinema cinema = CinemaFactory.buildCinema("", "Grand Cinema");
+        Cinema cinema = CinemaFactory.buildCinema( "");
         assertNotNull(cinema);
         System.out.println(cinema.toString());
     }

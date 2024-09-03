@@ -29,11 +29,11 @@ class UserServiceTest {
     @Order(1)
 
     void setup() {
-        user1 = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
+        user1 = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!",true);
         assertNotNull(user1);
         System.out.println(user1);
 
-        user2 = UserFactory.buildUser("Daanyaal","Isaacs","daanyaalisaacs@gmail.com","Test123!");
+        user2 = UserFactory.buildUser("Daanyaal","Isaacs","daanyaalisaacs@gmail.com","Test123!",false);
         assertNotNull(user2);
         System.out.println(user2);
 

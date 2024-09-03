@@ -4,10 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Getter
 @Entity
 public class Promotion {
     @Id
@@ -30,28 +32,6 @@ public class Promotion {
         this.validFrom = builder.validFrom;
         this.validUntil = builder.validUntil;
 
-    }
-
-    public Long getPromotionID() {
-        return promotionID;
-    }
-
-    public String getPromotionName() { return promotionName; }
-
-    public String getPromotionDescription() {
-        return promotionDescription;
-    }
-
-    public float getDiscountPercentage() {
-        return discountPercentage;
-    }
-
-    public LocalDateTime getValidFrom() {
-        return validFrom;
-    }
-
-    public LocalDateTime getValidUntil() {
-        return validUntil;
     }
 
     @Override

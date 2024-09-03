@@ -12,10 +12,10 @@ import za.ac.cput.novacinemaapp.domain.*;
 import java.util.List;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review,String> {
+public interface ReviewRepository extends JpaRepository<Review,Long> {
 
     List<Review> findReviewByUser(User user);
-    Review findReviewByReviewId(String reviewId);
+    Review findReviewByReviewId(Long reviewId);
 
-    void deleteReviewByReviewId(String reviewId);
+    void deleteReviewByReviewId(Long reviewId);
 }

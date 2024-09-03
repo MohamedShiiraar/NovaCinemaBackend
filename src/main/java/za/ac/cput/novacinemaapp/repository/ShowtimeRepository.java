@@ -13,11 +13,11 @@ import za.ac.cput.novacinemaapp.domain.Showtime;
 import java.util.List;
 
 @Repository
-public interface ShowtimeRepository extends JpaRepository<Showtime,String> {
+public interface ShowtimeRepository extends JpaRepository<Showtime,Long> {
 
     List<Showtime> findShowtimeByMovie(Movie movie);
 
-    Showtime findShowtimeByShowtimeId(String showtimeId);
+    Showtime findShowtimeByShowtimeId(Long showtimeId);
 
-    void deleteShowtimeByShowtimeId(String showtimeId);
+    void deleteShowtimeByShowtimeId(Long showtimeId);
 }

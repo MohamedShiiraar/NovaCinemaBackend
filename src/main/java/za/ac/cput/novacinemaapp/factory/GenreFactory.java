@@ -8,25 +8,11 @@ import za.ac.cput.novacinemaapp.util.Helper;
 
 public class GenreFactory {
 
-    public static Genre buildGenre(String genreID, String name, String description) {
-        if (Helper.isNullOrEmpty(genreID) || Helper.isNullOrEmpty(name) || Helper.isNullOrEmpty(description))
-            return null;
-
-        return new Genre.Builder()
-                .setGenreID(genreID)
-                .setName(name)
-                .setDescription(description)
-                .build();
-    }
-
     public static Genre buildGenre(String name, String description) {
         if (Helper.isNullOrEmpty(name) || Helper.isNullOrEmpty(description))
             return null;
 
-        String genreID = String.valueOf(Helper.generateId());
-
         return new Genre.Builder()
-                .setGenreID(genreID)
                 .setName(name)
                 .setDescription(description)
                 .build();

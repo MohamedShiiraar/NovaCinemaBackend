@@ -25,7 +25,7 @@ public class ShowtimeService implements IShowtimeService {
     @Override
     public Showtime create(Showtime showtime) {return repository.save(showtime);}
     @Override
-    public Showtime read(String showtimeId) {return repository.findShowtimeByShowtimeId(showtimeId);}
+    public Showtime read(Long showtimeId) {return repository.findShowtimeByShowtimeId(showtimeId);}
     @Override
     public Showtime update(Showtime showtime) {return repository.save(showtime);}
     @Override

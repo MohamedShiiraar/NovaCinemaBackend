@@ -9,13 +9,13 @@ class UserFactoryTest {
 
     @Test
     void testBuildUser() {
-        User b = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
+        User b = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!",true);
         assertNotNull(b);
         System.out.println(b);
     }
     @Test
     void testBuildUserWithFail() {
-        User c = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!");
+        User c = UserFactory.buildUser("","Shiiraar","mso2shiiraar@gmail.com","Test123!",false);
         assertNotNull(c);
         System.out.println(c.toString());
     }

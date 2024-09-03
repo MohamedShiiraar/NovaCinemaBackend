@@ -7,15 +7,20 @@ Date : [25/08/24]
 */
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 public class Genre {
 
     @Id
-    private String genreID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long genreID;
     private String name;
     private String description;
 
@@ -26,18 +31,6 @@ public class Genre {
         this.genreID = builder.genreID;
         this.name = builder.name;
         this.description = builder.description;
-    }
-
-    public String getGenreID() {
-        return genreID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     @Override
@@ -62,11 +55,11 @@ public class Genre {
     }
 
     public static class Builder {
-        private String genreID;
+        private Long genreID;
         private String name;
         private String description;
 
-        public Builder setGenreID(String genreID) {
+        public Builder setGenreID(Long genreID) {
             this.genreID = genreID;
             return this;
         }

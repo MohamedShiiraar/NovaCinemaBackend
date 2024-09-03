@@ -7,17 +7,21 @@ package za.ac.cput.novacinemaapp.domain;
  * */
 
 import jakarta.persistence.*;
+import lombok.Getter;
+
 import java.time.LocalTime;
 import java.util.Objects;
 
+@Getter
 @Entity
 public class Showtime {
     @Id
-    private String showtimeId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long showtimeId;
     private LocalTime showtime;
     private LocalTime endTime;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
@@ -30,22 +34,6 @@ public class Showtime {
         this.endTime = builder.endTime;
         this.movie = builder.movie;
 
-    }
-
-    public String getShowtimeId() {
-        return showtimeId;
-    }
-
-    public LocalTime getShowtime() {
-        return showtime;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public Movie getMovie() {
-        return movie;
     }
 
     @Override
@@ -73,12 +61,12 @@ public class Showtime {
 
     public static class Builder {
 
-        private String showtimeId;
+        private Long showtimeId;
         private LocalTime showtime;
         private LocalTime endTime;
         private Movie movie;
 
-        public Builder setShowtimeId(String showtimeId) {
+        public Builder setShowtimeId(Long showtimeId) {
             this.showtimeId = showtimeId;
             return this;
         }

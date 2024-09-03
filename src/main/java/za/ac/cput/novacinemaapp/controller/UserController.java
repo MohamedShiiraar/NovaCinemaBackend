@@ -48,10 +48,12 @@ public class UserController {
 
     @PostMapping("/update")
     public ResponseEntity<?> update(@RequestBody User user) {
+        System.out.println("Received user data: " + user);
         User updatedUser = userService.update(user);
         if (updatedUser == null){
             return ResponseEntity.badRequest().body("Error updating user.Please try again later");
         }
+        System.out.println("Updated user: " + updatedUser);
         return ResponseEntity.ok(updatedUser);
     }
 

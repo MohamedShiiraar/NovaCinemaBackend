@@ -28,6 +28,7 @@ public class UserService implements IUserService{
     }
     @Override
     public User update(User user) {
+        System.out.println("Updating user with ID: " + user.getUserID() + ", isAdmin: " + user.isAdmin());
         return repository.save(user);
     }
     @Override

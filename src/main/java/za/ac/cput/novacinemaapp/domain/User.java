@@ -1,11 +1,13 @@
 package za.ac.cput.novacinemaapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /*
@@ -15,7 +17,7 @@ Date : 17 May
  */
 @Getter
 @Entity
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userID;
@@ -23,6 +25,7 @@ public class User {
     private String surname;
     private String emailAddress;
     private String password;
+    @JsonProperty("isAdmin")
     private boolean isAdmin;
 
     public User() {

@@ -7,8 +7,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+import za.ac.cput.novacinemaapp.domain.Genre;
 import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.domain.User;
+import za.ac.cput.novacinemaapp.factory.GenreFactory;
 import za.ac.cput.novacinemaapp.factory.MovieFactory;
 
 import java.net.URI;
@@ -21,7 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MovieControllerTest {
 
-    private static Movie movie = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.","animation","117 mins","PG-13");
+    private static Genre genre = GenreFactory.buildGenre("Action", "Fast-paced, high-energy films with physical stunts and chases.");
+    private static Movie movie = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",genre,"117 mins","PG-13","imageURL");
     private final String BASE_URL = "http://localhost:8080/movie";
 
     private RestTemplate restTemplate = new RestTemplate();

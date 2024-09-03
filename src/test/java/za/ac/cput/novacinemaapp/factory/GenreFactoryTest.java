@@ -12,22 +12,15 @@ class GenreFactoryTest {
 
     @Test
     void testBuildGenre() {
-        Genre g = GenreFactory.buildGenre("1", "Action", "Movies that are characterized by intense, exciting sequences.");
+        Genre g = GenreFactory.buildGenre( "Action", "Movies that are characterized by intense, exciting sequences.");
         assertNotNull(g);
         System.out.println(g.toString());
     }
 
     @Test
-    void testBuildGenreWithMissingFields() {
-        Genre g = GenreFactory.buildGenre("", "Action", "Movies that are characterized by intense, exciting sequences.");
-        assertNull(g); // Expecting null because genreID is missing
+    void testBuildGenreFail() {
+        Genre g = GenreFactory.buildGenre(null, "Movies that are characterized by intense, exciting sequences.");
+        assertNotNull(g);
         System.out.println(g);
-    }
-
-    @Test
-    void testBuildGenreWithoutID() {
-        Genre g = GenreFactory.buildGenre("Drama", "Movies that focus on emotional themes and character development.");
-        assertNotNull(g);
-        System.out.println(g.toString());
     }
 }

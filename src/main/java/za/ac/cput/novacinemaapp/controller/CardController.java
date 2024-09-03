@@ -27,7 +27,7 @@ public class CardController {
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id) {
+    public ResponseEntity<?> get(@PathVariable Long id) {
         Card card = cardService.read(id);
         if (card == null) {
             return ResponseEntity.badRequest().body("Card with card id "+id+" not found.");

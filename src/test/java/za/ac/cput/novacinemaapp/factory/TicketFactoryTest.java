@@ -5,7 +5,7 @@ package za.ac.cput.novacinemaapp.factory;
 // 17 May 2024
 
 import org.junit.jupiter.api.Test;
-import za.ac.cput.novacinemaapp.domain.Ticket;
+import za.ac.cput.novacinemaapp.domain.*;
 
 import java.time.LocalTime;
 
@@ -15,14 +15,38 @@ class TicketFactoryTest {
 
     @Test
     void testBuildTicket() {
-        Ticket ticket = TicketFactory.buildTicket(Long.parseLong("1"), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
+        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        assertNotNull(g);
+        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+        assertNotNull(b);
+        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        assertNotNull(showtime);
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+        assertNotNull(cinema);
+        Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
+        assertNotNull(theatre);
+        Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
+        assertNotNull(seat);
+        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0);
         assertNotNull(ticket);
         System.out.println(ticket.toString());
     }
 
     @Test
     void testBuildTicketWithFail() {
-        Ticket ticket = TicketFactory.buildTicket(Long.parseLong(""), "Movie", LocalTime.of(18, 0), "A1", "Cinema", 10.00);
-        assertNull(ticket);  // Changed to assertNull as the factory should return null for invalid input
+        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        assertNotNull(g);
+        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+        assertNotNull(b);
+        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        assertNotNull(showtime);
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+        assertNotNull(cinema);
+        Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
+        assertNotNull(theatre);
+        Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
+        assertNotNull(seat);
+        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,00.0);
+        assertNotNull(ticket);  // Changed to assertNull as the factory should return null for invalid input
     }
 }

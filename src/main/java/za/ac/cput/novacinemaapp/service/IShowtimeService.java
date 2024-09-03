@@ -8,7 +8,7 @@ import java.util.Set;
  *   19 May 2024
  * */
 
-public interface IShowtimeService extends IService<Showtime, String> {
+public interface IShowtimeService extends IService<Showtime, Long> {
     Set<Showtime> getAll();
 
 }

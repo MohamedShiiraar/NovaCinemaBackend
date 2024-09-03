@@ -5,9 +5,11 @@ Author: Daanyaal Isaacs (220094934)
 Date: 17 May
  */
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 public class Theatre {
 
@@ -26,18 +28,6 @@ public class Theatre {
         this.theatreID = builder.theatreID;
         this.theatreType = builder.theatreType;
         this.cinema = builder.cinema;
-    }
-
-    public Long getTheatreID() {
-        return theatreID;
-    }
-
-    public Cinema getCinema() {
-        return cinema;
-    }
-
-    public String getTheatreType() {
-        return theatreType;
     }
 
     @Override

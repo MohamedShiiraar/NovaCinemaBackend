@@ -23,7 +23,7 @@ public class ReviewService implements IReviewService {
     @Override
     public Review create(Review review) {return repository.save(review);}
     @Override
-    public Review read(String reviewId) {return repository.findReviewByReviewId(reviewId);}
+    public Review read(Long reviewId) {return repository.findReviewByReviewId(reviewId);}
     @Override
     public Review update(Review review) {return repository.save(review);}
     @Override

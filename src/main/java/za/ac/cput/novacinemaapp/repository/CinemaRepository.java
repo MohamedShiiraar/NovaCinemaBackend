@@ -7,7 +7,7 @@ import za.ac.cput.novacinemaapp.domain.Cinema;
 import java.util.List;
 
 @Repository
-public interface CinemaRepository extends JpaRepository<Cinema,String> {
-    List<Cinema> findCinemaByLocationID(String locationID);
+public interface CinemaRepository extends JpaRepository<Cinema,Long> {
+    List<Cinema> findCinemaByLocationID(Long locationID);
     List<Cinema> findCinemaByName(String Name);
 }

@@ -9,6 +9,6 @@ import java.util.Set;
  * 18/05/2024
  * */
 
-public interface ICardPaymentService extends IService<CardPayment, String>{
+public interface ICardPaymentService extends IService<CardPayment, Long>{
     Set<CardPayment> getAll();
 }

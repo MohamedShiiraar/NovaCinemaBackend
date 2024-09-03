@@ -21,13 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CardControllerTest {
 
-    private static Card card = CardFactory.buildCard("1","Mohamed Shiiraar",903489764,"01/25");
+    private static Card card = CardFactory.buildCard("Mohamed Shiiraar",903489764,"01/25");
 
     private final String BASE_URL = "http://localhost:8080/card";
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static String cardID;
+    private static Long cardID;
 
     private HttpEntity<?> performPostRequest(Object object) {
         return new HttpEntity<>(object);

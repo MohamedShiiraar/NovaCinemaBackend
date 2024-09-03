@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CardFactoryTest {
     @Test
     void testBuildCard() {
-        Card a = CardFactory.buildCard("1","Mohamed Shiiraar",903489764,"01/25");
+        Card a = CardFactory.buildCard("Mohamed Shiiraar",903489764,"01/25");
         assertNotNull(a);
         System.out.println(a);
     }

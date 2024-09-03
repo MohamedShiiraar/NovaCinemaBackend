@@ -26,10 +26,10 @@ class CinemaServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        cinema1 = CinemaFactory.buildCinema("L123", "Grand Cinema");
+        cinema1 = CinemaFactory.buildCinema( "Grand Cinema");
         assertNotNull(cinema1);
         System.out.println(cinema1);
-        cinema2 = CinemaFactory.buildCinema("L124", "Luxury Cinema");
+        cinema2 = CinemaFactory.buildCinema( "Luxury Cinema");
         assertNotNull(cinema2);
         System.out.println(cinema2);
     }

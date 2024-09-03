@@ -27,11 +27,11 @@ public class CardPaymentController {
         return new ResponseEntity<>(createdCardPayment, HttpStatus.CREATED);
     }
 
-    @GetMapping("/read/{cardHolder}")
-    public ResponseEntity<?> get(@PathVariable String cardHolder) {
-        CardPayment cardPayment = cardPaymentService.read(cardHolder);
+    @GetMapping("/read/{paymentID}")
+    public ResponseEntity<?> get(@PathVariable Long paymentID) {
+        CardPayment cardPayment = cardPaymentService.read(paymentID);
         if (cardPayment == null) {
-            return ResponseEntity.badRequest().body("Card payment for card holder " + cardHolder + " not found.");
+            return ResponseEntity.badRequest().body("Card payment for Payment ID " + paymentID + " not found.");
         }
         return ResponseEntity.ok(cardPayment);
     }

@@ -11,7 +11,9 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+import za.ac.cput.novacinemaapp.domain.Card;
 import za.ac.cput.novacinemaapp.domain.CardPayment;
+import za.ac.cput.novacinemaapp.factory.CardFactory;
 import za.ac.cput.novacinemaapp.factory.CardPaymentFactory;
 
 import java.net.URI;
@@ -24,13 +26,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CardPaymentControllerTest {
 
-    private static CardPayment cardPayment = CardPaymentFactory.buildCardPayment("1", "Mo Shire", 9034897641234567L, "01/25", 250.00);
+    private static Card card = CardFactory.buildCard("Mohamed Shiiraar",903489764,"01/25");
+
+    private static CardPayment cardPayment = CardPaymentFactory.buildCardPayment(card, 250.00);
 
     private final String BASE_URL = "http://localhost:8080/cardpayment";
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static String paymentID;
+    private static Long paymentID;
 
     private HttpEntity<?> performPostRequest(Object object) {
         return new HttpEntity<>(object);
@@ -68,7 +72,7 @@ public class CardPaymentControllerTest {
     @Order(3)
     void update() {
         String url = BASE_URL + "/update";
-        CardPayment updatedCardPayment = new CardPayment.Builder().copy(cardPayment).setCardHolder("Iyaad Ahsing").build();
+        CardPayment updatedCardPayment = new CardPayment.Builder().copy(cardPayment).setAmount(300.00).build();
 
         HttpEntity<?> entity = performPostRequest(updatedCardPayment);
 

@@ -31,7 +31,7 @@ public class ShowtimeController {
     }
 
     @GetMapping("read/{showtimeId}")
-    public ResponseEntity<?> get(@PathVariable String showtimeId) {
+    public ResponseEntity<?> get(@PathVariable Long showtimeId) {
         Showtime showtime = showtimeService.read(showtimeId);
         if (showtime == null) {
             return ResponseEntity.badRequest().body("Showtime with ShowtimeId" + showtimeId + "not found.");

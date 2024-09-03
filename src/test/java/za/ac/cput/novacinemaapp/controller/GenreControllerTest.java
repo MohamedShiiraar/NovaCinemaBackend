@@ -28,7 +28,7 @@ public class GenreControllerTest {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static String genreID;
+    private static Long genreID;
 
     private HttpEntity<?> performPostRequest(Object object) {
         return new HttpEntity<>(object);

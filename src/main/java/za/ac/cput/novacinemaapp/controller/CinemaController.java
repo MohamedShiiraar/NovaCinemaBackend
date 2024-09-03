@@ -30,7 +30,7 @@ public class CinemaController {
     }
 
     @GetMapping("/read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id) {
+    public ResponseEntity<?> get(@PathVariable Long id) {
         Cinema cinema = cinemaService.read(id);
         if (cinema == null) {
             return ResponseEntity.badRequest().body("Cinema with id " + id + " not found.");

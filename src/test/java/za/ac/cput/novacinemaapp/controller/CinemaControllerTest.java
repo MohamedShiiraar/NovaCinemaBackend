@@ -26,13 +26,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CinemaControllerTest {
 
-    private static Cinema cinema = CinemaFactory.buildCinema("L123", "Grand Cinema");
+    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
 
     private final String BASE_URL = "http://localhost:8080/cinema";
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    private static String cinemaId;
+    private static Long cinemaId;
 
     private HttpEntity<?> performPostRequest(Object object) {
         return new HttpEntity<>(object);

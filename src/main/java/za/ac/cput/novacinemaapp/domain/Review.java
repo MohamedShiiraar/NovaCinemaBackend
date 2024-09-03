@@ -7,20 +7,24 @@ package za.ac.cput.novacinemaapp.domain;
  * */
 
 import jakarta.persistence.*;
+import lombok.Getter;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Getter
 @Entity
 public class Review {
     @Id
-    private String reviewId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long reviewId;
     private double rating;
     private String comment;
     private LocalDate timestamp;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "cinema_id")
-    private Cinema cinema;
-    @OneToOne
+    private Movie movie;
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -32,32 +36,8 @@ public class Review {
         this.rating = builder.rating;
         this.comment = builder.comment;
         this.timestamp = builder.timestamp;
-        this.cinema = builder.cinema;
+        this.movie = builder.movie;
         this.user = builder.user;
-    }
-
-    public String getReviewId() {
-        return reviewId;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public LocalDate getTimestamp() {
-        return timestamp;
-    }
-
-    public Cinema getCinema() {
-        return cinema;
-    }
-
-    public User getUser() {
-        return user;
     }
 
     @Override
@@ -65,36 +45,36 @@ public class Review {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Review review = (Review) o;
-        return Objects.equals(reviewId, review.reviewId) && Double.compare(rating, review.rating) == 0 && Objects.equals(comment, review.comment) && Objects.equals(timestamp, review.timestamp) && Objects.equals(cinema, review.cinema) && Objects.equals(user, review.user);
+        return Double.compare(rating, review.rating) == 0 && Objects.equals(reviewId, review.reviewId) && Objects.equals(comment, review.comment) && Objects.equals(timestamp, review.timestamp) && Objects.equals(movie, review.movie) && Objects.equals(user, review.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(reviewId, rating, comment, timestamp, cinema, user);
+        return Objects.hash(reviewId, rating, comment, timestamp, movie, user);
     }
 
     @Override
     public String toString() {
         return "Review{" +
-                "reviewId='" + reviewId + '\'' +
+                "reviewId=" + reviewId +
                 ", rating=" + rating +
                 ", comment='" + comment + '\'' +
                 ", timestamp=" + timestamp +
-                ", cinema=" + cinema +
+                ", movie=" + movie +
                 ", user=" + user +
                 '}';
     }
 
     public static class Builder {
 
-        private String reviewId;
+        private Long reviewId;
         private double rating;
         private String comment;
         private LocalDate timestamp;
-        private Cinema cinema;
+        private Movie movie;
         private User user;
 
-        public Builder setReviewId(String reviewId) {
+        public Builder setReviewId(Long reviewId) {
             this.reviewId = reviewId;
             return this;
         }
@@ -114,8 +94,8 @@ public class Review {
             return this;
         }
 
-        public Builder setCinema(Cinema cinema) {
-            this.cinema = cinema;
+        public Builder setMovie(Movie movie) {
+            this.movie = movie;
             return this;
         }
 
@@ -129,7 +109,7 @@ public class Review {
             this.rating = review.rating;
             this.comment = review.comment;
             this.timestamp = review.timestamp;
-            this.cinema = review.cinema;
+            this.movie = review.movie;
             this.user = review.user;
             return this;
         }

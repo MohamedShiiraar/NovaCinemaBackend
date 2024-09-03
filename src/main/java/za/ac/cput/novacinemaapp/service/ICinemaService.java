@@ -9,6 +9,6 @@ import java.util.Set;
  * 18/05/2024
  * */
 
-public interface ICinemaService extends IService<Cinema, String>{
+public interface ICinemaService extends IService<Cinema, Long>{
     Set<Cinema> getAll();
 }

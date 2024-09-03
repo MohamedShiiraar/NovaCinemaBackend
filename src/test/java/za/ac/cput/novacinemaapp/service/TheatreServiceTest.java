@@ -24,7 +24,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class TheatreServiceTest {
     @Autowired
     private TheatreService theatreService;
-    @Autowired CinemaService cinemaService;
+    @Autowired
+    private CinemaService cinemaService;
 
     private static Theatre theatre1,theatre2;
     private static Cinema cinema;
@@ -32,7 +33,7 @@ class TheatreServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        cinema = CinemaFactory.buildCinema("LT123", "Luxury Cinema");
+        cinema = CinemaFactory.buildCinema("Luxury Cinema");
         cinemaService.create(cinema);
         theatre1 = TheatreFactory.buildTheatre("IMAX", cinema);
         assertNotNull(theatre1);

@@ -7,9 +7,11 @@ Date: 17 May
  */
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 public class Seat {
     @Id
@@ -31,20 +33,6 @@ public class Seat {
         this.seatType = builder.seatType;
         this.theatre = builder.theatre;
     }
-
-    public Long getSeatID() {
-        return seatID;
-    }
-
-    public String getSeatNumber() {
-        return seatNumber;
-    }
-
-    public String getSeatType() {
-        return seatType;
-    }
-
-    public Theatre getTheatre() { return theatre; }
 
     @Override
     public boolean equals(Object o) {

@@ -1,14 +1,19 @@
 package za.ac.cput.novacinemaapp.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.util.*;
+@Getter
 @Entity
 
 public class Cinema {
     @Id
-    private String locationID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long locationID;
     private String name;
 
     public Cinema() {
@@ -17,14 +22,6 @@ public class Cinema {
     public Cinema(Builder builder) {
         this.locationID = builder.locationID;
         this.name = builder.name;
-    }
-
-    public String getLocationID() {
-        return locationID;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override
@@ -50,10 +47,10 @@ public class Cinema {
     }
 
     public static class Builder {
-        private String locationID;
+        private Long locationID;
         private String name;
 
-        public Builder setLocationID(String locationID) {
+        public Builder setLocationID(Long locationID) {
             this.locationID = locationID;
             return this;
         }

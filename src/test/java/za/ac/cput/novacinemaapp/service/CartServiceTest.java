@@ -6,12 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.novacinemaapp.domain.Cart;
-import za.ac.cput.novacinemaapp.domain.User;
-import za.ac.cput.novacinemaapp.domain.Ticket;
-import za.ac.cput.novacinemaapp.factory.CartFactory;
-import za.ac.cput.novacinemaapp.factory.UserFactory;
-import za.ac.cput.novacinemaapp.factory.TicketFactory;
+import za.ac.cput.novacinemaapp.domain.*;
+import za.ac.cput.novacinemaapp.factory.*;
 
 import java.time.LocalTime;
 import java.util.Set;
@@ -26,6 +22,20 @@ class CartServiceTest {
     private CartService cartService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private GenreService genreService;
+    @Autowired
+    private MovieService movieService;
+    @Autowired
+    private ShowtimeService showtimeService;
+    @Autowired
+    private CinemaService cinemaService;
+    @Autowired
+    private TheatreService theatreService;
+    @Autowired
+    private SeatService seatService;
+    @Autowired
+    private TicketService ticketService;
 
     private static Cart cart1, cart2;
     private static User user1, user2;
@@ -34,23 +44,34 @@ class CartServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        user1 = UserFactory.buildUser("Amaan", "Allie", "Amaan.Allie@example.com", "password123");
+        user1 = UserFactory.buildUser("Amaan", "Allie", "Amaan.Allie@example.com", "password123",true);
         assertNotNull(user1);
         user1 = userService.create(user1);  // Save user1
         System.out.println(user1);
 
-        user2 = UserFactory.buildUser("Adam", "Mohamed", "adam.mohamed@example.com", "password456");
+        user2 = UserFactory.buildUser("Adam", "Mohamed", "adam.mohamed@example.com", "password456",false);
         assertNotNull(user2);
         user2 = userService.create(user2);  // Save user2
         System.out.println(user2);
 
-        ticket1 = TicketFactory.buildTicket(Long.parseLong("1"), "Movie1", LocalTime.of(18, 0), "A1", "Cinema1", 10.00);
-        assertNotNull(ticket1);
-        System.out.println(ticket1);
-
-        ticket2 = TicketFactory.buildTicket(Long.parseLong("2"), "Movie2", LocalTime.of(19, 0), "B2", "Cinema2", 12.00);
-        assertNotNull(ticket2);
-        System.out.println(ticket2);
+        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        genreService.create(g);
+        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+        movieService.create(b);
+        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        showtimeService.create(showtime);
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+        cinemaService.create(cinema);
+        Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
+        theatreService.create(theatre);
+        Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
+        seatService.create(seat);
+        Seat seat2 = SeatFactory.buildSeat("D5","Regular",theatre);
+        seatService.create(seat2);
+        ticket1 = TicketFactory.buildTicket( b,showtime,seat,theatre,cinema,69.00);
+        ticketService.create(ticket1);
+        ticket2 = TicketFactory.buildTicket( b,showtime,seat2,theatre,cinema, 69.00);
+        ticketService.create(ticket2);
 
         cart1 = CartFactory.buildCart(user1, ticket1, "2");
         assertNotNull(cart1);

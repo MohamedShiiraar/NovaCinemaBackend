@@ -1,6 +1,7 @@
 package za.ac.cput.novacinemaapp.factory;
 
 import org.junit.jupiter.api.MethodOrderer;
+import za.ac.cput.novacinemaapp.domain.Genre;
 import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.domain.Showtime;
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,11 +22,11 @@ class ShowtimeFactoryTest {
     @Test
     @Order(1)
     void testBuildShowtime(){
-        Movie movie = MovieFactory.buildMovie( "Inception",
-                "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-                "Science Fiction", "2h 28m", "PG-13");
-        assertNotNull(movie);
-        Showtime showtime = ShowtimeFactory.buildShowtime( "1",LocalTime.of(10, 0), LocalTime.of(12, 0), movie);
+        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        assertNotNull(g);
+        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+        assertNotNull(b);
+        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
         assertNotNull(showtime);
         System.out.println(showtime);
     }
@@ -33,11 +34,11 @@ class ShowtimeFactoryTest {
     @Test
     @Order(2)
     void testFail(){
-        Movie movie = MovieFactory.buildMovie( "Inception",
-                "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-                "Science Fiction", "2h 28m", "PG-13");
-        assertNotNull(movie);
-        Showtime showtime = ShowtimeFactory.buildShowtime("", LocalTime.of(10, 0), LocalTime.of(12, 0), movie);
+        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        assertNotNull(g);
+        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+        assertNotNull(b);
+        Showtime showtime = ShowtimeFactory.buildShowtime(LocalTime.of(10, 0), LocalTime.of(12, 0), null);
         assertNotNull(showtime);
         System.out.println(showtime);
     }

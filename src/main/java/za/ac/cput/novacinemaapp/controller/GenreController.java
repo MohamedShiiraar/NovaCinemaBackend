@@ -28,7 +28,7 @@ public class GenreController {
     }
 
     @GetMapping("/read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id) {
+    public ResponseEntity<?> get(@PathVariable Long id) {
         Genre genre = genreService.read(id);
         if (genre == null) {
             return ResponseEntity.badRequest().body("Genre with id " + id + " not found.");

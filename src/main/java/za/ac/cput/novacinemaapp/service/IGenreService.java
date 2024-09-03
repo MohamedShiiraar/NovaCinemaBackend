@@ -7,13 +7,7 @@ import za.ac.cput.novacinemaapp.domain.Genre;
 
 import java.util.Set;
 
-public interface IGenreService {
-
-    Genre create(Genre genre);
-
-    Genre update(Genre genre);
-
-    Genre read(String id);
+public interface IGenreService extends IService<Genre, Long>{
 
     Set<Genre> getAll();
 

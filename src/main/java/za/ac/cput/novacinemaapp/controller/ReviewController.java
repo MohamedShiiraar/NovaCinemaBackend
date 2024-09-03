@@ -32,7 +32,7 @@ public class ReviewController {
     }
 
     @GetMapping("read/{reviewId}")
-    public ResponseEntity<?> get(@PathVariable String reviewId) {
+    public ResponseEntity<?> get(@PathVariable Long reviewId) {
         Review review = reviewService.read(reviewId);
         if (review == null) {
             return ResponseEntity.badRequest().body("Showtime with reviewId" + reviewId + "not found.");

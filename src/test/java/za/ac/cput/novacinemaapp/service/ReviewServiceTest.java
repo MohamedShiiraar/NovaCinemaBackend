@@ -6,12 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.novacinemaapp.domain.User;
-import za.ac.cput.novacinemaapp.domain.Cinema;
-import za.ac.cput.novacinemaapp.domain.Review;
-import za.ac.cput.novacinemaapp.factory.CinemaFactory;
-import za.ac.cput.novacinemaapp.factory.ReviewFactory;
-import za.ac.cput.novacinemaapp.factory.UserFactory;
+import za.ac.cput.novacinemaapp.domain.*;
+import za.ac.cput.novacinemaapp.factory.*;
 
 import java.time.LocalDate;
 
@@ -30,31 +26,34 @@ class ReviewServiceTest {
     @Autowired
     private ReviewService reviewService;
     @Autowired
-    private CinemaService cinemaService;
+    private GenreService genreService;
+    @Autowired
+    private MovieService movieService;
     @Autowired
     private UserService userService;
     private static Review review1, review2;
-    private static Cinema cinema1, cinema2;
+    private static Genre genre;
+    private static Movie movie;
     private static User user1, user2;
 
     @Test
     @Order(1)
     void setup() {
-        cinema1 = CinemaFactory.buildCinema("CW24", "CinemaX");
-        cinemaService.create(cinema1);
-        cinema2 = CinemaFactory.buildCinema("CW25", "CinemaX");
-        cinemaService.create(cinema2);
+        genre = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        genreService.create(genre);
+        movie = MovieFactory.buildMovie( "Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", genre, "117 mins", "PG-13","imageURL");
+        movieService.create(movie);
 
-        user1 = UserFactory.buildUser("John","Doe","johndoe@gmail.com","johndoe123");
+        user1 = UserFactory.buildUser("John","Doe","johndoe@gmail.com","johndoe123",false);
         userService.create(user1);
-        user2 = UserFactory.buildUser("John","Doe","johndoe@gmail.com","johndoe123!");
+        user2 = UserFactory.buildUser("John","Doe","johndoe@gmail.com","johndoe123!",false);
         userService.create(user2);
 
-        review1 = ReviewFactory.buildReview("10", 3.0, "Good experience!", LocalDate.of(2024, 5, 17),cinema1, user1);
+        review1 = ReviewFactory.buildReview( 3.0, "Good experience!", LocalDate.of(2024, 5, 17),movie, user1);
         assertNotNull(review1);
         System.out.println(review1);
 
-        review2 = ReviewFactory.buildReview("5", 4.5, "Great experience!", LocalDate.of(2024, 5, 17),cinema2, user2);
+        review2 = ReviewFactory.buildReview( 4.5, "Great experience!", LocalDate.of(2024, 5, 17),movie, user2);
         assertNotNull(review2);
         System.out.println(review2);
     }

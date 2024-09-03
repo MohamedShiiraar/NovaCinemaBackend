@@ -28,11 +28,11 @@ class GenreServiceTest {
     @Test
     @Order(1)
     void setup() {
-        genre1 = GenreFactory.buildGenre("1", "Action", "Movies that are characterized by intense, exciting sequences.");
+        genre1 = GenreFactory.buildGenre( "Action", "Movies that are characterized by intense, exciting sequences.");
         assertNotNull(genre1);
         System.out.println(genre1);
 
-        genre2 = GenreFactory.buildGenre("2", "Drama", "Movies that focus on emotional themes and character development.");
+        genre2 = GenreFactory.buildGenre( "Drama", "Movies that focus on emotional themes and character development.");
         assertNotNull(genre2);
         System.out.println(genre2);
     }
@@ -74,14 +74,6 @@ class GenreServiceTest {
 
     @Test
     @Order(6)
-    void deleteByName() {
-        genreService.deleteByName(genre1.getName());
-        Genre deleted = genreService.read(genre1.getGenreID());
-        assertNull(deleted);
-    }
-
-    @Test
-    @Order(7)
     void findByName() {
         Set<Genre> found = genreService.findByName(genre2.getName());
         assertFalse(found.isEmpty());

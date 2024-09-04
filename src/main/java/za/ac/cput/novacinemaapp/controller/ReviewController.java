@@ -17,7 +17,7 @@ import za.ac.cput.novacinemaapp.service.ReviewService;
 
 import java.util.Set;
 @RestController
-@RequestMapping("Review")
+@RequestMapping("/review")
 public class ReviewController {
     @Autowired
     ReviewService reviewService;

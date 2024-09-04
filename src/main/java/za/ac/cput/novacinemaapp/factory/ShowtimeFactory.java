@@ -2,7 +2,8 @@ package za.ac.cput.novacinemaapp.factory;
 
 import za.ac.cput.novacinemaapp.domain.*;
 import za.ac.cput.novacinemaapp.util.Helper;
-import java.time.LocalTime;
+
+import java.time.LocalDateTime;
 
 /*  ShowtimeFactory.java
  *   Factory class for Showtime
@@ -11,7 +12,7 @@ import java.time.LocalTime;
  * */
 public class ShowtimeFactory {
 
-    public static Showtime buildShowtime(LocalTime showtime, LocalTime endTime, Movie movie) {
+    public static Showtime buildShowtime(LocalDateTime showtime, LocalDateTime endTime, Movie movie) {
         if (Helper.isNullOrEmpty(showtime) || Helper.isNullOrEmpty(endTime) || Helper.isNullOrEmpty(movie))
             return null;
 

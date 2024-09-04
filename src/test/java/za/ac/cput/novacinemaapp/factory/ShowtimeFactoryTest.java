@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /*  ShowtimeFactoryTest.java
@@ -26,7 +28,7 @@ class ShowtimeFactoryTest {
         assertNotNull(g);
         Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
         assertNotNull(b);
-        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        Showtime showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
         assertNotNull(showtime);
         System.out.println(showtime);
     }
@@ -38,7 +40,7 @@ class ShowtimeFactoryTest {
         assertNotNull(g);
         Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
         assertNotNull(b);
-        Showtime showtime = ShowtimeFactory.buildShowtime(LocalTime.of(10, 0), LocalTime.of(12, 0), null);
+        Showtime showtime = ShowtimeFactory.buildShowtime(LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), null);
         assertNotNull(showtime);
         System.out.println(showtime);
     }

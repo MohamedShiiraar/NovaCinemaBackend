@@ -15,6 +15,7 @@ public class Cinema {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long locationID;
     private String name;
+    private String address;
 
     public Cinema() {
     }
@@ -22,6 +23,7 @@ public class Cinema {
     public Cinema(Builder builder) {
         this.locationID = builder.locationID;
         this.name = builder.name;
+        this.address = builder.address;
     }
 
     @Override
@@ -30,12 +32,13 @@ public class Cinema {
         if(!(o instanceof Cinema)) return false;
         Cinema cinema = (Cinema) o;
         return Objects.equals(locationID, cinema.locationID) &&
-        Objects.equals(name, cinema.name);
+                Objects.equals(name, cinema.name) &&
+                Objects.equals(address, cinema.address);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(locationID, name);
+        return Objects.hash(locationID, name, address);
     }
 
     @Override
@@ -43,12 +46,14 @@ public class Cinema {
         return "Cinema{" +
                 "locationID='" + locationID + '\'' +
                 ", name='" + name + '\'' +
+                ", address='" + address+ '\'' +
                 '}';
     }
 
     public static class Builder {
         private Long locationID;
         private String name;
+        private String address;
 
         public Builder setLocationID(Long locationID) {
             this.locationID = locationID;
@@ -60,9 +65,15 @@ public class Cinema {
             return this;
         }
 
+        public Builder setAddress(String address){
+            this.address = address;
+            return this;
+        }
+
         public Builder copy(Cinema cinema) {
             this.locationID = cinema.locationID;
             this.name = cinema.name;
+            this.address = cinema.address;
             return this;
         }
 

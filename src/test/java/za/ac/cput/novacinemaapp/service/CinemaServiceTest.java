@@ -26,10 +26,10 @@ class CinemaServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        cinema1 = CinemaFactory.buildCinema( "Grand Cinema");
+        cinema1 = CinemaFactory.buildCinema( "Grand Cinema", "1 test avenue, Cape Town");
         assertNotNull(cinema1);
         System.out.println(cinema1);
-        cinema2 = CinemaFactory.buildCinema( "Luxury Cinema");
+        cinema2 = CinemaFactory.buildCinema( "Luxury Cinema", "2 test avenue, Cape Town");
         assertNotNull(cinema2);
         System.out.println(cinema2);
     }
@@ -57,6 +57,7 @@ class CinemaServiceTest {
     @Order(3)
     void update() {
         Cinema newCinema = new Cinema.Builder().copy(cinema2).setName("Grand Luxury Cinema").build();
+
         Cinema updated = cinemaService.update(newCinema);
         assertNotNull(updated);
         System.out.println(updated);

@@ -30,7 +30,7 @@ class CartFactoryTest {
         assertNotNull(theatre);
         Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
         assertNotNull(seat);
-        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0);
+        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0, );
         assertNotNull(ticket);
         User user = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!",true);
         assertNotNull(b);

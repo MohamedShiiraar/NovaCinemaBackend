@@ -21,16 +21,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CartControllerTest {
 
-    private static User user = UserFactory.buildUser( "Amaan", "Allie", "Amaan.Allie@example.com", "password123",false);
-    private static Genre genre = GenreFactory.buildGenre("Action", "Fast-paced, high-energy films with physical stunts and chases.");
-    private static Movie movie = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",genre,"117 mins","PG-13","imageURL");
-    private static Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(7, 0), LocalTime.of(9, 0), movie);
-    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
-    private static Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
-    private static Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
-    private static Ticket ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre,cinema, 69.00);
-    private static Cart cart = CartFactory.buildCart(user, ticket, "2");
-
+    private static User user;
+    private static Genre genre;
+    private static Movie movie;
+    private static Showtime showtime;
+    private static Cinema cinema;
+    private static Theatre theatre;
+    private static Seat seat;
+    private static Ticket ticket;
+    private static Cart cart;
     private final String BASE_URL = "http://localhost:8080/cart";
     private RestTemplate restTemplate = new RestTemplate();
     private static String cartID;
@@ -41,6 +40,27 @@ public class CartControllerTest {
 
     @Test
     @Order(1)
+    void setUp() {
+        // Create and persist the user
+        user = UserFactory.buildUser("Amaan", "Allie", "Amaan.Allie@example.com", "password123", false);
+        // Assume there's a UserService to handle user persistence
+        // userService.create(user);
+
+        // Create and persist other entities
+        genre = GenreFactory.buildGenre("Action", "Fast-paced, high-energy films with physical stunts and chases.");
+        movie = MovieFactory.buildMovie("Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", genre, "117 mins", "PG-13", "imageURL");
+        showtime = ShowtimeFactory.buildShowtime(LocalTime.of(7, 0), LocalTime.of(9, 0), movie);
+        cinema = CinemaFactory.buildCinema("Grand Cinema");
+        theatre = TheatreFactory.buildTheatre("IMAX", cinema);
+        seat = SeatFactory.buildSeat("D4", "Regular", theatre);
+        ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre, cinema, 69.00, user);
+
+        // Create a cart with the user
+        cart = CartFactory.buildCart(user, ticket, "2");
+    }
+
+    @Test
+    @Order(2)
     void create() {
         HttpEntity<?> cartEntity = performPostRequest(cart);
         String url = BASE_URL + "/create";
@@ -55,7 +75,7 @@ public class CartControllerTest {
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     void read() throws URISyntaxException {
         String url = BASE_URL + "/read/" + cartID;
         ResponseEntity<Cart> getResponse = restTemplate.exchange(RequestEntity.get(new URI(url)).build(), Cart.class);
@@ -67,7 +87,7 @@ public class CartControllerTest {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     void update() {
         String url = BASE_URL + "/update";
         Cart updatedCart = new Cart.Builder().copy(cart).setQuantity("3").build();
@@ -80,7 +100,7 @@ public class CartControllerTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void getAll() {
         String url = BASE_URL + "/getAll";
         HttpHeaders headers = new HttpHeaders();
@@ -92,7 +112,7 @@ public class CartControllerTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     void delete() {
         String url = BASE_URL + "/delete/" + cartID;
         HttpEntity<?> entity = performPostRequest(cart);

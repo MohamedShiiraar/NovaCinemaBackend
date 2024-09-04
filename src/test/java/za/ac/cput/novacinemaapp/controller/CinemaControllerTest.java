@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CinemaControllerTest {
 
-    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema","1 test avenue, Cape Town");
 
     private final String BASE_URL = "http://localhost:8080/cinema";
 

@@ -27,7 +27,12 @@ public class TicketControllerTest {
     private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
     private static Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
     private static Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
-    private static Ticket ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre,cinema, 69.00);
+
+    // Create a User object to use in the test
+    private static User user = UserFactory.buildUser("JohnDoe", "password", "johndoe@example.com", "John", Boolean.parseBoolean("Doe"));
+
+    // Update the Ticket object to include the userID
+    private static Ticket ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre, cinema, 69.00, user);
     private final String BASE_URL = "http://localhost:8080/ticket";
     private RestTemplate restTemplate = new RestTemplate();
     private static Long ticketID;
@@ -98,5 +103,4 @@ public class TicketControllerTest {
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 }
-
 

@@ -15,38 +15,50 @@ class TicketFactoryTest {
 
     @Test
     void testBuildTicket() {
-        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        Genre g = GenreFactory.buildGenre("Animation", "Movies that are characterized by 2D or 3D graphics.");
         assertNotNull(g);
-        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+        Movie b = MovieFactory.buildMovie("Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", g, "117 mins", "PG-13", "imageURL");
         assertNotNull(b);
-        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        Showtime showtime = ShowtimeFactory.buildShowtime(LocalTime.of(10, 0), LocalTime.of(12, 0), b);
         assertNotNull(showtime);
-        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+        Cinema cinema = CinemaFactory.buildCinema("Grand Cinema");
         assertNotNull(cinema);
         Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         assertNotNull(theatre);
-        Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
+        Seat seat = SeatFactory.buildSeat("D4", "Regular", theatre);
         assertNotNull(seat);
-        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0);
+
+        // Create a User object to use in the test
+        User user = UserFactory.buildUser("JohnDoe", "password", "johndoe@example.com", "John", Boolean.parseBoolean("Doe"));
+        assertNotNull(user);
+
+        // Updated Ticket creation with userID
+        Ticket ticket = TicketFactory.buildTicket(b, showtime, seat, theatre, cinema, 69.0, user);
         assertNotNull(ticket);
         System.out.println(ticket.toString());
     }
 
     @Test
     void testBuildTicketWithFail() {
-        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        Genre g = GenreFactory.buildGenre("Animation", "Movies that are characterized by 2D or 3D graphics.");
         assertNotNull(g);
-        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+        Movie b = MovieFactory.buildMovie("Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", g, "117 mins", "PG-13", "imageURL");
         assertNotNull(b);
-        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        Showtime showtime = ShowtimeFactory.buildShowtime(LocalTime.of(10, 0), LocalTime.of(12, 0), b);
         assertNotNull(showtime);
-        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+        Cinema cinema = CinemaFactory.buildCinema("Grand Cinema");
         assertNotNull(cinema);
         Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         assertNotNull(theatre);
-        Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
+        Seat seat = SeatFactory.buildSeat("D4", "Regular", theatre);
         assertNotNull(seat);
-        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,00.0);
-        assertNotNull(ticket);  // Changed to assertNull as the factory should return null for invalid input
+
+        // Create a User object to use in the test
+        User user = UserFactory.buildUser("JohnDoe", "password", "johndoe@example.com", "John", Boolean.parseBoolean("Doe"));
+        assertNotNull(user);
+
+        // Ticket creation with an invalid price
+        Ticket ticket = TicketFactory.buildTicket(b, showtime, seat, theatre, cinema, 0.0, user);
+        assertNull(ticket); // Changed to assertNull as the factory should return null for invalid input
     }
 }

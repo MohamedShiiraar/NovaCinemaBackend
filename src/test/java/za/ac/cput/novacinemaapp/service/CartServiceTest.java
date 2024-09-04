@@ -68,9 +68,9 @@ class CartServiceTest {
         seatService.create(seat);
         Seat seat2 = SeatFactory.buildSeat("D5","Regular",theatre);
         seatService.create(seat2);
-        ticket1 = TicketFactory.buildTicket( b,showtime,seat,theatre,cinema,69.00);
+        ticket1 = TicketFactory.buildTicket( b,showtime,seat,theatre,cinema,69.00, user1);
         ticketService.create(ticket1);
-        ticket2 = TicketFactory.buildTicket( b,showtime,seat2,theatre,cinema, 69.00);
+        ticket2 = TicketFactory.buildTicket( b,showtime,seat2,theatre,cinema, 69.00, user2);
         ticketService.create(ticket2);
 
         cart1 = CartFactory.buildCart(user1, ticket1, "2");

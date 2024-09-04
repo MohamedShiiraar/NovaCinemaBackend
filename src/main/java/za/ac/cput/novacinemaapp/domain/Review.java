@@ -22,7 +22,7 @@ public class Review {
     private String comment;
     private LocalDate timestamp;
     @ManyToOne
-    @JoinColumn(name = "cinema_id")
+    @JoinColumn(name = "movie_id")
     private Movie movie;
     @ManyToOne
     @JoinColumn(name = "user_id")

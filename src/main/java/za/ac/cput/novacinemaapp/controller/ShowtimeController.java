@@ -16,7 +16,7 @@ import za.ac.cput.novacinemaapp.service.ShowtimeService;
 
 import java.util.Set;
 @RestController
-@RequestMapping("Showtime")
+@RequestMapping("/showtime")
 public class ShowtimeController {
     @Autowired
     ShowtimeService showtimeService;

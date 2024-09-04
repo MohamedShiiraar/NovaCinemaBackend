@@ -13,6 +13,7 @@ import za.ac.cput.novacinemaapp.factory.GenreFactory;
 import za.ac.cput.novacinemaapp.factory.MovieFactory;
 import za.ac.cput.novacinemaapp.factory.ShowtimeFactory;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,10 +47,10 @@ class ShowtimeServiceTest {
     genreService.create(genre);
     movieService.create(movie1);
     movieService.create(movie2);
-    showtime1 = ShowtimeFactory.buildShowtime( LocalTime.of(7, 0), LocalTime.of(9, 0), movie1);
+    showtime1 = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), movie1);
     assertNotNull(showtime1);
         System.out.println(showtime1);
-    showtime2 = ShowtimeFactory.buildShowtime( LocalTime.of(8, 0), LocalTime.of(10, 0), movie2);
+    showtime2 = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-30T00:00:00"), LocalDateTime.parse("2024-08-30T01:30:00"), movie2);
     assertNotNull(showtime2);
         System.out.println(showtime2);
     }
@@ -77,7 +78,7 @@ class ShowtimeServiceTest {
     @Test
     @Order(4)
     void update() {
-        Showtime newShowtime = new Showtime.Builder().copy(showtime2).setShowtime(LocalTime.of(9, 0)).build();
+        Showtime newShowtime = new Showtime.Builder().copy(showtime2).setShowtime(LocalDateTime.parse("2024-08-30T00:00:00")).setEndTime(LocalDateTime.parse("2024-08-30T01:30:00")).build();
         Showtime updated = showtimeService.update(newShowtime);
         assertNotNull(updated);
         System.out.println(updated);

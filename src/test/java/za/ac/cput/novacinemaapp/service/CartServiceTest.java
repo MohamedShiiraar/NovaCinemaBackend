@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.novacinemaapp.domain.*;
 import za.ac.cput.novacinemaapp.factory.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -58,7 +59,7 @@ class CartServiceTest {
         genreService.create(g);
         Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
         movieService.create(b);
-        Showtime showtime = ShowtimeFactory.buildShowtime( LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        Showtime showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
         showtimeService.create(showtime);
         Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
         cinemaService.create(cinema);

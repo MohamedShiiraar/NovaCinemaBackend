@@ -31,10 +31,10 @@ class CartFactoryTest {
         assertNotNull(theatre);
         Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
         assertNotNull(seat);
-        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0);
-        assertNotNull(ticket);
         User user = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!",true);
         assertNotNull(b);
+        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0, user);
+        assertNotNull(ticket);
         Cart cart = CartFactory.buildCart(user, ticket, "2");
         assertNotNull(cart);
         System.out.println(cart.toString());
@@ -54,10 +54,10 @@ class CartFactoryTest {
         assertNotNull(theatre);
         Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
         assertNotNull(seat);
-        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0);
-        assertNotNull(ticket);
         User user = UserFactory.buildUser("Mohamed","Shiiraar","mso2shiiraar@gmail.com","Test123!",false);
         assertNotNull(b);
+        Ticket ticket = TicketFactory.buildTicket(b,showtime, seat, theatre, cinema,69.0, user);
+        assertNotNull(ticket);
         Cart cart = CartFactory.buildCart(user, ticket, null);
         assertNotNull(cart);
     }

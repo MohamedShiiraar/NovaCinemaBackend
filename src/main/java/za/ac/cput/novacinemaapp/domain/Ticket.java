@@ -28,6 +28,8 @@ public class Ticket {
     @ManyToOne
     private Cinema cinema;
     private double ticketPrice;
+    @ManyToOne
+    private User userID;
 
     public Ticket() {
     }
@@ -40,6 +42,7 @@ public class Ticket {
         this.theatre = builder.theatre;
         this.cinema = builder.cinema;
         this.ticketPrice = builder.ticketPrice;
+        this.userID = builder.userID;
     }
 
     @Override
@@ -47,12 +50,19 @@ public class Ticket {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return Double.compare(ticketPrice, ticket.ticketPrice) == 0 && Objects.equals(ticketID, ticket.ticketID) && Objects.equals(movie, ticket.movie) && Objects.equals(showtime, ticket.showtime) && Objects.equals(seat, ticket.seat) && Objects.equals(theatre, ticket.theatre) && Objects.equals(cinema, ticket.cinema);
+        return Double.compare(ticket.ticketPrice, ticketPrice) == 0 &&
+                Objects.equals(ticketID, ticket.ticketID) &&
+                Objects.equals(movie, ticket.movie) &&
+                Objects.equals(showtime, ticket.showtime) &&
+                Objects.equals(seat, ticket.seat) &&
+                Objects.equals(theatre, ticket.theatre) &&
+                Objects.equals(cinema, ticket.cinema) &&
+                Objects.equals(userID, ticket.userID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ticketID, movie, showtime, seat, theatre, cinema, ticketPrice);
+        return Objects.hash(ticketID, movie, showtime, seat, theatre, cinema, ticketPrice, userID);
     }
 
     @Override
@@ -65,6 +75,7 @@ public class Ticket {
                 ", theatre=" + theatre +
                 ", cinema=" + cinema +
                 ", ticketPrice=" + ticketPrice +
+                ", userID=" + userID +
                 '}';
     }
 
@@ -76,6 +87,7 @@ public class Ticket {
         private Theatre theatre;
         private Cinema cinema;
         private double ticketPrice;
+        private User userID;
 
         public Builder setTicketID(Long ticketID) {
             this.ticketID = ticketID;
@@ -112,6 +124,11 @@ public class Ticket {
             return this;
         }
 
+        public Builder setUserID(User userID) {
+            this.userID = userID;
+            return this;
+        }
+
         public Builder copy(Ticket ticket) {
             this.ticketID = ticket.ticketID;
             this.movie = ticket.movie;
@@ -120,6 +137,7 @@ public class Ticket {
             this.theatre = ticket.theatre;
             this.cinema = ticket.cinema;
             this.ticketPrice = ticket.ticketPrice;
+            this.userID = ticket.userID;
             return this;
         }
 

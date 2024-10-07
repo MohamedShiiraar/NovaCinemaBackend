@@ -33,7 +33,7 @@ class TheatreServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        cinema = CinemaFactory.buildCinema("Luxury Cinema");
+        cinema = CinemaFactory.buildCinema("Luxury Cinema", "Cape Town");
         cinemaService.create(cinema);
         theatre1 = TheatreFactory.buildTheatre("IMAX", cinema);
         assertNotNull(theatre1);

@@ -57,12 +57,14 @@ class TicketServiceTest {
         b = MovieFactory.buildMovie("Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", g, "117 mins", "PG-13", "imageURL");
         movieService.create(b);
 
-        showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
-
-        showtime = ShowtimeFactory.buildShowtime(LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        // Keep the LocalDateTime version if needed, otherwise remove if using LocalTime
+        showtime = ShowtimeFactory.buildShowtime(LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
+        assertNotNull(showtime);
+        showtime = ShowtimeFactory.buildShowtime(LocalDateTime.of(2024, 8, 29, 10, 0), LocalDateTime.of(2024, 8, 29, 12, 0), b);
 
         showtimeService.create(showtime);
-        cinema = CinemaFactory.buildCinema("Grand Cinema");
+
+        cinema = CinemaFactory.buildCinema("Grand Cinema", "Cape Town");
         cinemaService.create(cinema);
         theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         theatreService.create(theatre);
@@ -75,12 +77,12 @@ class TicketServiceTest {
         user = UserFactory.buildUser("JohnDoe", "password", "johndoe@example.com", "John", Boolean.parseBoolean("Doe"));
         userService.create(user);
 
-        // Create tickets with the userID
-        ticket1 = TicketFactory.buildTicket(b, showtime, seat1, theatre, cinema, 69.00, user);
+        // Create tickets with the userID and ticketPrice as String
+        ticket1 = TicketFactory.buildTicket("b", "showtime", "seat1", "theatre", "cinema", "70", "user");
         assertNotNull(ticket1);
         System.out.println(ticket1);
 
-        ticket2 = TicketFactory.buildTicket(b, showtime, seat2, theatre, cinema, 69.00, user);
+        ticket2 = TicketFactory.buildTicket("b", "showtime", "seat2", "theatre", "cinema", "70", "user");
         assertNotNull(ticket2);
         System.out.println(ticket2);
     }
@@ -100,7 +102,7 @@ class TicketServiceTest {
     @Test
     @Order(3)
     void read() {
-        long ticketID = ticket1.getTicketID();  // Ensure ticket1.getTicketID() returns a long
+        String ticketID = ticket1.getTicketID();  // Ensure ticket1.getTicketID() returns a long
         Ticket read = ticketService.read(ticketID);  // Pass the long ticketID to the read method
         assertNotNull(read);
         System.out.println(read);
@@ -109,7 +111,8 @@ class TicketServiceTest {
     @Test
     @Order(4)
     void update() {
-        Ticket newTicket = new Ticket.Builder().copy(ticket2).setTicketPrice(69.69).build();
+        // Update the ticket price as a String
+        Ticket newTicket = new Ticket.Builder().copy(ticket2).setTicketPrice("70").build();
         Ticket updated = ticketService.update(newTicket);
         assertNotNull(updated);
         System.out.println(updated);
@@ -118,10 +121,9 @@ class TicketServiceTest {
     @Test
     @Order(5)
     void getAll() {
-        Set<Ticket> tickets = ticketService.getall();
+        Set<Ticket> tickets = ticketService.getAll();
         assertNotNull(tickets);
         System.out.println(tickets);
     }
 }
-
 

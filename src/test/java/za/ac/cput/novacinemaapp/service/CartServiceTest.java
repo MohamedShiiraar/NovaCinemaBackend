@@ -10,7 +10,6 @@ import za.ac.cput.novacinemaapp.domain.*;
 import za.ac.cput.novacinemaapp.factory.*;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -38,47 +37,65 @@ class CartServiceTest {
     @Autowired
     private TicketService ticketService;
 
+    private static String userID1, userID2;
+    private static String ticketID1, ticketID2;
     private static Cart cart1, cart2;
-    private static User user1, user2;
-    private static Ticket ticket1, ticket2;
 
     @Test
     @Order(1)
     void setUp() {
-        user1 = UserFactory.buildUser("Amaan", "Allie", "Amaan.Allie@example.com", "password123",true);
+        // Create user 1
+        User user1 = UserFactory.buildUser("Amaan", "Allie", "Amaan.Allie@example.com", "password123", true);
         assertNotNull(user1);
         user1 = userService.create(user1);  // Save user1
+        userID1 = String.valueOf(user1.getUserID());  // Assuming there's a getUserID() method
         System.out.println(user1);
 
-        user2 = UserFactory.buildUser("Adam", "Mohamed", "adam.mohamed@example.com", "password456",false);
+        // Create user 2
+        User user2 = UserFactory.buildUser("Adam", "Mohamed", "adam.mohamed@example.com", "password456", false);
         assertNotNull(user2);
         user2 = userService.create(user2);  // Save user2
+        userID2 = String.valueOf(user2.getUserID());  // Assuming there's a getUserID() method
         System.out.println(user2);
 
-        Genre g = GenreFactory.buildGenre( "Animation", "Movies that are characterized by 2D or 3D graphics.");
+        // Create genre
+        Genre g = GenreFactory.buildGenre("Animation", "Movies that are characterized by 2D or 3D graphics.");
         genreService.create(g);
-        Movie b = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",g,"117 mins","PG-13","imageURL");
+
+        // Create movie
+        Movie b = MovieFactory.buildMovie("Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", g, "117 mins", "PG-13", "imageURL");
         movieService.create(b);
-        Showtime showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
+
+        // Create showtime
+        Showtime showtime = ShowtimeFactory.buildShowtime(LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
         showtimeService.create(showtime);
-        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+
+        // Create cinema
+        Cinema cinema = CinemaFactory.buildCinema("Grand Cinema", "Cape Town");
         cinemaService.create(cinema);
+
+        // Create theatre
         Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         theatreService.create(theatre);
-        Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
-        seatService.create(seat);
-        Seat seat2 = SeatFactory.buildSeat("D5","Regular",theatre);
-        seatService.create(seat2);
-        ticket1 = TicketFactory.buildTicket( b,showtime,seat,theatre,cinema,69.00, user1);
-        ticketService.create(ticket1);
-        ticket2 = TicketFactory.buildTicket( b,showtime,seat2,theatre,cinema, 69.00, user2);
-        ticketService.create(ticket2);
 
-        cart1 = CartFactory.buildCart(user1, ticket1, "2");
+        // Create seats
+        Seat seat1 = SeatFactory.buildSeat("D4", "Regular", theatre);
+        seatService.create(seat1);
+        Seat seat2 = SeatFactory.buildSeat("D5", "Regular", theatre);
+        seatService.create(seat2);
+
+        // Create tickets
+        Ticket ticket1 = TicketFactory.buildTicket("b", "showtime", "seat1", "theatre", "cinema", "70", "user1");
+        ticketID1 = ticketService.create(ticket1).getTicketID();  // Save ticket ID from the created ticket
+        Ticket ticket2 = TicketFactory.buildTicket("b", "showtime", "seat2", "theatre", "cinema", "70", "user2");
+        ticketID2 = ticketService.create(ticket2).getTicketID();  // Save ticket ID from the created ticket
+
+        // Create carts
+        cart1 = CartFactory.buildCart(userID1, ticketID1, "2");
         assertNotNull(cart1);
         System.out.println(cart1);
 
-        cart2 = CartFactory.buildCart(user2, ticket2, "3");
+        cart2 = CartFactory.buildCart(userID2, ticketID2, "3");
         assertNotNull(cart2);
         System.out.println(cart2);
     }
@@ -98,12 +115,11 @@ class CartServiceTest {
     @Test
     @Order(3)
     void read() {
-        long cartID = cart1.getCartID();  // Ensure cart1.getCartID() returns a long
-        Cart read = cartService.read(cartID);  // Pass the long cartID to the read method
+        String cartID = cart1.getCartID();  // Ensure cart1.getCartID() returns a String
+        Cart read = cartService.read(cartID);  // Pass the String cartID to the read method
         assertNotNull(read);
         System.out.println(read);
     }
-
 
     @Test
     @Order(4)
@@ -122,4 +138,3 @@ class CartServiceTest {
         System.out.println(carts);
     }
 }
-

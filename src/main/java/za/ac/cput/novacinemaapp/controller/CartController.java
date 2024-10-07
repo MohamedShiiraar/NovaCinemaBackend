@@ -25,8 +25,8 @@ public class CartController {
     }
 
     @GetMapping("/read/{id}")
-    public ResponseEntity<?> get(@PathVariable long id) {
-        Cart cart = cartService.read(id);
+    public ResponseEntity<?> get(@PathVariable String id) { // Changed to String
+        Cart cart = cartService.read(id); // Updated to read String ID
         if (cart == null) {
             return ResponseEntity.badRequest().body("Cart with id " + id + " not found.");
         }
@@ -47,4 +47,3 @@ public class CartController {
         return ResponseEntity.ok(updatedCart);
     }
 }
-

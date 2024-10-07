@@ -8,7 +8,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalTime;
 import java.util.Objects;
 
 @Getter
@@ -16,20 +15,14 @@ import java.util.Objects;
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ticketID;
-    @ManyToOne
-    private Movie movie;
-    @ManyToOne
-    private Showtime showtime;
-    @ManyToOne
-    private Seat seat;
-    @ManyToOne
-    private Theatre theatre;
-    @ManyToOne
-    private Cinema cinema;
-    private double ticketPrice;
-    @ManyToOne
-    private User userID;
+    private String ticketID;
+    private String movie;
+    private String showtime;
+    private String seat;
+    private String theatre;
+    private String cinema;
+    private String ticketPrice;
+    private String userID;
 
     public Ticket() {
     }
@@ -50,7 +43,7 @@ public class Ticket {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return Double.compare(ticket.ticketPrice, ticketPrice) == 0 &&
+        return Objects.equals(ticketPrice, ticket.ticketPrice) &&
                 Objects.equals(ticketID, ticket.ticketID) &&
                 Objects.equals(movie, ticket.movie) &&
                 Objects.equals(showtime, ticket.showtime) &&
@@ -68,63 +61,63 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket{" +
-                "ticketID=" + ticketID +
-                ", movie=" + movie +
-                ", showtime=" + showtime +
-                ", seat=" + seat +
-                ", theatre=" + theatre +
-                ", cinema=" + cinema +
-                ", ticketPrice=" + ticketPrice +
-                ", userID=" + userID +
+                "ticketID='" + ticketID + '\'' +
+                ", movie='" + movie + '\'' +
+                ", showtime='" + showtime + '\'' +
+                ", seat='" + seat + '\'' +
+                ", theatre='" + theatre + '\'' +
+                ", cinema='" + cinema + '\'' +
+                ", ticketPrice='" + ticketPrice + '\'' +
+                ", userID='" + userID + '\'' +
                 '}';
     }
 
     public static class Builder {
-        private Long ticketID;
-        private Movie movie;
-        private Showtime showtime;
-        private Seat seat;
-        private Theatre theatre;
-        private Cinema cinema;
-        private double ticketPrice;
-        private User userID;
+        private String ticketID;
+        private String movie;
+        private String showtime;
+        private String seat;
+        private String theatre;
+        private String cinema;
+        private String ticketPrice;
+        private String userID;
 
-        public Builder setTicketID(Long ticketID) {
+        public Builder setTicketID(String ticketID) {
             this.ticketID = ticketID;
             return this;
         }
 
-        public Builder setMovie(Movie movie) {
+        public Builder setMovie(String movie) {
             this.movie = movie;
             return this;
         }
 
-        public Builder setShowtime(Showtime showtime) {
+        public Builder setShowtime(String showtime) {
             this.showtime = showtime;
             return this;
         }
 
-        public Builder setSeat(Seat seat) {
+        public Builder setSeat(String seat) {
             this.seat = seat;
             return this;
         }
 
-        public Builder setTheatre(Theatre theatre) {
+        public Builder setTheatre(String theatre) {
             this.theatre = theatre;
             return this;
         }
 
-        public Builder setCinema(Cinema cinema) {
+        public Builder setCinema(String cinema) {
             this.cinema = cinema;
             return this;
         }
 
-        public Builder setTicketPrice(double ticketPrice) {
+        public Builder setTicketPrice(String ticketPrice) {
             this.ticketPrice = ticketPrice;
             return this;
         }
 
-        public Builder setUserID(User userID) {
+        public Builder setUserID(String userID) {
             this.userID = userID;
             return this;
         }
@@ -146,4 +139,3 @@ public class Ticket {
         }
     }
 }
-

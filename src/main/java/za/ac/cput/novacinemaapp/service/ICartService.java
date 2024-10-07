@@ -6,7 +6,7 @@ import java.util.Set;
 // Author Amaan Allie
 // 27 August 2024
 
-public interface ICartService extends IService<Cart, Long> {
+public interface ICartService extends IService<Cart, String> {
     Set<Cart> getAll();
 }
 

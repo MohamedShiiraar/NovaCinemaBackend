@@ -12,13 +12,13 @@ import java.util.Objects;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cartID;
+    private String cartID; // Changed to String
 
-    @ManyToOne
-    private User userID;
 
-    @ManyToOne
-    private Ticket ticketID;
+    private String userID; // Changed to String
+
+
+    private String ticketID; // Changed to String
 
     private String quantity;
 
@@ -32,15 +32,15 @@ public class Cart {
         this.quantity = builder.quantity;
     }
 
-    public long getCartID() {
+    public String getCartID() { // Changed return type to String
         return cartID;
     }
 
-    public User getUserID() {
+    public String getUserID() { // Changed return type to String
         return userID;
     }
 
-    public Ticket getTicketID() {
+    public String getTicketID() { // Changed return type to String
         return ticketID;
     }
 
@@ -52,7 +52,7 @@ public class Cart {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Cart cart)) return false;
-        return cartID == cart.cartID &&
+        return Objects.equals(cartID, cart.cartID) &&
                 Objects.equals(userID, cart.userID) &&
                 Objects.equals(ticketID, cart.ticketID) &&
                 Objects.equals(quantity, cart.quantity);
@@ -66,30 +66,30 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
-                "cartID=" + cartID +
-                ", userID=" + userID +
-                ", ticketID=" + ticketID +
+                "cartID='" + cartID + '\'' + // Changed to String
+                ", userID='" + userID + '\'' + // Changed to String
+                ", ticketID='" + ticketID + '\'' + // Changed to String
                 ", quantity='" + quantity + '\'' +
                 '}';
     }
 
     public static class Builder {
-        private long cartID;
-        private User userID;
-        private Ticket ticketID;
+        private String cartID; // Changed to String
+        private String userID; // Changed to String
+        private String ticketID; // Changed to String
         private String quantity;
 
-        public Builder setCartID(long cartID) {
+        public Builder setCartID(String cartID) { // Changed parameter type to String
             this.cartID = cartID;
             return this;
         }
 
-        public Builder setUserID(User userID) {
+        public Builder setUserID(String userID) { // Changed parameter type to String
             this.userID = userID;
             return this;
         }
 
-        public Builder setTicketID(Ticket ticketID) {
+        public Builder setTicketID(String ticketID) { // Changed parameter type to String
             this.ticketID = ticketID;
             return this;
         }
@@ -112,4 +112,5 @@ public class Cart {
         }
     }
 }
+
 

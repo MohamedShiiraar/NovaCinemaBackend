@@ -31,13 +31,12 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public Ticket read(Long id) {
+    public Ticket read(String id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
-    public Set<Ticket> getall() {
+    public Set<Ticket> getAll() {
         return repository.findAll().stream().collect(Collectors.toSet());
     }
 }
-

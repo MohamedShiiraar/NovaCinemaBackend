@@ -31,7 +31,7 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public Cart read(Long id) {
+    public Cart read(String id) {
         return repository.findById(id).orElse(null);
     }
 

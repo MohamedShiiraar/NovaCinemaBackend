@@ -11,7 +11,7 @@ import za.ac.cput.novacinemaapp.domain.Cart;
 import java.util.List;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, Long> {
-    List<Cart> findCartByCartID(long cartID);
+public interface CartRepository extends JpaRepository<Cart, String> {
+    List<Cart> findCartByCartID(String cartID);
 }
 

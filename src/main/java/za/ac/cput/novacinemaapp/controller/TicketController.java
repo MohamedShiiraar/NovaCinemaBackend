@@ -25,7 +25,7 @@ public class TicketController {
     }
 
     @GetMapping("read/{id}")
-    public ResponseEntity<?> get(@PathVariable String id) {
+    public ResponseEntity<?> get(@PathVariable Long id)  {
         Ticket ticket = ticketService.read(id);
         if (ticket == null) {
             return ResponseEntity.badRequest().body("Ticket with id " + id + " not found.");
@@ -35,7 +35,7 @@ public class TicketController {
 
     @GetMapping("/getAll")
     public Set<Ticket> getAll() {
-        return ticketService.getAll();
+        return ticketService.getall();
     }
 
     @PostMapping("/update")
@@ -47,3 +47,4 @@ public class TicketController {
         return ResponseEntity.ok(updatedTicket);
     }
 }
+

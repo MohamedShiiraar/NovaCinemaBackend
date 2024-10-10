@@ -19,7 +19,7 @@ class TheatreFactoryTest {
     @Test
     @Order(1)
     void testBuildTheatre(){
-        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "Cape Town");
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
         Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         assertNotNull(theatre);
         System.out.println(theatre);

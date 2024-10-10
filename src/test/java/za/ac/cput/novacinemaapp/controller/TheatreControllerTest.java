@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TheatreControllerTest {
-    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "Cape Town");
+    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
 
     private static Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
 

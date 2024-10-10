@@ -19,7 +19,7 @@ class SeatFactoryTest {
     @Test
     @Order(1)
     void testBuildSeat(){
-        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "Cape Town");
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
         assertNotNull(cinema);
         Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         assertNotNull(theatre);
@@ -31,7 +31,7 @@ class SeatFactoryTest {
     @Test
     @Order(2)
     void testFail(){
-        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "Cape Town");
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
         assertNotNull(cinema);
         Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         assertNotNull(theatre);

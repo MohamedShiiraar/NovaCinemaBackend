@@ -30,20 +30,20 @@ public class MovieController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createMovie(@RequestParam("movieData") String movieData, @RequestParam("image") MultipartFile image) {
-        // Parse the movie data from the request (e.g., using JSON parsing)
+
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             Movie movie = objectMapper.readValue(movieData, Movie.class);
 
             System.out.println("Received Movie Data: " + movieData);
 
-            System.out.println(movie.getGenre());// Deserialize the movie data
+            System.out.println(movie.getGenre());
 
-            // Handle the file upload and save the image to the assets folder
-            String imageUrl = saveImage(image); // Save the image and get the URL
-            movie.setImageURL(imageUrl); // Set the image URL
 
-            // Save the movie
+            String imageUrl = saveImage(image);
+            movie.setImageURL(imageUrl);
+
+
             Movie createdMovie = movieService.create(movie);
             return ResponseEntity.ok(createdMovie);
         } catch (IOException e) {
@@ -52,22 +52,22 @@ public class MovieController {
     }
 
     private String saveImage(MultipartFile image) throws IOException {
-        // Define the folder where images will be saved
+
         String uploadDir = "src/main/resources/static/images/";
         File uploadDirectory = new File(uploadDir);
 
         if (!uploadDirectory.exists()) {
-            uploadDirectory.mkdirs(); // Create the directory if it doesn't exist
+            uploadDirectory.mkdirs();
         }
 
         String fileName = System.currentTimeMillis() + "_" + image.getOriginalFilename();
         Path filePath = Paths.get(uploadDir + fileName);
 
-        // Save the image to the file system
+
         Files.copy(image.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-        // Return the URL where the image is stored
-        return "/images/" + fileName; // This is how you'll reference the image in the UI
+
+        return "/images/" + fileName;
     }
 
     @GetMapping("read/{id}")

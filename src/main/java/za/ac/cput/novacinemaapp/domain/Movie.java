@@ -25,10 +25,12 @@ public class Movie {
     private Genre genre;
     private String duration;
     private String ageRestriction;
+    @Setter
     private String imageURL;
 
     public Movie() {
     }
+
 
     public Movie(Builder builder) {
         this.movieID = builder.movieID;

@@ -61,7 +61,7 @@ class CartServiceTest {
         movieService.create(b);
         Showtime showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
         showtimeService.create(showtime);
-        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+        Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "6 Ferry street");
         cinemaService.create(cinema);
         Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         theatreService.create(theatre);

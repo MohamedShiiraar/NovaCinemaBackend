@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {"server.port=8080"})
 class SeatControllerTest {
-    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "6 Ferry street");
     private static Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
     private static Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
 

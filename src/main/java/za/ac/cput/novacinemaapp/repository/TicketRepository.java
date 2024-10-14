@@ -13,10 +13,10 @@ import java.util.List;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
-    List<Ticket> findTicketByTicketID(Long ticketId);
+    Ticket findTicketByTicketID(Long ticketId);
 
     // Method to find tickets by userID
-    List<Ticket> findTicketsByUserID(User userID);
+    Ticket findTicketsByUserID(User userID);
 }
 
 

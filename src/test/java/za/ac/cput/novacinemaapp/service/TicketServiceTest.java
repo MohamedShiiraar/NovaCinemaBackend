@@ -59,10 +59,10 @@ class TicketServiceTest {
 
         showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), b);
 
-        showtime = ShowtimeFactory.buildShowtime(LocalTime.of(10, 0), LocalTime.of(12, 0), b);
+        showtime = ShowtimeFactory.buildShowtime(LocalDateTime.of(2024, 8, 29, 0, 0), LocalDateTime.of(2024, 8, 29, 0, 0), b);
 
         showtimeService.create(showtime);
-        cinema = CinemaFactory.buildCinema("Grand Cinema");
+        cinema = CinemaFactory.buildCinema("Grand Cinema", "6 Ferry street");
         cinemaService.create(cinema);
         theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         theatreService.create(theatre);

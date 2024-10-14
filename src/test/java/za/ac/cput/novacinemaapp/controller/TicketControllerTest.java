@@ -25,7 +25,7 @@ public class TicketControllerTest {
     private static Genre genre = GenreFactory.buildGenre("Action", "Fast-paced, high-energy films with physical stunts and chases.");
     private static Movie movie = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",genre,"117 mins","PG-13","imageURL");
     private static Showtime showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), movie);
-    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "6 Ferry street");
     private static Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
     private static Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
 

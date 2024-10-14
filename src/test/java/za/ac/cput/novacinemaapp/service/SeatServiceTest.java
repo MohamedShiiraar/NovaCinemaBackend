@@ -36,7 +36,7 @@ class SeatServiceTest {
     @Test
     @Order(1)
     void setUp() {
-        cinema = CinemaFactory.buildCinema("Grand Cinema");
+        cinema = CinemaFactory.buildCinema("Grand Cinema", "6 Ferry street");
         cinemaService.create(cinema);
         theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         theatreService.create(theatre);

@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import za.ac.cput.novacinemaapp.domain.Movie;
 import za.ac.cput.novacinemaapp.domain.Ticket;
+import za.ac.cput.novacinemaapp.repository.MovieRepository;
+import za.ac.cput.novacinemaapp.repository.TicketRepository;
 import za.ac.cput.novacinemaapp.service.TicketService;
 
 import java.util.Set;
@@ -12,6 +15,10 @@ import java.util.Set;
 @RestController
 @RequestMapping("/ticket")
 public class TicketController {
+    @Autowired
+    private MovieRepository movieRepository; // Ensure you have a MovieRepository to fetch movies
+    @Autowired
+    private TicketRepository ticketRepository;
     @Autowired
     TicketService ticketService;
 
@@ -46,5 +53,7 @@ public class TicketController {
         }
         return ResponseEntity.ok(updatedTicket);
     }
+
+
 }
 

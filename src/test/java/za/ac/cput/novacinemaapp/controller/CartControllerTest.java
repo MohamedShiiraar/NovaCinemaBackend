@@ -27,22 +27,13 @@ public class CartControllerTest {
     private static Genre genre = GenreFactory.buildGenre("Action", "Fast-paced, high-energy films with physical stunts and chases.");
     private static Movie movie = MovieFactory.buildMovie("Cars","After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.",genre,"117 mins","PG-13","imageURL");
     private static Showtime showtime = ShowtimeFactory.buildShowtime( LocalDateTime.parse("2024-08-29T00:00:00"), LocalDateTime.parse("2024-08-29T01:30:00"), movie);
-    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema");
+    private static Cinema cinema = CinemaFactory.buildCinema( "Grand Cinema", "6 Ferry street");
     private static Theatre theatre = TheatreFactory.buildTheatre("IMAX", cinema);
     private static Seat seat = SeatFactory.buildSeat("D4","Regular",theatre);
-    private static Ticket ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre,cinema, 69.00);
+    private static Ticket ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre,cinema, 69.00, user);
     private static Cart cart = CartFactory.buildCart(user, ticket, "2");
 
 
-    private static User user;
-    private static Genre genre;
-    private static Movie movie;
-    private static Showtime showtime;
-    private static Cinema cinema;
-    private static Theatre theatre;
-    private static Seat seat;
-    private static Ticket ticket;
-    private static Cart cart;
 
     private final String BASE_URL = "http://localhost:8080/cart";
     private RestTemplate restTemplate = new RestTemplate();
@@ -63,8 +54,8 @@ public class CartControllerTest {
         // Create and persist other entities
         genre = GenreFactory.buildGenre("Action", "Fast-paced, high-energy films with physical stunts and chases.");
         movie = MovieFactory.buildMovie("Cars", "After the race at the Piston Cup Championship ends in a three-way tie-breaker, a rookie Lightning McQueen is desperate to make it to the winning position and take over the veteran Strip Weathers.", genre, "117 mins", "PG-13", "imageURL");
-        showtime = ShowtimeFactory.buildShowtime(LocalTime.of(7, 0), LocalTime.of(9, 0), movie);
-        cinema = CinemaFactory.buildCinema("Grand Cinema");
+        showtime = ShowtimeFactory.buildShowtime(LocalDateTime.of(2024, 8, 29, 0, 0), LocalDateTime.of(2024, 8, 29, 0, 0), movie);
+        cinema = CinemaFactory.buildCinema("Grand Cinema", "6 Ferry street");
         theatre = TheatreFactory.buildTheatre("IMAX", cinema);
         seat = SeatFactory.buildSeat("D4", "Regular", theatre);
         ticket = TicketFactory.buildTicket(movie, showtime, seat, theatre, cinema, 69.00, user);

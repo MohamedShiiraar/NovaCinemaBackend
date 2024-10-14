@@ -5,7 +5,7 @@ import za.ac.cput.novacinemaapp.util.Helper;
 
 public class TicketFactory {
 
-    public static Ticket buildTicket(Movie movie, Showtime showtime, Seat seat, Theatre theatre, Cinema cinema, double ticketPrice, User userID) {
+    public static Ticket buildTicket(Movie movie, String showtime, String seat, String theatre, Cinema cinema, double ticketPrice, User userID) {
         if (Helper.isNullOrEmpty(movie) || showtime == null || Helper.isNullOrEmpty(seat) ||
                 Helper.isNullOrEmpty(cinema) || ticketPrice <= 0 || Helper.isNullOrEmpty(theatre) ||
                 userID == null) {

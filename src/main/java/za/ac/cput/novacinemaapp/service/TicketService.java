@@ -31,9 +31,7 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public Ticket read(Long id) {
-        return repository.findById(id).orElse(null);
-    }
+    public Ticket read(Long ticketID) { return repository.findTicketByTicketID(ticketID);}
 
     @Override
     public Set<Ticket> getall() {

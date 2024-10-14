@@ -17,18 +17,19 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketID;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Movie movie;
-    @ManyToOne
-    private Showtime showtime;
-    @ManyToOne
-    private Seat seat;
-    @ManyToOne
-    private Theatre theatre;
+
+    private String showtime;
+
+    private String seat;
+
+    private String theatre;
+
     @ManyToOne
     private Cinema cinema;
     private double ticketPrice;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User userID;
 
     public Ticket() {
@@ -82,9 +83,9 @@ public class Ticket {
     public static class Builder {
         private Long ticketID;
         private Movie movie;
-        private Showtime showtime;
-        private Seat seat;
-        private Theatre theatre;
+        private String showtime;
+        private String seat;
+        private String theatre;
         private Cinema cinema;
         private double ticketPrice;
         private User userID;
@@ -99,17 +100,17 @@ public class Ticket {
             return this;
         }
 
-        public Builder setShowtime(Showtime showtime) {
+        public Builder setShowtime(String showtime) {
             this.showtime = showtime;
             return this;
         }
 
-        public Builder setSeat(Seat seat) {
+        public Builder setSeat(String seat) {
             this.seat = seat;
             return this;
         }
 
-        public Builder setTheatre(Theatre theatre) {
+        public Builder setTheatre(String theatre) {
             this.theatre = theatre;
             return this;
         }

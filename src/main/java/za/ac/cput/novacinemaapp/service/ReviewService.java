@@ -20,12 +20,16 @@ public class ReviewService implements IReviewService {
 
     @Autowired
     ReviewService(ReviewRepository repository) {this.repository = repository;}
+
     @Override
     public Review create(Review review) {return repository.save(review);}
+
     @Override
     public Review read(Long reviewId) {return repository.findReviewByReviewId(reviewId);}
+
     @Override
     public Review update(Review review) {return repository.save(review);}
+
     @Override
     public Set<Review> getAll() {return repository.findAll().stream().collect(Collectors.toSet());}
 

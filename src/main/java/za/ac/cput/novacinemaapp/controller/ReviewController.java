@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.novacinemaapp.domain.Review;
+import za.ac.cput.novacinemaapp.repository.MovieRepository;
+import za.ac.cput.novacinemaapp.repository.UserRepository;
 import za.ac.cput.novacinemaapp.service.ReviewService;
 
 
@@ -19,6 +21,10 @@ import java.util.Set;
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
+    @Autowired
+    private MovieRepository movieRepository;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     ReviewService reviewService;
 
@@ -31,11 +37,11 @@ public class ReviewController {
         return new ResponseEntity<>(createdReview, HttpStatus.CREATED);
     }
 
-    @GetMapping("read/{reviewId}")
-    public ResponseEntity<?> get(@PathVariable Long reviewId) {
-        Review review = reviewService.read(reviewId);
+    @GetMapping("read/{id}")
+    public ResponseEntity<?> get(@PathVariable Long id) {
+        Review review = reviewService.read(id);
         if (review == null) {
-            return ResponseEntity.badRequest().body("Showtime with reviewId" + reviewId + "not found.");
+            return ResponseEntity.badRequest().body("Review with id" + id + "not found.");
         }
         return ResponseEntity.ok(review);
     }

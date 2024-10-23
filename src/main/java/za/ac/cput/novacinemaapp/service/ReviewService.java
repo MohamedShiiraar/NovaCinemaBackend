@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.novacinemaapp.domain.Review;
 import za.ac.cput.novacinemaapp.repository.ReviewRepository;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,5 +33,9 @@ public class ReviewService implements IReviewService {
 
     @Override
     public Set<Review> getAll() {return repository.findAll().stream().collect(Collectors.toSet());}
+
+    public List<Review> getReviewsByMovieId(Long movieId) {
+        return repository.findByMovieId(movieId);
+    }
 
 }

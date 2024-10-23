@@ -17,6 +17,7 @@ import za.ac.cput.novacinemaapp.repository.UserRepository;
 import za.ac.cput.novacinemaapp.service.ReviewService;
 
 
+import java.util.List;
 import java.util.Set;
 @RestController
 @RequestMapping("/review")
@@ -44,6 +45,11 @@ public class ReviewController {
             return ResponseEntity.badRequest().body("Review with id" + id + "not found.");
         }
         return ResponseEntity.ok(review);
+    }
+
+    @GetMapping("/movie/{movieId}")
+    public List<Review> getReviewsByMovieId(@PathVariable Long movieId) {
+        return reviewService.getReviewsByMovieId(movieId);
     }
 
     @GetMapping("getAll")
